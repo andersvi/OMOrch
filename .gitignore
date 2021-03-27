@@ -1,0 +1,7 @@
+.DS_Store
+.dev
+.vscode
+demo-ws/out-files
+reference-pages
+*.lisp~
+**/#*.lisp#

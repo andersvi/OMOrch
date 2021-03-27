@@ -1,0 +1,476 @@
+
+(:patch
+ (:name "tutorial patch")
+ (:doc "")
+ (:info
+  (:created "2021/03/30 9:58:56")
+  (:modified "2021/06/27 16:18:12")
+  (:by "om-sharp")
+  (:version 1.0101))
+ (:window (:size (1136 994)) (:position (236 46)))
+ (:grid nil)
+ (:lock nil)
+ (:boxes
+  (:box
+   (:library "om-orchidea")
+   (:type :function)
+   (:reference orchestrate)
+   (:group-id nil)
+   (:name "orchestrate")
+   (:x 177)
+   (:y 389)
+   (:w 149)
+   (:h 34)
+   (:color nil)
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align nil)
+   (:icon :left)
+   (:lock :eval-once)
+   (:lambda nil)
+   (:inputs
+    (:input
+     (:type :standard)
+     (:name "SOUND")
+     (:value nil)
+     (:reactive nil))
+    (:input
+     (:type :standard)
+     (:name "ORCHESTRATION")
+     (:value *default-orchestration*)
+     (:reactive nil))
+    (:input
+     (:type :standard)
+     (:name "ONSETS-THRESHOLD")
+     (:value t)
+     (:reactive nil))
+    (:input
+     (:type :standard)
+     (:name "OUTPUT-FORMAT")
+     (:value :chord-seq)
+     (:reactive nil)))
+   (:outputs
+    (:output (:name "out0") (:reactive nil))
+    (:output (:name "out1") (:reactive nil)))
+   (:id 0))
+  (:box
+   (:type :value)
+   (:reference (:symbol "SIMPLE-TEXT-STRING" "LISPWORKS"))
+   (:group-id nil)
+   (:name "aux 3")
+   (:x 47)
+   (:y 37)
+   (:w 371)
+   (:h 34)
+   (:color
+    (:color-or-nil (:color (:color 1.0 1.0 1.0 1.0)) (:t-or-nil t)))
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align nil)
+   (:lock nil)
+   (:inputs)
+   (:outputs (:output (:name "value") (:reactive nil)))
+   (:value "/Users/geof/Data/samples/orchidea-db/TinySOL.spectrum.db")
+   (:id 1))
+  (:box
+   (:type :function)
+   (:reference seq)
+   (:group-id nil)
+   (:name "seq")
+   (:x 147)
+   (:y 838)
+   (:w 59)
+   (:h 34)
+   (:color nil)
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align nil)
+   (:icon :left)
+   (:lock nil)
+   (:lambda nil)
+   (:inputs
+    (:input
+     (:type :standard)
+     (:name "OP")
+     (:value nil)
+     (:reactive nil))
+    (:input
+     (:type :optional)
+     (:name "op+")
+     (:value nil)
+     (:reactive nil)))
+   (:outputs
+    (:output (:name "out") (:reactive nil))
+    (:output (:name "op+1") (:reactive nil)))
+   (:id 2))
+  (:box
+   (:type :object)
+   (:reference chord-seq)
+   (:group-id nil)
+   (:name "CHORD-SEQ")
+   (:x 267)
+   (:y 532)
+   (:w 836)
+   (:h 147)
+   (:color nil)
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align :center)
+   (:display :mini-view)
+   (:showname nil)
+   (:show-markers t)
+   (:lock nil)
+   (:lambda nil)
+   (:inputs
+    (:input
+     (:type :standard)
+     (:name "SELF")
+     (:value nil)
+     (:reactive nil))
+    (:input
+     (:type :standard)
+     (:name "LMIDIC")
+     (:value (:list 6000))
+     (:reactive nil))
+    (:input
+     (:type :standard)
+     (:name "LONSET")
+     (:value (:list 0 1000))
+     (:reactive nil))
+    (:input
+     (:type :standard)
+     (:name "LDUR")
+     (:value (:list 1000))
+     (:reactive nil))
+    (:input
+     (:type :standard)
+     (:name "LVEL")
+     (:value (:list 100))
+     (:reactive nil))
+    (:input
+     (:type :key)
+     (:name "loffset")
+     (:value (:list 0))
+     (:reactive nil))
+    (:input
+     (:type :key)
+     (:name "lchan")
+     (:value (:list 1))
+     (:reactive nil))
+    (:input (:type :key) (:name "llegato") (:value 0) (:reactive nil)))
+   (:outputs
+    (:output (:name "SELF") (:reactive nil))
+    (:output (:name "LMIDIC") (:reactive nil))
+    (:output (:name "LONSET") (:reactive nil))
+    (:output (:name "LDUR") (:reactive nil))
+    (:output (:name "LVEL") (:reactive nil))
+    (:output (:name "loffset") (:reactive nil))
+    (:output (:name "lchan") (:reactive nil))
+    (:output (:name "llegato") (:reactive nil)))
+   (:window (:size (1190 491)) (:position (42 69)))
+   (:edition-params (:staff :ggff))
+   (:value
+    (:object
+     (:class chord-seq)
+     (:slots
+      ((:onset 0)
+       (:duration 1000)
+       (:interpol (:number-or-nil (:number 50) (:t-or-nil nil)))
+       (:name "CHORD-SEQ")
+       (:symbolic-date nil)
+       (:symbolic-dur nil)
+       (:symbolic-dur-extent 0)
+       (:extras nil)
+       (:lmidic
+        (:list
+         7819
+         7098
+         7098
+         7098
+         6759
+         7201
+         7098
+         7098
+         7098
+         7201
+         7098
+         6759))
+       (:lonset (:list 0 1000))
+       (:ldur
+        (:list
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000))
+       (:lvel (:list 80 80 80 80 80 80 80 80 80 80 80 80))
+       (:loffset (:list 0 0 0 0 0 0 0 0 0 0 0 0))
+       (:lchan (:list 1 2 5 6 7 8 9 10 15 16 18 22))
+       (:lport (:list nil nil nil nil nil nil nil nil nil nil nil nil))
+       (:llegato nil)))))
+   (:id 3))
+  (:comment
+   (:x 386)
+   (:y 824)
+   (:w 313)
+   (:h 113)
+   (:fgcolor (:color 0 0 0 1.0))
+   (:bgcolor nil)
+   (:border 0)
+   (:roundness nil)
+   (:text-font (:font (:face "Verdana") (:size 12) (:style :plain)))
+   (:align nil)
+   (:text
+    "3. evaluate this sequence object to get both the sound file and the chord-seq (NB. chord-seq not yet implemented!)
+
+Also NB: the orchestrate method should have eval-once enabled so it doesn't do the calculation twice")
+   (:id 4))
+  (:comment
+   (:x 453)
+   (:y 2)
+   (:w 308)
+   (:h 98)
+   (:fgcolor (:color 0 0 0 1.0))
+   (:bgcolor nil)
+   (:border 0)
+   (:roundness nil)
+   (:text-font (:font (:face "Verdana") (:size 12) (:style :plain)))
+   (:align nil)
+   (:text
+    "1. evaluate this. You have to choose the db file which ends with '.spectrum.db', such as 'TinySOL.spectrum.db'
+
+restrictions: The folder containing the sound files must be adjacent to this database file.")
+   (:id 5))
+  (:box
+   (:type :value)
+   (:reference (:symbol "SIMPLE-TEXT-STRING" "LISPWORKS"))
+   (:group-id nil)
+   (:name "aux")
+   (:x 597)
+   (:y 160)
+   (:w 182)
+   (:h 72)
+   (:color
+    (:color-or-nil (:color (:color 1.0 1.0 1.0 1.0)) (:t-or-nil t)))
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align nil)
+   (:lock nil)
+   (:inputs)
+   (:outputs (:output (:name "value") (:reactive nil)))
+   (:value "Fl Fl Fl Fl Fl Fl")
+   (:id 6))
+  (:box
+   (:type :object)
+   (:reference sound)
+   (:group-id nil)
+   (:name "A_minor-orch-96078700.wav")
+   (:x 43)
+   (:y 539)
+   (:w 195)
+   (:h 93)
+   (:color nil)
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align :center)
+   (:display :mini-view)
+   (:showname nil)
+   (:show-markers t)
+   (:lock nil)
+   (:lambda nil)
+   (:inputs
+    (:input
+     (:type :standard)
+     (:name "SELF")
+     (:value :choose-file)
+     (:reactive nil))
+    (:input
+     (:type :key)
+     (:name "markers")
+     (:value nil)
+     (:reactive nil)))
+   (:outputs
+    (:output (:name "SELF") (:reactive nil))
+    (:output (:name "markers") (:reactive nil)))
+   (:window (:size nil) (:position nil))
+   (:edition-params)
+   (:value
+    (:object
+     (:class sound)
+     (:slots
+      ((:onset 0)
+       (:duration 9142.403)
+       (:n-samples 403180)
+       (:n-channels 2)
+       (:sample-rate 44100)
+       (:smpl-type :float)
+       (:sample-size 16)))
+     (:add-slots
+      ((:markers nil)
+       (:gain 1.0)
+       (:access-from-file nil)
+       (:file-pathname
+        (:pathname
+         (:directory
+          (:relative
+           :up
+           :up
+           :up
+           :up
+           :up
+           "Documents"
+           "OM#"
+           "temp-files"))
+         (:device nil)
+         (:host nil)
+         (:name "archeos-bell-orch-35669904")
+         (:type "wav")))))))
+   (:id 7))
+  (:box
+   (:type :value)
+   (:reference (:symbol "SIMPLE-TEXT-STRING" "LISPWORKS"))
+   (:group-id nil)
+   (:name "aux")
+   (:x 277)
+   (:y 165)
+   (:w 264)
+   (:h 98)
+   (:color
+    (:color-or-nil (:color (:color 1.0 1.0 1.0 1.0)) (:t-or-nil t)))
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align nil)
+   (:lock nil)
+   (:inputs)
+   (:outputs (:output (:name "value") (:reactive nil)))
+   (:value
+    "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
+   (:id 8))
+  (:box
+   (:type :object)
+   (:reference sound)
+   (:group-id nil)
+   (:name "A_minor.wav")
+   (:x 11)
+   (:y 180)
+   (:w 186)
+   (:h 96)
+   (:color nil)
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align :center)
+   (:display :mini-view)
+   (:showname nil)
+   (:show-markers t)
+   (:lock :locked)
+   (:lambda nil)
+   (:inputs
+    (:input
+     (:type :standard)
+     (:name "SELF")
+     (:value :choose-file)
+     (:reactive nil))
+    (:input
+     (:type :key)
+     (:name "markers")
+     (:value nil)
+     (:reactive nil)))
+   (:outputs
+    (:output (:name "SELF") (:reactive nil))
+    (:output (:name "markers") (:reactive nil)))
+   (:window (:size nil) (:position nil))
+   (:edition-params)
+   (:value
+    (:object
+     (:class sound)
+     (:slots
+      ((:onset 0)
+       (:duration 6193.9683)
+       (:n-samples 273154)
+       (:n-channels 2)
+       (:sample-rate 44100)
+       (:smpl-type :float)
+       (:sample-size 16)))
+     (:add-slots
+      ((:markers nil)
+       (:gain 1.0)
+       (:access-from-file nil)
+       (:file-pathname
+        (:pathname
+         (:directory
+          (:relative :up "demo-ws" "in-files" "demo sounds"))
+         (:device nil)
+         (:host nil)
+         (:name "archeos-bell")
+         (:type "wav")))))))
+   (:id 9))
+  (:box
+   (:library "om-orchidea")
+   (:type :function)
+   (:reference set-db-file)
+   (:group-id nil)
+   (:name "set-db-file")
+   (:x 253)
+   (:y 98)
+   (:w 95)
+   (:h 34)
+   (:color nil)
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align nil)
+   (:icon :left)
+   (:lock nil)
+   (:lambda nil)
+   (:inputs
+    (:input
+     (:type :standard)
+     (:name "PATH")
+     (:value nil)
+     (:reactive nil)))
+   (:outputs (:output (:name "out") (:reactive nil)))
+   (:id 10))
+  (:box
+   (:type :value)
+   (:reference fixnum)
+   (:group-id nil)
+   (:name "value box")
+   (:x 251)
+   (:y 344)
+   (:w 32)
+   (:h 34)
+   (:color
+    (:color-or-nil (:color (:color 1.0 1.0 1.0 1.0)) (:t-or-nil t)))
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align nil)
+   (:lock nil)
+   (:inputs)
+   (:outputs (:output (:name "value") (:reactive nil)))
+   (:value 2)
+   (:id 11)))
+ (:connections
+  (:connection (:from (:box 0 :out 0)) (:to (:box 7 :in 0)))
+  (:connection (:from (:box 0 :out 1)) (:to (:box 3 :in 0)))
+  (:connection (:from (:box 1 :out 0)) (:to (:box 10 :in 0)))
+  (:connection (:from (:box 3 :out 0)) (:to (:box 2 :in 1)))
+  (:connection (:from (:box 7 :out 0)) (:to (:box 2 :in 0)))
+  (:connection (:from (:box 8 :out 0)) (:to (:box 0 :in 1)))
+  (:connection (:from (:box 9 :out 0)) (:to (:box 0 :in 0)))
+  (:connection (:from (:box 11 :out 0)) (:to (:box 0 :in 2)))))

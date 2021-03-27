@@ -1,0 +1,181 @@
+; -----------------------------
+; Orchidea - configuration file
+; -----------------------------
+;
+; (c) 2018-2020 Carmine E. Cella, HEM, Ircam
+;
+
+; This file contains the configuration parameters for assisted orchestration.
+; Orchidea uses a mono-objective genetic algorithm for the optimization and
+; a graph structure to represent dynamic solutions.
+
+; The lines starting with ';' are comments and are not evaluated; in the following
+; lines, some comments will explain each specific parameter.
+
+; DATABASE AND ORCHESTRA -------------------------------------------------------
+
+; The parameter db_files contains the files of the features; please note that this is
+; a list and can contain different files, corresponding for example to different datasets.
+; The only constraint is that each file should contain the same features (ex. mfcc)
+; The parameter sound_paths is the list of folders where the audio files are located;
+; please note that files must be WAV@44100, 16 bit.
+; The naming convention for the files in the database is the following:
+; instrument-style-note-dynamics-other.wav
+; If your files are not named as specified, they will be tagged with 'N' for
+; each specific field. The structure of the folder is not important.
+
+db_files 			/Users/Carmine/Projects/Media/Datasets/TinySOL.spectrum.db
+sound_paths			/Users/Carmine/Projects/Media/Datasets/TinySOL
+
+; This list specifies the instruments of the orchestra to be used; the names depend
+; on the database used. The character '|' in between two or more instruments means
+; that the instruments are played by a single player and are consider as doubles;
+; the algorithm will pick up either instrument depending on the optimization.
+
+;;orchestra			Bn Bn Tbn Tbn BTb Cb Cb MulFl MulOb MulCl MulBn tt
+;orchestra			Cb MulFl MulOb MulCl MulBn tt tt tt tt
+orchestra			Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb
+;orchestra			Picc Fl Fl Ob Ob EH ClBb ClBb BClBb Bn Bn CBn Hn Hn Hn Hn TpC TpC TpC TpC TTbn TTbn TTbn BTb Vns Vns Vas Vcs Cb Cb
+;orchestra			Vn Vn Va Vc Cb
+;orchestra 	 		Bn Cb Hn Tbn+C|Tbn+H|Tbn+S BTb TpC+C|TpC+H|TpC+S
+;orchestra			Fl  Ob ClBb Bn
+;orchestra 	 		Bn Cb Hn Tbn+C|Tbn+H|Tbn+S BTb TpC+C|TpC+H|TpC+S MulFl|MulOb MulCl|MulBn tt
+;orchestra 	 		Tbn+C|Tbn+H|Tbn+S BTb TpC+C|TpC+H|TpC+S MulFl|MulOb MulCl|MulBn tt
+;orchestra 	 		TpC+C|TpC+H|TpC+S MulFl MulOb MulCl MulBn tt
+;orchestra			Acc Cb Bn MulBn tt BTb
+
+; These parameters are the filters for styles, dynamics and other tags; if the line
+; is commented there will be no filter applied.
+
+;styles				pizz pizz-bartok pizz-lv pizz-partok pizz-sec
+;styles 				ord
+;styles	            mulpgbn mulvocl kn_ndle_edge kn_ndle_edge_drawn kn_ndle_mid pont-trem tasto-trem trem tymp_edge tymp_mid v_mh_edge v_mh_mid
+;dynamics			ppp pp p N
+;others				2c 4c
+
+; OPTIMIZATION -----------------------------------------------------------------
+
+; These are the parameter for the optimization. Normally, you don't need to change
+; them unless the solutions are not satisfactory.
+
+; The population size and the number of epochs determines the width of the research;
+; usually the bigger the better, but the computation time can be long.
+; Suggestion: For static targets this is often not a problem and using 500 for both is ok;
+; for dynamic targets probably using 100 for both (or 100 and 300 respectively)
+; can be more appropriate.
+
+pop_size			200
+max_epochs			200
+
+; To determine the initial population for the optimization, Orchidea uses a method
+; called 'stochastic pursuit'. Generally speaking, the method tries to generate right
+; away some solutions that are close to the target. This is usually better but can
+; produce final solutions that are too homogeneous. Using 0, the initial population
+; is random; using 1 the pursuit will be not relaxed and the initial population will
+; be made of a single solution repeated (so it is not good). Increasing this value,
+; for example to 3, means that the initial population will be made of a number of
+; different solutions that are somehow close to the target.
+; Suggestion: use 0 if you are unsure, 3 or more if you understand this parameter.
+
+pursuit				5
+
+; Cross-over rate and mutation rate have the usual meaning in genetic optimization.
+; Generally speaking, you should not change cross-over rate and you should increase
+; mutation rate only to increase diversity of solutions, in spite of consistency.
+; Suggestion: mutation rate should stay between 0.001 and 0.1
+
+xover_rate			0.8
+mutation_rate		0.01
+
+; Sparsity determines the freedom that the algorithm has to remove instruments of
+; the given orchestra from the solution. If sparsity is 0, each solution will use
+; all instruments; if this value increases, the probability of dropping an instrument
+; increases correspondingly.
+; Suggestion: use 0.01 for general targets, 0.001 for symphonic targets, 0.1 for
+; single notes of instruments used as targets.
+
+sparsity			0.001
+
+; The way Orchidea determines if a solution is close or not to the target is given
+; by an asymmetric function that considers differently cases in which a solution
+; found partials that are present in the target or partials that are not present.
+; In the latter case, usually, the penalization should be stronger since we don't
+; want to hear partials that do not exist in the target.
+; Suggestion: keep a ratio >10 between negative/positive, increasing negative penalization
+; if you notice that there are too many spurious partials and increasing positive
+; penalization if you notice that there are not enough partials.
+
+positive_penalization .5
+negative_penalization 10
+
+; The hysteresis add joint optimization to match previous solutions in time in
+; dynamic orchestration.
+; Suggestion: use 0 if you don't know about hysteretic orchestration, or 0 < something < 1
+; if you want to apply it
+
+hysteresis 0.1
+
+; The regularization (L1-like) sponsors sparse solutions.
+; Suggestion: use 0 if you don't know about L1-regularization, or something >10
+; if you want to apply it (NB: the effect depends on the real amplitude of the features)
+
+regularization 0
+
+
+; TARGET -----------------------------------------------------------------------
+
+; The following parameters refer to the analysis of the target and subsequent
+; filtering of the search space. The window size (in samples) should be large
+; if you know that the target contains very low frequency (ex. A1).
+; The valid segmentation policies are: flux, powerflux, frames.
+; Partials filtering works like that: if it is 0 there is no filtering and all
+; the sounds in the database are used. If it is between 0 < x < 1 than the database
+; is reduced by removing the sounds that does not correspond to the partials in the
+; target. Increasing this value produces a stricter selection and only strongest
+; partials (dynamically) are retained.
+; Suggestion: use 0 for inharmonic or noisy sounds where timbre is more important
+; than pitch, and something between 0.1 < x < 0.3 if pitches are also important.
+
+segmentation        flux
+partials_window		32768
+partials_filtering	.2
+
+; If, after the target analysis, there are still some pitches that are missing
+; you can add them here in standard notation (ex. A4, B#3, ...)
+extra_pitches		N
+
+; DYNAMIC ORCHESTRATION --------------------------------------------------------
+
+; These parameters refer to temporal orchestration. The current segmentation model
+; (very simple) uses thresholds and timegates on specific spectral features to
+; determine onsets. Timegates are specified in seconds, thresholds are absolute
+; values between 0 and 1.
+; Suggestion: use threshold 0 to segment at any minimal spectral variation and
+; increase it to reduce the sensitivity. If threshold is > 1 than there will be
+; no onsets and target is considered static. The values for timegates depend
+; on the specific problem.
+
+onsets_threshold 	.1
+onsets_timegate		.1
+
+; Other possible values are:
+; brahms .01 2
+; a_minor .1 .1
+; jarrett .03 .5
+; coq .1 .1
+; jazz piano .1 .1
+; toms diner .1 .05
+
+; EXPORT -----------------------------------------------------------------------
+
+; This final parameters are related to the exported solution. You can determine
+; how many of them are saved (please keep in mind that for temporal solutions
+; there is also the file connection.wav that represents the final orchestration).
+; T60 specifies the reverberation time and you can control the dry/wet ratio with
+; respective parameters.
+
+export_solutions	0
+t60					2.8
+dry_wet				.8 .4
+
+; eof
