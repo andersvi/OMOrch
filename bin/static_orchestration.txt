@@ -24,8 +24,8 @@
 ; If your files are not named as specified, they will be tagged with 'N' for
 ; each specific field. The structure of the folder is not important.
 
-db_files 			/Users/Carmine/Projects/Media/Datasets/TinySOL.spectrum.db
-sound_paths			/Users/Carmine/Projects/Media/Datasets/TinySOL
+db_files                        /Users/geof/Data/samples/orchidea-db/TinySOL.spectrum.db
+sound_paths			/Users/geof/Data/samples/orchidea-db/TinySOL
 
 ;db_files 			CSOL_tam_tam_spectrum.txt CSOL_multiphonics_spectrum.txt CSOL_ordinario_spectrum.txt
 ;sound_paths			/Users/Carmine/Elementi/Datasets/CSOL_tam_tam /Users/Carmine/Elementi/Datasets/CSOL_multiphonics /Users/Carmine/Elementi/Datasets/CSOL_ordinario
