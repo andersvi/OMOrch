@@ -1,0 +1,18 @@
+--------------------------
+Orchidea - version changes
+--------------------------
+
+0.3 - September, 3, 2018
+
+First version deployed. Allow static and basic temporal orchestrations.
+Command line tools (anarkid and makedb) with dedicated scripts.
+
+0.4 - December, 3, 2018
+
+First version deployed of the Max packaged toolbox deployed. 
+Fixed bugs, renamed tools, added more targets. Added several command line tools.
+
+0.5 - March, 12, 2019
+
+First public release of the library and the toolbox.
+Fixed bugs, improved stability, added evalution scripts, fixed typos on tutorials.
