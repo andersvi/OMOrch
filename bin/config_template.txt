@@ -30,7 +30,7 @@ partials_window		32768
 partials_filtering	.2
 
 
-onsets_threshold 	2
+onsets_threshold 	__ONSETS_THRESHOLD__
 onsets_timegate		.1
 
 export_solutions	10
