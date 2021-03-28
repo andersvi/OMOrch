@@ -22,8 +22,14 @@
                         (if (eql char #\/) (list #\\ #\/) (list char)))
                     (coerce str 'list))
             'string)))
-    
-(defun orchestrate (sound orch-string dynamic)
+
+(defparameter *default-orchestration* "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
+
+(defmethod! orchestrate ((sound sound) (orchestration string) (dynamic t))
+  :initvals '(nil *default-orchestration* nil)
+  :indoc '("source sound object" "instrument abbreviations (space-delimited string)" "nil for status, t for dynamic")
+  :icon 451
+  :doc "generate orchestration from source sample and database"
   (when (null *db-file*) (error "db file not set, use set-db-file function"))
     (let ((tmp-dir (make-pathname :directory (append (pathname-directory *om-tmpfiles-folder*) (list (string+ "tmp-" (prin1-to-string (om-random 10000000 99999999)))))))
           (db-sound-path (derive-sound-path-from-db-file))
@@ -38,7 +44,7 @@
                     " && "
                     "sed -i '' 's/__SOUND_PATH__/" (escape-slashes (namestring db-sound-path)) "/' orch.txt"
                     " && "
-                    "sed -i '' 's/__ORCHESTRA__/" orch-string "/' orch.txt"
+                    "sed -i '' 's/__ORCHESTRA__/" orchestration "/' orch.txt"
                     " && "
                     "sed -i '' 's/__ONSETS_THRESHOLD__/" (if dynamic "0.1" "2") "/' orch.txt"
                     " && "
