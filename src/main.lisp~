@@ -1,0 +1,47 @@
+(in-package om)
+
+(defvar *static-orchestration-path*
+        (make-pathname :directory (pathname-directory *executable-path*)
+                   :name "static_orchestration_template.txt")) 
+
+(defun set-executable-path ()
+    (setf *executable-path* (om::file-chooser)))
+
+(defvar *db-file* nil)
+(defvar *sound_path* nil)
+
+(defun set-db-file ()
+  (setf *db-file* (om::file-chooser)))
+
+
+(defun list-join (lis delimiter) 
+  (format nil (string+ "~{~A~^" delimiter "~}") lis))
+
+
+(defun escape-slashes (str) 
+  (let ((new-char-list '()))
+    (coerce (mapcan #'(lambda (char)                
+                        (if (eql char #\/) (list #\\ #\/) (list char)))
+                    (coerce str 'list))
+            'string)))
+    
+(defun orchestrate (soundpath orch-string)
+  (when (null *db_file*) (error "db file not set, use set-db-file function"))
+    (let ((tmp-dir (make-pathname :directory (append (pathname-directory *om-tmpfiles-folder*) (list (string+ "tmp-" (prin1-to-string (om-random 10000000 99999999)))))))
+          (sound-path (derive-sound-path-from-db-file)))
+
+      (om-cmd-line (string+ 
+                    "mkdir " (namestring tmp-dir)
+                    " && "
+                    "sed 's/__DB_FILE__/" (escape-slashes (namestring *db-file*) "/' " (namestring *static-orchestration-path*) " > " 
+                    (namestring (make-pathname :directory (pathname-directory tmp-dir) :name "orch.txt")))))
+                    
+      (print (namestring sound-path))
+      (print orch-string)
+      nil))
+
+(defun derive-sound-path-from-db-file ()
+  (let ((root (first (lw::split-sequence (list #\.) (pathname-name *db_file*)))))
+    (make-pathname :directory (append (pathname-directory *db_file*) (list root)))
+    
+))

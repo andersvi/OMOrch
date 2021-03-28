@@ -1,0 +1,41 @@
+; -------------------------------------
+; Orchidea - configuration file DYNAMIC
+; -------------------------------------
+
+db_files 			__DB_FILE__
+sound_paths			__SOUND_PATH__
+
+orchestra           __ORCHESTRA__
+;styles				
+
+pop_size			200
+max_epochs			200
+
+pursuit				5
+
+xover_rate			0.8
+mutation_rate		0.01
+
+sparsity			0.001
+
+positive_penalization .5
+negative_penalization 10
+
+hysteresis 0.1
+
+regularization 0
+
+segmentation        flux
+partials_window		32768
+partials_filtering	.2
+
+extra_pitches		N
+
+onsets_threshold 	.1
+onsets_timegate		.1
+
+export_solutions	0
+t60					2.8
+dry_wet				.8 .4
+
+
