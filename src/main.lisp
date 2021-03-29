@@ -23,6 +23,12 @@
                     (coerce str 'list))
             'string)))
 
+(defun get-file (filename)
+  (with-open-file (stream filename)
+    (loop for line = (read-line stream nil)
+          while line
+          collect line)))
+
 (defparameter *default-orchestration* "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
 
 (defmethod! orchestrate ((sound sound) (orchestration string) (dynamic t))
@@ -30,10 +36,14 @@
   :indoc '("source sound object" "instrument abbreviations (space-delimited string)" "nil for status, t for dynamic")
   :icon 451
   :doc "generate orchestration from source sample and database"
-  (when (null *db-file*) (error "db file not set, use set-db-file function"))
+  :numouts 2
+  :menuins '((2 (("static" nil)
+                 ("dynamic" t)))
+                 
+    (when (null *db-file*) (error "db file not set, use set-db-file function"))
     (let ((tmp-dir (make-pathname :directory (append (pathname-directory *om-tmpfiles-folder*) (list (string+ "tmp-" (prin1-to-string (om-random 10000000 99999999)))))))
           (db-sound-path (derive-sound-path-from-db-file))
-          (output-file (string+ (pathname-name (filename sound)) "-orch-" (prin1-to-string (om-random 10000000 99999999)) ".wav")))
+          (output-basename (string+ (pathname-name (filename sound)) "-orch-" (prin1-to-string (om-random 10000000 99999999)))))
 
       (om-cmd-line (string+ 
                     "mkdir " (namestring tmp-dir)
@@ -48,11 +58,23 @@
                     " && "
                     "sed -i '' 's/__ONSETS_THRESHOLD__/" (if dynamic "0.1" "2") "/' orch.txt"
                     " && "
-                    (namestring *executable-path*) " " (namestring (filename sound)) " orch.txt"
-                    " && mv connection.wav ../" output-file " && cd .. && rm -rf " (namestring tmp-dir)
-))
-     
-      (tmpfile output-file)))
+                    (namestring *executable-path*) " '" (namestring (filename sound)) "' orch.txt"
+                    " && "
+                    "mv connection.wav ../" output-basename ".wav" 
+                    " && " 
+                    "mv connection.txt ../" output-basename ".txt" 
+                    " && " 
+                    " cd .. && rm -rf " (namestring tmp-dir)
+          ))
+
+      (let ((lines (get-file (tmpfile (string+ output-basename ".txt")))))
+        (values 
+          (tmpfile (string+ output-basename ".wav")) 
+          (parse-orchidea-output lines)))))
+
+(defun parse-orchidea-output (lines) 
+  (mki 'chord-seq)
+)
 
 (defun derive-sound-path-from-db-file ()
   (let ((root (first (lw::split-sequence (list #\.) (pathname-name *db-file*)))))
