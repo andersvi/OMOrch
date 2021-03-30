@@ -1,6 +1,11 @@
 
 (in-package :om)
-(defparameter *src-files* '("main"))
+
+(defparameter *src-files* '(
+  "utils"
+  "parser"
+  "main"
+  ))
 
 (defun lib-src-file (name)
   (make-pathname :directory (append (pathname-directory *load-pathname*) (list "src")) 

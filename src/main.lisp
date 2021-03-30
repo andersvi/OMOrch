@@ -1,35 +1,20 @@
 (in-package om)
 
+(defvar *db-file* nil)
+(defvar *sound_path* nil)
 (defvar *config-template-path*
         (make-pathname :directory (pathname-directory *executable-path*)
-                   :name "config_template.txt")) 
+                   :name "config_template.txt"))
 
 (defun set-executable-path ()
     (setf *executable-path* (om::file-chooser)))
 
-(defvar *db-file* nil)
-(defvar *sound_path* nil)
-
-(defun set-db-file ()
-  (setf *db-file* (om::file-chooser)))
-
-(defun list-join (lis delimiter) 
-  (format nil (string+ "~{~A~^" delimiter "~}") lis))
-
-(defun escape-slashes (str) 
-  (let ((new-char-list '()))
-    (coerce (mapcan #'(lambda (char)                
-                        (if (eql char #\/) (list #\\ #\/) (list char)))
-                    (coerce str 'list))
-            'string)))
-
-(defun get-file (filename)
-  (with-open-file (stream filename)
-    (loop for line = (read-line stream nil)
-          while line
-          collect line)))
+(defun set-db-file (path)
+  (setf *db-file* (or path (om::file-chooser))))
 
 (defparameter *default-orchestration* "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
+
+;;;;;;;;;;; orchestrate method ;;;;;;;;;;;;;
 
 (defmethod! orchestrate ((sound sound) (orchestration string) (dynamic t))
   :initvals '(nil *default-orchestration* nil)
@@ -38,7 +23,7 @@
   :doc "generate orchestration from source sample and database"
   :numouts 2
   :menuins '((2 (("static" nil)
-                 ("dynamic" t)))
+                 ("dynamic" t))))
                  
     (when (null *db-file*) (error "db file not set, use set-db-file function"))
     (let ((tmp-dir (make-pathname :directory (append (pathname-directory *om-tmpfiles-folder*) (list (string+ "tmp-" (prin1-to-string (om-random 10000000 99999999)))))))
@@ -72,9 +57,7 @@
           (tmpfile (string+ output-basename ".wav")) 
           (parse-orchidea-output lines)))))
 
-(defun parse-orchidea-output (lines) 
-  (mki 'chord-seq)
-)
+
 
 (defun derive-sound-path-from-db-file ()
   (let ((root (first (lw::split-sequence (list #\.) (pathname-name *db-file*)))))
