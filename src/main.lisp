@@ -55,7 +55,7 @@
       (let ((lines (get-file (tmpfile (string+ output-basename ".txt")))))
         (values 
           (tmpfile (string+ output-basename ".wav")) 
-          (parse-orchidea-output lines)))))
+          (parse-orchidea-output lines orchestration)))))
 
 
 
