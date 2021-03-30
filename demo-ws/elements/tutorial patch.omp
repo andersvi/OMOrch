@@ -1,5 +1,5 @@
-; OM File Header - Saved 2021/03/30 9:23:55
-; (6.18 :patc (om-make-point 102 67) (om-make-point 896 23) (om-make-point 896 1075) "" 183 0 "2021/03/27 11:11:45" "2021/03/30 9:23:55")
+; OM File Header - Saved 2021/03/30 9:26:07
+; (6.18 :patc (om-make-point 102 67) (om-make-point 672 23) (om-make-point 896 1075) "" 183 0 "2021/03/27 11:11:45" "2021/03/30 9:23:55")
 ; End File Header
 ; External resources 
 ; (list (list (quote :sound) "#P\"../out-files/A_minor-orch-96078700.wav\"" "#P\"../in-files/demo sounds/A_minor.wav\""))
