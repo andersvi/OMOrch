@@ -5,6 +5,7 @@
  (:author "Geof Holbrook (2021)")
 
  (:source-files
+  "src/om-sharp-compat"
   "src/utils"
   "src/parser"
   "src/score"
