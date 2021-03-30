@@ -4,4 +4,4 @@
 demo-ws
 reference-pages
 *.lisp~
-**/#*
+**/#*.lisp#
