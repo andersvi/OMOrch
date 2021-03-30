@@ -1,5 +1,9 @@
 (in-package om)
 
+(defvar *executable-path* 
+    (make-pathname :directory (append (butlast (pathname-directory *load-pathname*)) (list "bin")) 
+                   :name "orchestrate"))
+
 (defvar *db-file* nil)
 (defvar *sound_path* nil)
 (defvar *config-template-path*
@@ -14,6 +18,19 @@
 
 (defparameter *default-orchestration* "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
 
+;;; for om-sharp ;;;;;;;
+
+(defparameter *tmpfile-folder*
+  (if (fboundp '*om-tmpfiles-folder*)
+    *om-tmpfiles-folder*
+    (get-pref-value :files :tmp-file)))
+
+(if (or (not (fboundp 'filename))
+        (not (find-method #'filename '() (mapcar #'find-class '(sound)) nil)))
+    (defmethod filename ((sound sound)) (file-pathname sound)))
+
+;;;;;;;;;;;;;;;;;;;;;
+
 ;;;;;;;;;;; orchestrate method ;;;;;;;;;;;;;
 
 (defmethod! orchestrate ((sound sound) (orchestration string) (dynamic t))
@@ -26,7 +43,9 @@
                  ("dynamic" t))))
                  
     (when (null *db-file*) (error "db file not set, use set-db-file function"))
-    (let ((tmp-dir (make-pathname :directory (append (pathname-directory *om-tmpfiles-folder*) (list (string+ "tmp-" (prin1-to-string (om-random 10000000 99999999)))))))
+    (let ((tmp-dir (make-pathname 
+                    :directory (append (pathname-directory *tmpfile-folder*)
+                                       (list (string+ "tmp-" (prin1-to-string (om-random 10000000 99999999)))))))
           (db-sound-path (derive-sound-path-from-db-file))
           (output-basename (string+ (pathname-name (filename sound)) "-orch-" (prin1-to-string (om-random 10000000 99999999)))))
 

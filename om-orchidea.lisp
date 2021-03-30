@@ -12,10 +12,6 @@
   (make-pathname :directory (append (pathname-directory *load-pathname*) (list "src")) 
                  :name name))
 
-(defvar *executable-path* 
-    (make-pathname :directory (append (pathname-directory *load-pathname*) (list "bin")) 
-                   :name "orchestrate"))
-
 (mapc #'(lambda (filename) 
           (compile&load (namestring (lib-src-file filename))))
       *src-files*)

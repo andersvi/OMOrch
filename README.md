@@ -3,4 +3,6 @@
 OM-Client for the Orchidea Orchestration tool created by Carmine-Emanuele Cella
 (alpha version)
 
-Please visit the [project page](https://http://www.orch-idea.org/)
+See the demo workspace (`/demo-ws`) for usage.
+
+And please visit the Orchidea [project page](https://http://www.orch-idea.org/)!

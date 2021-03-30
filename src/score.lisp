@@ -1,13 +1,13 @@
 (in-package om)
 
 (defun orch-output->chord-seq (orch-output)     
-  (mki 'chord-seq 
-       :lmidic (mapcar #'(lambda (segment) 
-                                      (solution->chord (orch-solution-notes 
-                                                        (car (orch-segment-solutions segment)))
-                                                       (orch-output-orchestration orch-output))) 
-                                  (orch-output-segments orch-output))
-       :lonset (mapcar #'orch-segment-onset-ms (orch-output-segments orch-output))))
+  (make-instance 'chord-seq 
+                 :lmidic (mapcar #'(lambda (segment) 
+                                     (solution->chord (orch-solution-notes 
+                                                       (car (orch-segment-solutions segment)))
+                                                      (orch-output-orchestration orch-output))) 
+                                 (orch-output-segments orch-output))
+                 :lonset (mapcar #'orch-segment-onset-ms (orch-output-segments orch-output))))
 
 (defun solution->chord (notes orchestration)
   (let ((channels
@@ -21,11 +21,11 @@
                do (push channel used-channels)
                collect channel)))
       
-    (mki 'chord 
-         :lmidic (mapcar #'(lambda (note) 
-                             (+ (n->mc (orch-note-pitch-name note)) (orch-note-detune note)))
-                         notes)
-         :lchan channels)))
+    (make-instance 'chord 
+                   :lmidic (mapcar #'(lambda (note) 
+                                       (+ (n->mc (orch-note-pitch-name note)) (orch-note-detune note)))
+                                   notes)
+                   :lchan channels)))
 
 
                              
