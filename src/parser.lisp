@@ -23,17 +23,12 @@
   (sample-path)
   )
 
-(defun parse-orchidea-output (lines) 
-  (let ((parsed (convert-to-struct lines)))
-    (print parsed)
-    (mki 'chord-seq)))
-
-(defun convert-to-struct (lines)
+(defun parse-orchidea-output (lines)
   ;;; add an extra enclosing set of brackets so we can parse the whole file as one list
   (let ((orchestra-line (car lines))
         (solution-lines (cdr lines)))
     (let ((segment-list (parse-square-bracketed (list-join `("[" ,@solution-lines "]") " ")))
-          (orchestration (butlast (cddr (lw::split-sequence '(#\Space) orchestra-line)))))
+          (orchestration (cdr (parse-square-bracketed orchestra-line))))
 
       (make-orch-output
        :orchestration orchestration
@@ -51,17 +46,15 @@
           :initial-value str))
 
 (defun parse-segment (lis)
-  (print (list 'parse-segment lis))
   (make-orch-segment 
    :onset-ms (second lis)
-   :solutions (mapcar #'parse-solution (third lis)))
+   :solutions (mapcar #'parse-solution (cddr lis)))
   )
 
 (defun parse-solution (lis)
-  (print (list 'parse-solution lis))
   (make-orch-solution
    :id (second lis)
-   :notes (mapcar #'parse-note (third lis))))
+   :notes (mapcar #'parse-note (cddr lis))))
 
 (defun parse-note (lis)
   (make-orch-note

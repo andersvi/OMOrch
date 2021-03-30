@@ -52,11 +52,12 @@
                     " cd .. && rm -rf " (namestring tmp-dir)
           ))
 
-      (let ((lines (get-file (tmpfile (string+ output-basename ".txt")))))
+      (let* ((lines (get-file (tmpfile (string+ output-basename ".txt"))))
+             (orch-output (parse-orchidea-output lines)))
+        
         (values 
           (tmpfile (string+ output-basename ".wav")) 
-          (parse-orchidea-output lines orchestration)))))
-
+          (orch-output->chord-seq orch-output)))))
 
 
 (defun derive-sound-path-from-db-file ()

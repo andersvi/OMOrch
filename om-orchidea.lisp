@@ -4,6 +4,7 @@
 (defparameter *src-files* '(
   "utils"
   "parser"
+  "score"
   "main"
   ))
 
@@ -33,7 +34,8 @@
 (print "
 ;;;===================================================
 ;;; OM-ORCHIDEA WIP
-;;; Geof Holbrook
+;;; Orchidea binaries by Carmine Cella
+;;; Library: Geof Holbrook
 ;;;===================================================
 ")
 
