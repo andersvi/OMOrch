@@ -21,6 +21,7 @@
   (dynamic)
   (instance)
   (sample-path)
+  (detune)
   )
 
 (defun parse-orchidea-output (lines)
@@ -64,7 +65,8 @@
    :pitch-name (nth 4 lis)
    :dynamic (nth 5 lis)
    :instance (nth 6 lis)
-   :sample-path (nth 7 lis)))
+   :sample-path (nth 7 lis)
+   :detune (nth 8 lis)))
 
     
 

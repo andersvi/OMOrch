@@ -1,3 +1,5 @@
+(in-package om)
+
 (defun list-join (lis delimiter) 
   (format nil (string+ "~{~A~^" delimiter "~}") lis))
 
