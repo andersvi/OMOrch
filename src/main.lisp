@@ -30,6 +30,7 @@
                  ("dynamic" t))))
                  
     (when (null *db-file*) (error "db file not set, use set-db-file function"))
+    (unless (and (= (sample-rate sound) 44100) (= (sample-size sound) 16)) (error "sound file must be 44.1k, 16 bit"))
     (let ((tmp-dir (make-pathname 
                     :directory (append (pathname-directory *om-tmpfiles-folder*)
                                        (list (string+ "tmp-" (prin1-to-string (om-random 10000000 99999999)))))))
