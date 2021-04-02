@@ -20,14 +20,19 @@
 
 ;;;;;;;;;;; orchestrate method ;;;;;;;;;;;;;
 
-(defmethod! orchestrate ((sound sound) (orchestration string) (dynamic t))
+(defmethod! orchestrate ((sound sound) (orchestration string) (dynamic t) (output-format t))
   :initvals '(nil *default-orchestration* nil)
   :indoc '("source sound object" "instrument abbreviations (space-delimited string)" "nil for status, t for dynamic")
   :icon 451
   :doc "generate orchestration from source sample and database"
   :numouts 2
   :menuins '((2 (("static" nil)
-                 ("dynamic" t))))
+                 ("dynamic" t)))
+             (3 (("struct" :struct)
+                 ("chord-seq" :chord-seq)
+                 ("multi-seq" :multi-seq)
+                 ("poly" :poly))))
+                
                  
     (when (null *db-file*) (error "db file not set, use set-db-file function"))
     (unless (and (= (sample-rate sound) 44100) (= (sample-size sound) 16)) (error "sound file must be 44.1k, 16 bit"))
@@ -64,7 +69,11 @@
         
         (values 
           (tmpfile (string+ output-basename ".wav")) 
-          (orch-output->chord-seq orch-output)))))
+          (case output-format
+            (:struct (list orch-output)) ;; a list so we can instantiate it in a patch
+            (:chord-seq (orch-output->chord-seq orch-output))
+            (:multi-seq (orch-output->multi-seq orch-output))
+            (:poly (orch-output->poly orch-output)))))))
 
 
 (defun derive-sound-path-from-db-file ()

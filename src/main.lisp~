@@ -1,8 +1,9 @@
 (in-package om)
 
 (defvar *executable-path* 
-    (make-pathname :directory (append (pathname-directory *load-pathname*) (list "bin")) 
+    (make-pathname :directory (append (butlast (pathname-directory *load-pathname*)) (list "bin")) 
                    :name "orchestrate"))
+
 (defvar *db-file* nil)
 (defvar *sound_path* nil)
 (defvar *config-template-path*
@@ -17,26 +18,26 @@
 
 (defparameter *default-orchestration* "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
 
-;;; for om-sharp
-(defparameter *tmpfile-folder*
-  (if (fboundp *om-tmpfiles-folder*)
-    *om-tmpfiles-folder*
-    (get-pref-value :files :tmp-file)))
-
 ;;;;;;;;;;; orchestrate method ;;;;;;;;;;;;;
 
-(defmethod! orchestrate ((sound sound) (orchestration string) (dynamic t))
+(defmethod! orchestrate ((sound sound) (orchestration string) (dynamic t) (output-format t))
   :initvals '(nil *default-orchestration* nil)
   :indoc '("source sound object" "instrument abbreviations (space-delimited string)" "nil for status, t for dynamic")
   :icon 451
   :doc "generate orchestration from source sample and database"
   :numouts 2
   :menuins '((2 (("static" nil)
-                 ("dynamic" t))))
+                 ("dynamic" t)))
+             (3 (("struct" :struct)
+                 ("chord-seq" :chord-seq)
+                 ("multi-seq" :multi-seq)
+                 ("poly" :poly))))
+                
                  
     (when (null *db-file*) (error "db file not set, use set-db-file function"))
+    (unless (and (= (sample-rate sound) 44100) (= (sample-size sound) 16)) (error "sound file must be 44.1k, 16 bit"))
     (let ((tmp-dir (make-pathname 
-                    :directory (append (pathname-directory *tmpfile-folder*)
+                    :directory (append (pathname-directory *om-tmpfiles-folder*)
                                        (list (string+ "tmp-" (prin1-to-string (om-random 10000000 99999999)))))))
           (db-sound-path (derive-sound-path-from-db-file))
           (output-basename (string+ (pathname-name (filename sound)) "-orch-" (prin1-to-string (om-random 10000000 99999999)))))
@@ -68,7 +69,11 @@
         
         (values 
           (tmpfile (string+ output-basename ".wav")) 
-          (orch-output->chord-seq orch-output)))))
+          (case output-format
+            (:struct orch-output)
+            (:chord-seq (orch-output->chord-seq orch-output))
+            (:multi-seq (orch-output->multi-seq orch-output))
+            (:poly (orch-output->poly orch-output)))))))
 
 
 (defun derive-sound-path-from-db-file ()
