@@ -31,13 +31,27 @@
 ;; reference: (midi-number (pitch) , onset-time(ms), duration(ms), velocity, channel)
 
 (defun orch-output->mf-info (orch-output)
-  (sort (mapcan #'(lambda (segment) 
+  (correct-channels (sort (mapcan #'(lambda (segment) 
                     (mapcar #'(lambda (note) 
                                 (note->mf-note note (orch-segment-onset-ms segment) (orch-output-orchestration orch-output)))
                             (orch-solution-notes (car (orch-segment-solutions segment)))))
                 (orch-output-segments orch-output))
         #'< 
-        :key #'second))
+        :key #'second)))
+
+(defun correct-channels (mf-info)
+  "corrects simultaneous notes on the same channel by getting the next available channel. Provided the overlap is caused by adjacent instruments with the same name, and overlaps have been avoided already in previous steps (like, in the orchidea executable) then this should work fine."
+  (loop with notes-playing = '()
+        for note in mf-info
+        for new-channel = (loop for chan from (fifth note)
+                                when (not (find chan (mapcar 'fifth notes-playing)))
+                                return chan)
+        for corrected-note = `(,@(subseq note 0 4) ,new-channel)
+        do (setf notes-playing
+                 (append (remove-if #'(lambda (np) (<= (+ (second np) (third np)) (second note)))
+                                    notes-playing)
+                         (list corrected-note)))
+        collect corrected-note))
 
 (defun note->mf-note (note onset orchestration)
   (list (* (n->mc (orch-note-pitch-name note)) 0.01)
