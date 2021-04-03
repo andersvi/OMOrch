@@ -20,15 +20,14 @@
 
 ;;;;;;;;;;; orchestrate method ;;;;;;;;;;;;;
 
-(defmethod! orchestrate ((sound sound) (orchestration string) (dynamic t) (output-format t))
-  :initvals '(nil *default-orchestration* nil)
-  :indoc '("source sound object" "instrument abbreviations (space-delimited string)" "nil for status, t for dynamic")
+(defmethod! orchestrate ((sound sound) (orchestration string) (onsets-threshold number) (output-format t))
+  :initvals '(nil *default-orchestration* 0.1 :chord-seq)
+  :indoc '("source sound object" "instrument abbreviations (space-delimited string)" "onsets threshold (ex. static = 2, dynamic = 0.1)" "score-format")
   :icon 451
   :doc "generate orchestration from source sample and database"
   :numouts 2
-  :menuins '((2 (("static" nil)
-                 ("dynamic" t)))
-             (3 (("struct" :struct)
+  :menuins '((3 (("struct" :struct)
+                 ("mf-info" :mf-info)
                  ("chord-seq" :chord-seq)
                  ("multi-seq" :multi-seq)
                  ("poly" :poly))))
@@ -53,7 +52,7 @@
                     " && "
                     "sed -i '' 's/__ORCHESTRA__/" orchestration "/' orch.txt"
                     " && "
-                    "sed -i '' 's/__ONSETS_THRESHOLD__/" (if dynamic "0.1" "2") "/' orch.txt"
+                    "sed -i '' 's/__ONSETS_THRESHOLD__/" (prin1-to-string onsets-threshold) "/' orch.txt"
                     " && "
                     (namestring *executable-path*) " '" (namestring (filename sound)) "' orch.txt"
                     " && "
@@ -71,6 +70,7 @@
           (tmpfile (string+ output-basename ".wav")) 
           (case output-format
             (:struct (list orch-output)) ;; a list so we can instantiate it in a patch
+            (:mf-info (orch-output->mf-info orch-output))
             (:chord-seq (orch-output->chord-seq orch-output))
             (:multi-seq (orch-output->multi-seq orch-output))
             (:poly (orch-output->poly orch-output)))))))

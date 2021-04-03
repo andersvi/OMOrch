@@ -55,10 +55,10 @@
 
 (defun note->mf-note (note onset orchestration)
   (list (* (n->mc (orch-note-pitch-name note)) 0.01)
-        onset
-        (orch-note-duration-ms note)
-        (get-velocity-from-orch-note-dynamic (orch-note-dynamic note))
-        1))
+               onset
+               (orch-note-duration-ms note)
+               (get-velocity-from-orch-note-dynamic (orch-note-dynamic note))
+               (1+ (position (orch-note-instrument note) orchestration))))
         
 (defun get-velocity-from-orch-note-dynamic (dynamic) 
   (or (get-vel-from-dyn (intern (string-upcase dynamic) :keyword))
@@ -66,7 +66,36 @@
         (print (string+ "using fallback velocity 64, none found for: " dynamic))
         64)))
 
+(defun orch-output->multi-seq (orch-output)
+  (mf-info->multi-seq (orch-output->mf-info orch-output)))
+
+(defun mf-info->multi-seq (mf-info)
+  (let ((grouped (sort (group-by mf-info 'fifth)
+                       #'<
+                       :key #'car)))
+    (make-instance 'multi-seq
+                   :chord-seqs (mapcar #'(lambda (entry) 
+                                           (let ((zipped (mat-trans (cdr entry))))
+                                             (make-instance 'chord-seq
+                                                            :lmidic (om* (first zipped) 100)
+                                                            :lonset (second zipped)
+                                                            :ldur (third zipped)
+                                                            :lvel (fourth zipped)
+                                                            :lchan (fifth zipped))))
+
+                                       grouped))))
+
+(defun group-by (lis fn)
+  (reduce #'(lambda (result elt)
+              (let ((group-key (funcall fn elt)))
+                (unless (find-if #'(lambda (entry) (equal (car entry) group-key))
+                                 result)
+                  (push `(,group-key . ()) result))
+                (push elt (cdr (assoc group-key result)))
+                result))
+          lis
+          :initial-value nil))
 
 
 
-                             
+                    
