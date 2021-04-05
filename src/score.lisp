@@ -61,7 +61,7 @@
                (1+ (position (orch-note-instrument note) orchestration))))
         
 (defun get-velocity-from-orch-note-dynamic (dynamic) 
-  (or (get-vel-from-dyn (intern (string-upcase dynamic) :keyword))
+  (or (get-vel-from-dyn (cdr (assoc dynamic (("ff
       (progn ()
         (print (string+ "using fallback velocity 64, none found for: " dynamic))
         64)))

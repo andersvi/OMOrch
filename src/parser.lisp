@@ -63,7 +63,7 @@
    :instrument (nth 2 lis)
    :style (nth 3 lis)
    :pitch-name (nth 4 lis)
-   :dynamic (nth 5 lis)
+   :dynamic (prin1-to-string (nth 5 lis))
    :instance (nth 6 lis)
    :sample-path (nth 7 lis)
    :detune (nth 8 lis)))
