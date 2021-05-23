@@ -13,14 +13,18 @@
 (defun set-executable-path ()
     (setf *executable-path* (om::file-chooser)))
 
-(defun set-db-file (path)
-  (setf *db-file* (or path (om::file-chooser))))
+(defmethod! set-db-file ((path string))
+  :initvals '("")
+  :icon 451
+  :indoc '("path to .spectrum.db file")
+  :doc "set path to .spectrum.db (database sound folder must be adjacent)"
+  (setf *db-file* (or path (file-chooser))))
 
 (defparameter *default-orchestration* "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
 
 ;;;;;;;;;;; orchestrate method ;;;;;;;;;;;;;
 
-(defmethod! orchestrate ((sound sound) (orchestration string) (onsets-threshold number) (output-format t))
+(defmethod! orchestrate ((sound sound) (orchestration string) (onsets-threshold number) (output-format t) &key quantizer)
   :initvals '(nil *default-orchestration* 0.1 :chord-seq)
   :indoc '("source sound object" "instrument abbreviations (space-delimited string)" "onsets threshold (ex. static = 2, dynamic = 0.1)" "score-format")
   :icon 451
@@ -73,7 +77,7 @@
             (:mf-info (orch-output->mf-info orch-output))
             (:chord-seq (orch-output->chord-seq orch-output))
             (:multi-seq (orch-output->multi-seq orch-output))
-            (:poly (orch-output->poly orch-output)))))))
+            (:poly (orch-output->poly orch-output quantizer)))))))
 
 
 (defun derive-sound-path-from-db-file ()

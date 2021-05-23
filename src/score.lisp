@@ -61,7 +61,7 @@
                (1+ (position (orch-note-instrument note) orchestration))))
         
 (defun get-velocity-from-orch-note-dynamic (dynamic) 
-  (or (get-vel-from-dyn (cdr (assoc dynamic (("ff
+  (or (get-vel-from-dyn (intern (string-upcase dynamic) :keyword))
       (progn ()
         (print (string+ "using fallback velocity 64, none found for: " dynamic))
         64)))
@@ -97,5 +97,50 @@
           :initial-value nil))
 
 
+;;; quantization -> poly object
+
+(defun orch-output->poly (orch-output quantizer)
+  (let* ((multi-seq (orch-output->multi-seq orch-output)))
+     (multi-seq-quantize multi-seq quantizer)))
+
+(defun multi-seq-quantize (multi-seq quantizer)
+  (print (length (chord-seqs multi-seq)))
+  (let* ((onsets (sort. (reduce 'union (mapcar #'lonset (chord-seqs multi-seq)))))
+         (shifted (om- onsets (car onsets)))
+         (durations (x->dx shifted))
+         (quant-fn (or quantizer #'(lambda (durations) (omquantify durations 60 '(4 4) 8))))
+         (tree (funcall quant-fn durations))
+         (ratios (tree2ratio tree)))
+    (let ((encoded-rhythms 
+          (mapcar #'(lambda (cseq) (rhythm-as-segments 
+                                    (om- (lonset cseq) (car onsets)) 
+                                    (ldur cseq) 
+                                    shifted)) 
+                  (chord-seqs multi-seq))))
+      (mki 'poly
+           :voices (loop for rhythm in encoded-rhythms
+                         for cseq in (chord-seqs multi-seq)
+                         collect
+                         (let ((ratios-with-rests
+                                (loop for ratio in ratios
+                                      for index from 0
+                                      collect (* ratio
+                                                 (if (find index (mapcar 'first rhythm))
+                                                     1
+                                                   -1)))))
+                           (make-instance 'voice
+                                          :tree (mktree ratios-with-rests '(4 4))
+                                          :chords (inside cseq))))))))
+                                      
+                                
+
+(defun rhythm-as-segments (onsets durations all-onsets)
+  ;;; this is a bit tricky. return list of pairs: (<segment-index> <duration-in-segments>)
+  ;;; allow for inaccuracy of duration
+  (loop for onset in onsets
+        for segment-index = (position onset all-onsets)
+        collect (list segment-index 1) ;;; TODO get duration in segments
+        ))
+    
 
                     
