@@ -4,10 +4,10 @@
  (:doc "")
  (:info
   (:created "2021/03/30 9:58:56")
-  (:modified "2021/03/30 12:22:42")
+  (:modified "2021/06/27 16:18:12")
   (:by "om-sharp")
   (:version 1.0101))
- (:window (:size (1136 994)) (:position (417 46)))
+ (:window (:size (1136 994)) (:position (236 46)))
  (:grid nil)
  (:lock nil)
  (:boxes
@@ -42,8 +42,13 @@
      (:reactive nil))
     (:input
      (:type :standard)
-     (:name "DYNAMIC")
+     (:name "ONSETS-THRESHOLD")
      (:value t)
+     (:reactive nil))
+    (:input
+     (:type :standard)
+     (:name "OUTPUT-FORMAT")
+     (:value :chord-seq)
      (:reactive nil)))
    (:outputs
     (:output (:name "out0") (:reactive nil))
@@ -173,7 +178,7 @@
      (:class chord-seq)
      (:slots
       ((:onset 0)
-       (:duration 25984.6)
+       (:duration 1000)
        (:interpol (:number-or-nil (:number 50) (:t-or-nil nil)))
        (:name "CHORD-SEQ")
        (:symbolic-date nil)
@@ -182,1107 +187,37 @@
        (:extras nil)
        (:lmidic
         (:list
-         (:list
-          6400
-          8099
-          8099
-          6000
-          6000
-          8490
-          7905
-          7602
-          6400
-          6400
-          6000
-          5200
-          5698
-          5698)
-         (:list
-          9302
-          8100
-          6898
-          8100
-          5200
-          7201
-          6898
-          7603
-          5999
-          7201
-          7201
-          5696
-          5999
-          7603)
-         (:list
-          7098
-          7098
-          6401
-          5898
-          4395
-          7098
-          5598
-          6401
-          7098
-          6401
-          6401
-          5098
-          5598
-          4395
-          5898)
-         (:list 8300 7602 6400 7097 9503 8576 5597 6400 7097 5597 7097)
-         (:list
-          9301
-          8404
-          8099
-          6402
-          6402
-          8099
-          5998
-          9301
-          7201
-          6402
-          5694
-          5694
-          6402)
-         (:list
-          9301
-          6401
-          8099
-          7603
-          6898
-          6401
-          7200
-          8490
-          5696
-          8404
-          5696
-          8099
-          6401
-          5999
-          5201)
-         (:list
-          7099
-          7402
-          6800
-          4698
-          7402
-          6800
-          6800
-          7402
-          6800
-          4999
-          5894
-          6200
-          4698
-          4698)
-         (:list
-          7402
-          6200
-          7402
-          7402
-          7402
-          5893
-          8002
-          5893
-          5893
-          6800
-          6200
-          5893
-          5893
-          8002)
-         (:list
-          8099
-          7603
-          8099
-          4794
-          6401
-          7603
-          7603
-          7603
-          6000
-          6401
-          5201
-          6000
-          4794
-          8099)
-         (:list
-          8100
-          6401
-          7603
-          6000
-          8100
-          8100
-          6000
-          7603
-          6401
-          6000
-          4794
-          6000
-          5203)
-         (:list
-          7802
-          7401
-          6200
-          7802
-          7401
-          6200
-          7802
-          6200
-          7401
-          7401
-          6200
-          6200
-          6200
-          6200
-          6200
-          6200)
-         (:list
-          7805
-          7402
-          7805
-          8100
-          6199
-          7402
-          7402
-          4999
-          8100
-          7402
-          5398
-          6600
-          6600
-          4999
-          4999)
-         (:list
-          9506
-          7098
-          7789
-          8576
-          5202
-          7604
-          6800
-          7789
-          5202
-          6584
-          6199
-          5202)
-         (:list
-          7098
-          6401
-          7604
-          7604
-          6401
-          7604
-          6800
-          9503
-          8004
-          8004
-          4998
-          7098
-          5201
-          6198
-          8004)
-         (:list 7603 8100 7603 4796 4796 6000 6000 6000 6000 7603 4796)
-         (:list
-          9305
-          7603
-          7603
-          8100
-          7603
-          6000
-          4795
-          8100
-          5202
-          5202
-          6401
-          6401
-          6000)
-         (:list
-          9305
-          8100
-          6100
-          6100
-          8100
-          5600
-          4892
-          8100
-          6100
-          4892
-          6484
-          7688)
-         (:list
-          7604
-          7604
-          4895
-          8100
-          7604
-          8100
-          6700
-          6700
-          7604
-          6099
-          6700
-          4895
-          5498)
-         (:list
-          7905
-          8143
-          7603
-          7603
-          4898
-          7905
-          8143
-          4393
-          6484
-          4898
-          4898
-          5599)
-         (:list
-          7903
-          9506
-          4895
-          8099
-          6401
-          6401
-          7903
-          5279
-          6401
-          6401
-          4895
-          6700
-          5279)
-         (:list
-          7789
-          7702
-          8100
-          6200
-          7702
-          7403
-          6200
-          6585
-          7702
-          6585
-          6200
-          4998
-          4998)
-         (:list 6500 6500 6200 7702 7401 8098 5299 4998 6500 6500 9302)
-         (:list
-          7200
-          8100
-          7604
-          7604
-          7604
-          7200
-          8100
-          7604
-          5199
-          5199
-          6786
-          5199
-          5894
-          3994
-          3994)
-         (:list 7603 7201 6400 7201 7603 5894 7201 7201 6400 5999)
-         (:list
-          8100
-          6498
-          7402
-          7402
-          8100
-          7402
-          6267
-          4798
-          6498
-          6498
-          6200
-          4798
-          4089
-          4089)
-         (:list 7402 6200 6200 8099 5000 5000 7402 6200)
-         (:list
-          7201
-          8100
-          8100
-          7201
-          5999
-          6400
-          6400
-          5895
-          8100
-          5895
-          6400
-          5197
-          5197
-          3995)
-         (:list 6400 8099 7201 7602 8404 7602 7201 3994)
-         (:list 7097 8300 5199 6800 6800 7402 7402 7097 5895 6399)
-         (:list
-          9503
-          7400
-          7097
-          7097
-          6199
-          5195
-          7400
-          7097
-          7097
-          8374
-          8002
-          6800
-          5894
-          6199
-          7400)
-         (:list
-          8100
-          5198
-          6401
-          8100
-          5999
-          5999
-          5699
-          6401
-          6401
-          5699
-          5699
-          8100)
-         (:list 8100 6898 6000 6000 5697)))
-       (:lonset
-        (:list
-         92.8571
-         1021.66
-         1904.04
-         2647.07
-         3436.53
-         4179.57
-         4969.07
-         5758.53
-         6501.59
-         7244.63
-         7987.64
-         8684.26
-         9473.74
-         10170.3
-         10913.4
-         11702.8
-         12678.1
-         13514
-         14210.6
-         14953.6
-         15696.7
-         16486.2
-         17229.2
-         18018.7
-         18808.1
-         19551.2
-         20387.1
-         21176.6
-         22012.5
-         22848.4
-         23823.7
-         24984.6
-         25984.6))
+         7819
+         7098
+         7098
+         7098
+         6759
+         7201
+         7098
+         7098
+         7098
+         7201
+         7098
+         6759))
+       (:lonset (:list 0 1000))
        (:ldur
         (:list
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list 1000 1000 1000 1000 1000 1000 1000 1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list 1000 1000 1000 1000 1000 1000 1000 1000)
-         (:list 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000
-          1000)
-         (:list 1000 1000 1000 1000 1000)))
-       (:lvel
-        (:list
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80 80 80 80 80 80 80 80)
-         (:list 80 80 80 80 80)))
-       (:loffset
-        (:list
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0 0 0 0 0 0 0 0)
-         (:list 0 0 0 0 0)))
-       (:lchan
-        (:list
-         (:list 5 6 7 9 10 11 12 13 14 15 20 21 22 23)
-         (:list 1 5 7 8 9 10 11 12 13 15 18 20 21 22)
-         (:list 5 6 7 9 10 11 13 14 15 18 19 20 21 22 23)
-         (:list 1 7 9 10 11 12 13 15 18 20 22)
-         (:list 1 3 5 6 7 9 10 11 16 20 21 22 23)
-         (:list 1 5 6 7 8 9 10 11 13 14 15 18 19 20 21)
-         (:list 5 6 7 9 10 11 12 13 14 15 20 21 22 23)
-         (:list 1 5 7 8 9 10 13 14 15 18 20 21 22 23)
-         (:list 1 5 6 7 9 10 13 14 15 18 20 21 22 23)
-         (:list 5 6 7 9 11 12 13 15 18 20 21 22 23)
-         (:list 1 5 7 8 9 10 11 13 15 16 18 19 20 21 22 23)
-         (:list 1 2 3 5 6 7 8 9 11 12 13 18 20 22 23)
-         (:list 1 5 6 7 8 9 10 11 13 14 15 20)
-         (:list 1 5 7 8 9 10 11 12 13 14 15 18 20 21 22)
-         (:list 1 5 6 9 13 15 18 20 21 22 23)
-         (:list 1 2 5 6 7 9 10 11 13 14 15 20 22)
-         (:list 1 5 9 10 13 14 15 18 19 20 22 23)
-         (:list 1 5 7 8 9 10 11 12 13 18 20 21 22)
-         (:list 3 5 7 8 9 13 14 15 18 20 22 23)
-         (:list 1 2 7 8 9 10 13 15 18 19 20 22 23)
-         (:list 1 3 5 6 7 8 9 11 13 20 21 22 23)
-         (:list 5 6 7 8 9 11 13 14 15 18 20)
-         (:list 1 5 7 8 9 10 11 13 14 15 16 20 21 22 23)
-         (:list 5 6 9 11 13 15 16 18 20 21)
-         (:list 5 6 7 8 9 10 13 14 15 18 20 21 22 23)
-         (:list 5 7 9 11 13 14 15 20)
-         (:list 1 5 6 7 8 9 10 13 14 15 18 20 21 22)
-         (:list 5 7 9 10 11 13 18 22)
-         (:list 1 2 7 8 9 10 11 12 13 15)
-         (:list 1 2 5 6 7 8 9 10 11 12 13 14 15 20 22)
-         (:list 5 9 10 11 13 14 15 18 19 20 22 23)
-         (:list 1 7 9 20 22)))
-       (:lport
-        (:list
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list nil nil nil nil nil nil nil nil nil nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list nil nil nil nil nil nil nil nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil nil nil nil nil nil)
-         (:list
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil
-          nil)
-         (:list nil nil nil nil nil nil nil nil nil nil nil nil)
-         (:list nil nil nil nil nil)))
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000
+         1000))
+       (:lvel (:list 80 80 80 80 80 80 80 80 80 80 80 80))
+       (:loffset (:list 0 0 0 0 0 0 0 0 0 0 0 0))
+       (:lchan (:list 1 2 5 6 7 8 9 10 15 16 18 22))
+       (:lport (:list nil nil nil nil nil nil nil nil nil nil nil nil))
        (:llegato nil)))))
    (:id 3))
   (:comment
@@ -1377,8 +312,8 @@ restrictions: The folder containing the sound files must be adjacent to this dat
      (:class sound)
      (:slots
       ((:onset 0)
-       (:duration 32123.063)
-       (:n-samples 1416627)
+       (:duration 9142.403)
+       (:n-samples 403180)
        (:n-channels 2)
        (:sample-rate 44100)
        (:smpl-type :float)
@@ -1399,9 +334,9 @@ restrictions: The folder containing the sound files must be adjacent to this dat
            "Documents"
            "OM#"
            "temp-files"))
-         (:device :unspecific)
-         (:host :unspecific)
-         (:name "A_minor-orch-64048560")
+         (:device nil)
+         (:host nil)
+         (:name "archeos-bell-orch-35669904")
          (:type "wav")))))))
    (:id 7))
   (:box
@@ -1465,8 +400,8 @@ restrictions: The folder containing the sound files must be adjacent to this dat
      (:class sound)
      (:slots
       ((:onset 0)
-       (:duration 29315.555)
-       (:n-samples 1292816)
+       (:duration 6193.9683)
+       (:n-samples 273154)
        (:n-channels 2)
        (:sample-rate 44100)
        (:smpl-type :float)
@@ -1479,12 +414,13 @@ restrictions: The folder containing the sound files must be adjacent to this dat
         (:pathname
          (:directory
           (:relative :up "demo-ws" "in-files" "demo sounds"))
-         (:device :unspecific)
-         (:host :unspecific)
-         (:name "A_minor")
+         (:device nil)
+         (:host nil)
+         (:name "archeos-bell")
          (:type "wav")))))))
    (:id 9))
   (:box
+   (:library "om-orchidea")
    (:type :function)
    (:reference set-db-file)
    (:group-id nil)
@@ -1508,7 +444,27 @@ restrictions: The folder containing the sound files must be adjacent to this dat
      (:value nil)
      (:reactive nil)))
    (:outputs (:output (:name "out") (:reactive nil)))
-   (:id 10)))
+   (:id 10))
+  (:box
+   (:type :value)
+   (:reference fixnum)
+   (:group-id nil)
+   (:name "value box")
+   (:x 251)
+   (:y 344)
+   (:w 32)
+   (:h 34)
+   (:color
+    (:color-or-nil (:color (:color 1.0 1.0 1.0 1.0)) (:t-or-nil t)))
+   (:border nil)
+   (:roundness nil)
+   (:text-font nil)
+   (:align nil)
+   (:lock nil)
+   (:inputs)
+   (:outputs (:output (:name "value") (:reactive nil)))
+   (:value 2)
+   (:id 11)))
  (:connections
   (:connection (:from (:box 0 :out 0)) (:to (:box 7 :in 0)))
   (:connection (:from (:box 0 :out 1)) (:to (:box 3 :in 0)))
@@ -1516,4 +472,5 @@ restrictions: The folder containing the sound files must be adjacent to this dat
   (:connection (:from (:box 3 :out 0)) (:to (:box 2 :in 1)))
   (:connection (:from (:box 7 :out 0)) (:to (:box 2 :in 0)))
   (:connection (:from (:box 8 :out 0)) (:to (:box 0 :in 1)))
-  (:connection (:from (:box 9 :out 0)) (:to (:box 0 :in 0)))))
+  (:connection (:from (:box 9 :out 0)) (:to (:box 0 :in 0)))
+  (:connection (:from (:box 11 :out 0)) (:to (:box 0 :in 2)))))
