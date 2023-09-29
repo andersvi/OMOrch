@@ -49,7 +49,7 @@
 (defun parse-segment (lis)
   (make-orch-segment 
    :onset-ms (second lis)
-   :solutions (mapcar #'parse-solution (cddr lis)))
+   :solutions (mapcar #'parse-solution (cdddr lis)))
   )
 
 (defun parse-solution (lis)
