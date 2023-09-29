@@ -5,3 +5,4 @@ demo-ws/out-files
 reference-pages
 *.lisp~
 **/#*.lisp#
+*.64ufasl
