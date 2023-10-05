@@ -38,7 +38,7 @@
     (:input
      (:type :standard)
      (:name "ORCHESTRATION")
-     (:value *default-orchestration*)
+     (:value *orchidea-default-orchestration*)
      (:reactive nil))
     (:input
      (:type :standard)
