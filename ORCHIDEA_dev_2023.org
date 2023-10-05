@@ -1,0 +1,16 @@
+* om-orchidea development work AV 2023->
+
+
+* TODO
+
+** 
+
+** specialize classes
+
+*** orchidea-note-class from om::note
+
+*** orchidea-chord-seq
+
+*** orchidea multi-seq?
+
+
