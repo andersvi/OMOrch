@@ -1,0 +1,70 @@
+Every audio file has a file path of the form:
+
+	<FAMILY>/<INSTRUMENT>/ordinario/<INSTR>-ord-<PITCH>-<DYN>-<INSTANCE>-<MISC>.wav
+
+	<INSTR>-ord-<PITCH>-<DYN>-<INSTANCE>-<MISC>.wav
+
+
+  | Instr | style | pitch | Dyn | instance - string spec, fingering or N | Misc                                                 |
+  |-------+-------+-------+-----+----------------------------------------+------------------------------------------------------|
+  | Vn    | ord   | D#7   | mf  | 1c                                     | T22d_R100u                                           |
+  |       |       |       |     | first string                           | Lowered 22 cent to match A440, resampled up 100 cent |
+  |       |       |       |     |                                        |                                                      |
+
+
+For example, "Vn-ord-D#7-mf-1c-T22d_R100u" corresponds to:
+
+    a violin sound ;
+    played in the ordinary playing technique ;
+    at pitch D#7 (approximately 2489 Hz) ;
+    with mezzoforte dynamics ;
+    on the first string ; and
+    resampled from a D7 by raising pitch by a semitone, i.e. 100 cents (R100u)
+    lowered by 22 cents (T22d) to match the A440 tuning standard.
+
+
+<INSTR> is the abbreviation of the instrument.  "ord" is the
+abbreviation of "ordinario".
+
+<PITCH> denotes the pitch of the musical note. This pitch is encoded
+in the American standard pitch notation: pitch class (C means "do")
+followed by pitch octave. According to this convention, A4 has a
+fundamental frequency of 440 Hz.
+
+<DYN> denotes the intensity dynamics, ranked from pp (pianissimo) to
+ff (fortissimo).
+
+<INSTANCE> contains additional information, when applicable. For
+example, for bowed string instruments, the same pitch may sometimes be
+achieved on different positions and different strings, resulting in
+small timbre differences. In this case the label "1c", "2c", "3c", or
+"4c" denotes the string which is being bowed. (The letter c originates
+from the word "corde", which means string in French.) By convention,
+the first string is the one with the highest pitch when played as an
+open string. Furthermore, on some wind instruments, the same note was
+played multiple times, e.g. at multiple durations. In this case, we
+use the label "alt1", "alt2", etc. to denote alternative instances of
+the note. If none of these tags apply, the <INSTANCE> field becomes
+"N", which stands for "Not Applicable".
+
+<MISC> contains additional information, if applicable. In TinySOL,
+some pitches were never recorded (about 1% of the whole dataset), and
+thus missing from the chromatic scale. In this case, the <MISC> tag
+contains a letter "R", to denote the fact that the corresponding WAV
+file has been obtained by transforming a different audio clip via some
+digital frequency transposition (similar to Auto-Tune). The letter "R"
+stands for "resampled". Furthermore, some pitches (about 20% of the
+whole dataset) were slightly out of tune in comparison with the A440
+tuning standard. Again, we applied some digital frequency
+transposition to correct them and put them exactly in tune. The amount
+of frequency transposition is measured in "cents" of an equal-tempered
+semitone. The letter "T" stands for "tuned". Because we employed a
+high-fidelity algorithm for frequency transposition, and because the
+amount of digital frequency transposition is small, the timbre of
+pitch-corrected notes remains faithful to the instrument. If none of
+these tags apply, the <MISC> field becomes "N", which stands for
+"natural"; in this case, the note is distributed exactly as it was
+recorded in the studio
+
+
+

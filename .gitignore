@@ -6,3 +6,4 @@ reference-pages
 *.lisp~
 **/#*.lisp#
 *.64ufasl
+*~
