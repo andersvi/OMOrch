@@ -46,7 +46,7 @@
           (output-basename (string+ (pathname-name (filename sound)) "-orch-" (prin1-to-string (om-random 10000000 99999999)))))
 
       (om-cmd-line (string+ 
-                    "mkdir " (namestring tmp-dir)
+                    "mkdir -p " (namestring tmp-dir)
                     " && "
                     "cd " (namestring tmp-dir)
                     " && "
