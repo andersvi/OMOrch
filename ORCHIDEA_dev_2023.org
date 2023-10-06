@@ -1,11 +1,40 @@
 * om-orchidea development work AV 2023->
 
 
-* TODO
+* SJEKKE
 
-** 
+** TODO andre instrument db. SOL eller andre
 
-** specialize classes
+	- perk-lyder:
+	- multiphonics:
+	- stemme-lyder
+	- ...
+
+
+*** GJORT tam_tam: [[file:~/site/OM/ORCHIDEA/om-orchidea.github/om-orchidea][file:~/site/OM/ORCHIDEA/om-orchidea.github/om-orchidea]]
+CLOSED: [2023-10-06 fr. 11:49]
+
+	- State "GJORT"      from              [2023-10-06 fr. 11:49] \\
+
+	
+ikke så kult, lite data?  lite målinger?  kanskje finne egna targets?
+
+
+*** GJORT multiphonics : [[file:~/site/OM/ORCHIDEA/CSOL/CSOL_multiphonics_scratch_cli.sh][file:~/site/OM/ORCHIDEA/CSOL/CSOL_multiphonics_scratch_cli.sh]]
+	CLOSED: [2023-10-06 fr. 11:50]
+
+	- mye bra orkestreringer
+
+
+
+** TODO dynamics, sikre at vel/dyn blir med ut til chord-seq oa.
+
+
+* nye features, tilpasninger, forbedringer
+
+
+
+** TODO specialize classes
 
 *** orchidea-note-class from om::note
 
@@ -13,4 +42,10 @@
 
 *** orchidea multi-seq?
 
+
+
+
+* bugs?
+
+** TODO orchestrate class : check lock-mode	
 
