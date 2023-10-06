@@ -1,31 +1,8 @@
 (in-package om)
 
-(defstruct orch-output
-  (orchestration)
-  (segments)
-  )
-
-(defstruct orch-segment
-  (onset-ms)
-  (solutions))
-
-(defstruct orch-solution
-  (id)
-  (notes))
-
-(defstruct orch-note
-  (duration-ms)
-  (instrument)
-  (style)
-  (pitch-name)
-  (dynamic)
-  (instance)
-  (sample-path)
-  (detune)
-  )
 
 (defun parse-orchidea-output (lines)
-  ;;; add an extra enclosing set of brackets so we can parse the whole file as one list
+;;; add an extra enclosing set of brackets so we can parse the whole file as one list
   (let ((orchestra-line (car lines))
         (solution-lines (cdr lines)))
     (let ((segment-list (parse-square-bracketed (list-join `("[" ,@solution-lines "]") " ")))
@@ -49,8 +26,7 @@
 (defun parse-segment (lis)
   (make-orch-segment 
    :onset-ms (second lis)
-   :solutions (mapcar #'parse-solution (cdddr lis)))
-  )
+   :solutions (mapcar #'parse-solution (cdddr lis))))
 
 (defun parse-solution (lis)
   (make-orch-solution
@@ -67,9 +43,3 @@
    :instance (nth 6 lis)
    :sample-path (nth 7 lis)
    :detune (nth 8 lis)))
-
-    
-
-
-
-
