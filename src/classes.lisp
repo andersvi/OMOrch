@@ -34,7 +34,7 @@
 
 (defclass! orch-note (note)
   (
-   ;; spec is added to superclass' 'dur
+   ;; add accessors for om::note's dur:
    (dur :accessor duration-ms :initarg :duration-ms)
    (instrument :accessor instrument :initarg :instrument :initform nil)
    (style :accessor style :initarg :style :initform nil)
