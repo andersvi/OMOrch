@@ -42,7 +42,7 @@
    (dynamic :accessor dynamic :initarg :dynamic :initform nil)
    (instance :accessor instance :initarg :instance :initform nil)
    (sample-path :accessor sample-path :initarg :sample-path :initform nil)
-   (detune :accessor detune :initarg :detune :initform nil)))
+   (detune :accessor detune :initarg :detune :initform 0)))
 
 
 (defun make-orch-note (&rest initargs
