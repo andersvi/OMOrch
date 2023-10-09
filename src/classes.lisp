@@ -60,30 +60,3 @@
 	 initargs))
 
 
-;;; previous structs defined in om-orchidea:
-
-
-;; (defstruct orch-output
-;;   (orchestration)
-;;   (segments)
-;;   )
-
-;; (defstruct orch-segment
-;;   (onset-ms)
-;;   (solutions))
-
-;; (defstruct orch-solution
-;;   (id)
-;;   (notes))
-
-;; (defstruct orch-note
-;;   (duration-ms)
-;;   (instrument)
-;;   (style)
-;;   (pitch-name)
-;;   (dynamic)
-;;   (instance)
-;;   (sample-path)
-;;   (detune)
-;;   )
-
