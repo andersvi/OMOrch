@@ -1,17 +1,32 @@
 (in-package om)
 
-(defun list-join (lis delimiter) 
-  (format nil (string+ "~{~A~^" delimiter "~}") lis))
+(defun time-tag ()
+  (multiple-value-bind (sec min hour date month)
+      (get-decoded-time)
+    (format nil "~2,'0D-~2,'0D_~2,'0D~2,'0D~2,'0D" month date hour min sec)))
 
-(defun escape-slashes (str) 
-  (let ((new-char-list '()))
-    (coerce (mapcan #'(lambda (char)                
-                        (if (eql char #\/) (list #\\ #\/) (list char)))
-                    (coerce str 'list))
-            'string)))
+;; 
+;; orchidea output is [... [..] ..]
+;;
 
-(defun get-file (filename)
-  (with-open-file (stream filename)
-    (loop for line = (read-line stream nil)
-          while line
-          collect line)))
+(defun parse-[-delmited-string-to-lists (string)
+  (let ((list-string (substitute #\) #\] (substitute #\( #\[ string))))
+    (with-input-from-string (str list-string)
+      (loop for seg = (read str nil nil) then (read str nil nil)
+	      while seg collect seg))))
+
+;; from cl-cookbook:
+
+(defun replace-all (string part replacement &key (test #'char=))
+  "Returns a new string in which all the occurences of the part is replaced with replacement."
+  (with-output-to-string (out)
+    (loop with part-length = (length part)
+          for old-pos = 0 then (+ pos part-length)
+          for pos = (search part string
+                            :start2 old-pos
+                            :test test)
+          do (write-string string out
+                           :start old-pos
+                           :end (or pos (length string)))
+          when pos do (write-string replacement out)
+            while pos)))
