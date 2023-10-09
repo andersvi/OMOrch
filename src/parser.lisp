@@ -1,32 +1,17 @@
 (in-package om)
 
+(defun parse-orchidea-output (orch-output-score-file)
+  (let ((orch-output (parse-[-delmited-string-to-list
+		      (om-read-file orch-output-score-file))))
+    (make-orch-output :orchestration (car orch-output)
+		      :segments (mapcar #'parse-segment (cdr orch-output)))))
 
-(defun parse-orchidea-output (lines)
-;;; add an extra enclosing set of brackets so we can parse the whole file as one list
-  (let ((orchestra-line (car lines))
-        (solution-lines (cdr lines)))
-    (let ((segment-list (parse-square-bracketed (list-join `("[" ,@solution-lines "]") " ")))
-          (orchestration (cdr (parse-square-bracketed orchestra-line))))
-
-      (make-orch-output
-       :orchestration orchestration
-       :segments (mapcar #'parse-segment segment-list)))))
-
-;;; replace square brackets with parentheses, and convert the string to a nested list
-(defun parse-square-bracketed (str) 
-  (let ((new-string (replace-brackets str)))
-    (read-from-string new-string)))
-
-(defun replace-brackets (str) 
-  (reduce #'(lambda (str subst-tuple) (substitute (car subst-tuple) (cdr subst-tuple) str))
-          '(( #\( . #\[ ) 
-            ( #\) . #\] ))
-          :initial-value str))
-
-(defun parse-segment (lis)
+(defun parse-segment (segment)
+  "segment: (segment 0 334 (solution 1 (note) (note) ...))"
   (make-orch-segment 
-   :onset-ms (second lis)
-   :solutions (mapcar #'parse-solution (cdddr lis))))
+   :onset-ms (nth 1 segment)
+   :duration (nth 2 segment)
+   :solutions (mapcar #'parse-solution (nthcdr 3 segment))))
 
 (defun parse-solution (lis)
   (make-orch-solution
