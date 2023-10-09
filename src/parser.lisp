@@ -35,11 +35,12 @@
 
 (defun parse-note (lis)
   (make-orch-note
-   :duration-ms (nth 1 lis)
+   :duration-ms (round (nth 1 lis))
    :instrument (nth 2 lis)
    :style (nth 3 lis)
-   :pitch-name (nth 4 lis)
-   :dynamic (prin1-to-string (nth 5 lis))
+   :pitch-name (string (nth 4 lis))
+   :dynamic (string (nth 5 lis))
    :instance (nth 6 lis)
-   :sample-path (nth 7 lis)
+   :sample-path (string (nth 7 lis))
    :detune (nth 8 lis)))
+
