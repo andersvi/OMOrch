@@ -12,12 +12,12 @@
   (make-instance 'orch-output :orchestration orchestration :segments segments))
 
 (defclass! orch-segment ()
-  ((onset-ms :accessor onset-ms :initarg :onset-ms :initform 0)
+  ((onset :accessor onset :initarg :onset :initform 0)
    (duration :accessor duration :initarg :duration :initform 0)
    (solution :accessor solution :initarg :solution :initform nil)))
 
-(defun make-orch-segment (&key onset-ms solution duration)
-  (make-instance 'orch-segment :onset-ms onset-ms :solution solution :duration duration))
+(defun make-orch-segment (&key onset solution duration)
+  (make-instance 'orch-segment :onset onset :solution solution :duration duration))
 
 (defclass! orch-solution ()
   ((id :accessor id :initarg :id :initform nil)
