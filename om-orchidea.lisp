@@ -1,6 +1,51 @@
 (in-package :om)
 
+(let* ((srcdir (if *load-pathname*
+		   (append (pathname-directory *load-pathname*) '("src"))
+		   '(:relative "src")			    ;while developing/debugging
+		   ))
+       (om-orchidea-files '("package"
+			    "classes"
+			    "globals"
+			    ;; "om-sharp-compat"
+			    "utils"
+			    "parser"
+			    "score"
+			    "main"
+			    )))
+  (mapc #'(lambda (f)
+	    (compile&load (make-pathname :directory srcdir :name f)))
+	om-orchidea-files))
+
+
+(defparameter omorch::*om-orchidea-version* '0.2)
+(defparameter omorch::*om-orchidea-date* '2023-10-10)
+
+(let ((funcs '(orchestrate))
+      (p (find-library "om-orchidea")))
+  (AddGenFun2Pack funcs p))
+
+(set-lib-release omorch::*om-orchidea-version* (find-library "om-orchidea"))
+
+(print
+ (format nil "
+;; ==============================================================
+;; OM Orchidea Library
+;; Fork of Geof Holbrooks om-orchidea library
+;;  Version:	~A
+;;  Date:	~A
+;;  Sources:    https://github.com/PUT_LINK
+;;  Authors:	Anders Vinjar
+;; ==============================================================
+"
+	 omorch::*om-orchidea-version*
+	 omorch::*om-orchidea-date*))
+
+;; generate html doc:
+;; (om::gen-lib-reference (exist-lib-p "om-orchidea"))
+
 (defparameter *src-files* '(
+			    "package"
 			    "classes"
 			    "globals"
 			    ;; "om-sharp-compat"
@@ -24,27 +69,3 @@
 
 ;; (unless (fboundp 'om::set-lib-release) (defmethod om::set-lib-release (version &optional lib) nil))
 ;; (om::set-lib-release 0.1)
-
-
-(let ((*subpackages-list*
-       '(("Orchidea" nil nil 
-	  (orchestrate)
-	  nil)
-	 )))
-  (fill-library *subpackages-list*))
-
-;; (om::fill-library '((nil nil (soundtarget orchestra orc-solutionset orc-solution) 
-;;                         (orchestrate submit-orchestra submit-target) nil)
-;;                    ;("Constraints" nil nil (orc-size num-notes) nil)
-;;                    ("Server utils" nil nil (run-orchidee quit-orchidee check-orchidee orchidee-version reset-orchidee) nil)
-;;                    ("Spectrum Operators" nil nil (stretch-vps-freqs filter-vps-freqs set-amplitudes) nil))
-;;                  (find-library "OM-Orchidee"))
-
-(print "
-;;;===================================================
-;;; OM-ORCHIDEA WIP
-;;; Orchidea binaries by Carmine Cella
-;;; Library: Geof Holbrook
-;;;===================================================
-")
-
