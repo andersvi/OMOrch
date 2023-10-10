@@ -17,7 +17,6 @@
 	       (progn
 		 (setf line (replace-all line "__DB_FILE__"		(namestring *orchidea-db-file*)))
 		 (setf line (replace-all line "__SOUND_PATH__"		(namestring db-sound-path)))
-		 ;; (setf line (replace-all line "__SOUND_PATH__"		(derive-sound-path-from-db-file)))
 		 (setf line (replace-all line "__ORCHESTRA__"		orchestration))
 		 (setf line (replace-all line "__ONSETS_THRESHOLD__"	(prin1-to-string onsets-threshold))))
 	       (write-line line o)))
@@ -50,20 +49,20 @@
                  
   (when (null *orchidea-db-file*) (error "db file not set, use set-db-file function"))
   ;; (unless (and (= (sample-rate sound) 44100) (= (sample-size sound) 16)) (error "sound file must be 44.1k, 16 bit"))
-  (let* ((tmp-dir (namestring (make-pathname 
+  (let* ((output-dir (namestring (make-pathname 
 			       :directory (append (pathname-directory *om-tmpfiles-folder*)
-						  (list (string+ "tmp-" (time-tag)))))))
+						  (list (string+ "orchidea-" (time-tag)))))))
          (db-sound-path (namestring (derive-sound-path-from-db-file)))
          (output-basename (string+ (pathname-name (filename sound)) "-orch"))
-	 (tmp-config-file (format nil "~A~A" tmp-dir "orch.txt")))
+	 (tmp-config-file (format nil "~A~A" output-dir "orch.txt")))
 
-    (print (format nil "tmp-dir: ~A~%" tmp-dir))
-    (print (format nil "tmp-config-file: ~A~%" tmp-config-file))
-    (print (format nil "output-basename: ~A~%" output-basename))
-    (print (format nil "orchestration ~A~%" orchestration))
-    (print (format nil "db-sound-path ~A~%" db-sound-path))
+    (print (format nil "output-dir: ~A" output-dir))
+    (print (format nil "tmp-config-file: ~A" tmp-config-file))
+    (print (format nil "output-basename: ~A" output-basename))
+    (print (format nil "orchestration ~A" orchestration))
+    (print (format nil "db-sound-path ~A" db-sound-path))
     
-    (create-directory tmp-dir)
+    (create-directory output-dir)
     
     ;; (&key
     ;; 				       (orchestration *orchidea-default-orchestration*)
@@ -83,38 +82,40 @@
 								      
     
     (let ((cmd (format nil "cd ~A && ~A ~A ~A"
-		       tmp-dir
+		       output-dir
 		       (namestring *orchidea-executable-path*)
 		       (namestring (filename sound))
 		       tmp-config-file
 		       )))
-      (progn
 
-	;; (print cmd)
+      (progn
 
 	(om-cmd-line cmd)
 
+	;; (print cmd)
 
-	(let ()
-	  (rename-file (string+ tmp-dir "connection.wav")
-		       (string+ tmp-dir output-basename ".wav"))
-	  (rename-file (string+ tmp-dir "connection.txt")
-		       (string+ tmp-dir output-basename ".txt"))
-	  (rename-file (string+ tmp-dir "orch.txt")
-		       (string+ tmp-dir output-basename ".orch.txt")))
+
+	(rename-file (string+ output-dir "connection.wav")
+		     (string+ output-dir output-basename ".wav"))
+	(rename-file (string+ output-dir "connection.txt")
+		     (string+ output-dir output-basename ".txt"))
+	(rename-file (string+ output-dir "orch.txt")
+		     (string+ output-dir output-basename ".orch.txt"))
     
-	(let* ((orch-solutions (om-read-file (string+ tmp-dir output-basename ".txt"))))
-	  (pprint (setq sol orch-solutions))
+	(let* ((orch-solutions (om-read-file (string+ output-dir output-basename ".txt"))))
+	  ;; (pprint (setq sol orch-solutions))
 	  (values 
-	   (string+ tmp-dir output-basename ".wav")
-	   (case output-format
-             (:struct (list orch-output)) ;; a list so we can instantiate it in a patch
-             (:mf-info (orch-output->mf-info orch-output))
-             (:chord-seq (orch-output->chord-seq orch-output))
-             (:multi-seq (orch-output->multi-seq orch-output))
-             (:poly (orch-output->poly orch-output quantizer)))))
-	)))
-  )))
+	   (string+ output-dir output-basename ".wav")
+	   ;; (case output-format
+           ;;   (:struct (list orch-solutions)) ;; a list so we can instantiate it in a patch
+           ;;   (:mf-info (orch-solutions->mf-info orch-solutions))
+           ;;   (:chord-seq (orch-solutions->chord-seq orch-solutions))
+           ;;   (:multi-seq (orch-solutions->multi-seq orch-solutions))
+           ;;   (:poly (orch-solutions->poly orch-solutions quantizer)))
+	   ))
+	)
+      )
+    ))
 
 
 
