@@ -102,16 +102,17 @@
 	(rename-file (string+ output-dir "orch.txt")
 		     (string+ output-dir output-basename ".orch.txt"))
     
-	(let* ((orch-solutions (om-read-file (string+ output-dir output-basename ".txt"))))
-	  ;; (pprint (setq sol orch-solutions))
+	(let* (;; (orch-output (om-read-file (string+ output-dir output-basename ".txt")))
+	       (orch-output (parse-orchidea-output (string+ output-dir output-basename ".txt"))))
+	  ;; (pprint (setq sol orch-output))
 	  (values 
 	   (string+ output-dir output-basename ".wav")
 	   ;; (case output-format
-           ;;   (:struct (list orch-solutions)) ;; a list so we can instantiate it in a patch
-           ;;   (:mf-info (orch-solutions->mf-info orch-solutions))
-           ;;   (:chord-seq (orch-solutions->chord-seq orch-solutions))
-           ;;   (:multi-seq (orch-solutions->multi-seq orch-solutions))
-           ;;   (:poly (orch-solutions->poly orch-solutions quantizer)))
+           ;;   (:struct (list orch-output)) ;; a list so we can instantiate it in a patch
+           ;;   (:mf-info (orch-output->mf-info orch-output))
+           ;;   (:chord-seq (orch-output->chord-seq orch-output))
+           ;;   (:multi-seq (orch-output->multi-seq orch-output))
+           ;;   (:poly (orch-output->poly orch-output quantizer)))
 	   ))
 	)
       )
