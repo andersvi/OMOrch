@@ -1,8 +1,7 @@
 (in-package om)
 
-(defun parse-orchidea-output (orch-output-score-file)
-  (let ((orch-output (parse-[-delmited-string-to-list
-		      (om-read-file orch-output-score-file))))
+(defun parse-orchidea-output (orch-output-struct)
+  (let ((orch-output (parse-[-delmited-string-to-list orch-output-struct)))
     (make-orch-output :orchestration (car orch-output)
 		      :segments (mapcar #'parse-segment (cdr orch-output)))))
 

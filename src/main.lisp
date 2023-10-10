@@ -102,8 +102,8 @@
 	(rename-file (string+ output-dir "orch.txt")
 		     (string+ output-dir output-basename ".orch.txt"))
     
-	(let* (;; (orch-output (om-read-file (string+ output-dir output-basename ".txt")))
-	       (orch-output (parse-orchidea-output (string+ output-dir output-basename ".txt"))))
+	(let* ((orch-struct (om-read-file (string+ output-dir output-basename ".txt")))
+	       (orch-output (parse-orchidea-output orch-struct)))
 	  ;; (pprint (setq sol orch-output))
 	  (values 
 	   (string+ output-dir output-basename ".wav")
