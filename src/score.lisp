@@ -13,7 +13,7 @@
                                                        (car (orch-segment-solutions segment)))
                                                       (orch-output-orchestration orch-output))) 
                                  (orch-output-segments orch-output))
-                 :lonset (mapcar #'orch-segment-onset-ms (orch-output-segments orch-output))))
+                 :lonset (mapcar #'orch-segment-onset (orch-output-segments orch-output))))
 
 (defun orch-list-until-unvalid_ (lst)
   "return part of orch-note before potentially invalid part - '+ or '_"
@@ -107,7 +107,7 @@
 (defun orch-output->mf-info (orch-output)
   (correct-channels (sort (mapcan #'(lambda (segment) 
                     (mapcar #'(lambda (note) 
-                                (note->mf-note note (orch-segment-onset-ms segment) (orch-output-orchestration orch-output)))
+                                (note->mf-note note (orch-segment-onset segment) (orch-output-orchestration orch-output)))
                             (orch-solution-notes (car (orch-segment-solutions segment)))))
                 (orch-output-segments orch-output))
         #'< 

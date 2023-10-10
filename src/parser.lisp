@@ -8,7 +8,7 @@
 (defun parse-segment (segment)
   "segment: (segment 0 334 (solution 1 (note) (note) ...))"
   (make-orch-segment 
-   :onset-ms (nth 1 segment)
+   :onset (nth 1 segment)
    :duration (nth 2 segment)
    :solution (parse-solution (nth 3 segment))))
 
