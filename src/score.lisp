@@ -1,4 +1,10 @@
-(in-package om)
+(in-package :om)
+
+
+;;;
+;;; transfer output from orchidea to various OM-classes
+;;; (chord, chord-seq, multi-seq, poly, voice...)
+;;;
 
 (defun orch-output->chord-seq (orch-output)     
   (make-instance 'chord-seq 
@@ -8,6 +14,46 @@
                                                       (orch-output-orchestration orch-output))) 
                                  (orch-output-segments orch-output))
                  :lonset (mapcar #'orch-segment-onset-ms (orch-output-segments orch-output))))
+
+(defun orch-list-until-unvalid_ (lst)
+  "return part of orch-note before potentially invalid part - '+ or '_"
+  (subseq lst 0
+	  (position-if #'(lambda (c) (member c '(#\_ #\+)))
+		       lst)))
+
+(defun orch-note-2-om-note  (notestring)
+  "parse orchidea-type note-string, return valid OM note string."
+  (let* ((orch-note-string-list (coerce (string notestring) 'list))
+	 (valid-part-of-note-name (orch-list-until-unvalid_ orch-note-string-list))
+	 (om-note-string-list (substitute-if #\+
+					     #'(lambda (c) (or (member c '(#\q #\Q) )))
+					     valid-part-of-note-name)))
+    
+    (if (equalp (car om-note-string-list) #\N)
+	"A4" ;; for now: return something for orchidea's note "N" (= unpitched noise sounds ?) ?
+	(coerce om-note-string-list 'string))))
+
+#|
+
+("D+6_A+5_D+4")
+
+
+(orch-note-2-om-note  'N)
+(n->mc (orch-note-2-om-note  'N))
+(orch-note-2-om-note  'a\#4+c4)
+(orch-note-2-om-note "Dq6_Aq5_Dq4")
+(n->mc (orch-note-to-om-note (orch-note-before-_ "Dq6_Aq5_Dq4")))
+(n->mc "D+6")
+(n->mc (orch-note-2-om-note 'Dq6_Aq5_Dq4 ))
+(orch-note-2-om-note "Dq6" )
+(n->mc (orch-note-2-om-note "a#q4" ))
+(n->mc (orch-note-2-om-note "Dq6" ))
+(n->mc (orch-note-2-om-note 'Dq4))
+(n->mc (orch-note-2-om-note 'DQ4))
+(n->mc (orch-note-2-om-note "DQ4"))
+(n->mc (orch-note-2-om-note "Dq4"))
+
+|#
 
 (defun solution->chord (notes orchestration)
   (let ((channels
@@ -20,12 +66,40 @@
                                    return ch)
                do (push channel used-channels)
                collect channel)))
+    
+    (progn
+      (print (loop for note in notes
+		   collect
+		   (list (orch-note-detune note)
+			 (orch-note-pitch-name note)
+			 (orch-note-2-om-note (orch-note-pitch-name note))
+			 (n->mc (orch-note-2-om-note (orch-note-pitch-name note))))))
       
-    (make-instance 'chord 
-                   :lmidic (mapcar #'(lambda (note) 
-                                       (+ (n->mc (orch-note-pitch-name note)) (orch-note-detune note)))
-                                   notes)
-                   :lchan channels)))
+
+      ;; (mapcar #'(lambda (note)
+      ;; 		(print (format nil
+      ;; 			       "(orch-note-pitch-name note): ~a (orch-note-detune note) ~A ~%"
+      ;; 			       (orch-note-pitch-name note)
+      ;; 			       (orch-note-detune note))))
+      ;;         notes)
+    
+      ;; (cerror "cont" "solution->chord (notes orchestration)")
+
+      (make-instance 'chord 
+                     :lmidic (mapcar #'(lambda (n)
+					 (+ (n->mc (orch-note-2-om-note (orch-note-pitch-name n)))
+					    (orch-note-detune n)))
+                                     notes)
+                     :lchan channels)
+
+      ;; (make-instance 'chord 
+      ;;                :lmidic (loop for note in notes
+      ;; 				   collect (+ (n->mc (orch-note-2-om-note (orch-note-pitch-name note)))
+      ;; 					      (orch-note-detune note)))
+      ;;                :lchan channels)
+      
+      )))
+
 
 
 ;; reference: (midi-number (pitch) , onset-time(ms), duration(ms), velocity, channel)
@@ -54,17 +128,22 @@
         collect corrected-note))
 
 (defun note->mf-note (note onset orchestration)
-  (list (* (n->mc (orch-note-pitch-name note)) 0.01)
-               onset
-               (orch-note-duration-ms note)
-               (get-velocity-from-orch-note-dynamic (orch-note-dynamic note))
-               (1+ (position (orch-note-instrument note) orchestration))))
-        
+  (list (* (n->mc (orch-note-2-om-note (orch-note-pitch-name note))) 0.01)
+        onset
+        (orch-note-duration-ms note)
+        (get-velocity-from-orch-note-dynamic (orch-note-dynamic note))
+        (1+ (position (orch-note-instrument note) orchestration))))
+
 (defun get-velocity-from-orch-note-dynamic (dynamic) 
-  (or (get-vel-from-dyn (intern (string-upcase dynamic) :keyword))
-      (progn ()
-        (print (string+ "using fallback velocity 64, none found for: " dynamic))
-        64)))
+  (let ((dyn (intern (string-upcase dynamic) :keyword)))
+    (cond ((equal dyn :n)
+	   (progn (print (string+ "using velocity 0 for: " dynamic))
+		  0))
+	  ((get-vel-from-dyn dyn))
+	  (t
+	   (progn (print (string+ "using fallback velocity 64, none found for: " dynamic))
+		  64)))))
+
 
 (defun orch-output->multi-seq (orch-output)
   (mf-info->multi-seq (orch-output->mf-info orch-output)))
