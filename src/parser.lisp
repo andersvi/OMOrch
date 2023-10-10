@@ -10,7 +10,7 @@
   (make-orch-segment 
    :onset-ms (nth 1 segment)
    :duration (nth 2 segment)
-   :solution (mapcar #'parse-solution (nthcdr 3 segment))))
+   :solution (parse-solution (nth 3 segment))))
 
 (defun parse-solution (lis)
   (make-orch-solution
