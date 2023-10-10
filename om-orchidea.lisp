@@ -34,7 +34,7 @@
 ;; Fork of Geof Holbrooks om-orchidea library
 ;;  Version:	~A
 ;;  Date:	~A
-;;  Sources:    https://github.com/PUT_LINK
+;;  Sources:    https://github.com/andersvi/om-orchidea
 ;;  Authors:	Anders Vinjar
 ;; ==============================================================
 "
