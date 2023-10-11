@@ -134,18 +134,45 @@
         (get-velocity-from-orch-note-dynamic (dynamic note))
         (1+ (position (instrument note) orchestration))))
 
-(defun get-velocity-from-orch-note-dynamic (dynamic) 
-  (let ((dyn (intern
-	      ;; limit "ppppp" or "fffffff" to 3 chars: "ppp" or "fff"
-	      (subseq (string-upcase dynamic) 0 (min 3 (length dynamic)))
-	      :keyword)))
-    (cond ((equal dyn :n)
-	   (progn (print (string+ "using velocity 0 for: " dynamic))
+
+
+
+
+
+;; orch-added-dynamics: '("ffpp" "fp" "N" "ppff" "ppmfpp")
+
+(defun get-velocity-from-orch-note-dynamic (orch-dyn)
+  (let ((dyn-list (coerce orch-dyn 'list))
+	(dyn-keyword (intern (string-upcase orch-dyn) :keyword)))
+    (cond ((equal dyn-keyword :n)
+	   (progn (print (string+ "using velocity 0 for: " orch-dyn))
 		  0))
-	  ((get-vel-from-dyn dyn))
+	  ((member dyn-keyword *dynamics-symbols-list* :test #'(lambda (a b) (equal a (car b))))
+	   (get-vel-from-dyn dyn-keyword))
+	  ((get-vel-from-dyn
+	    (intern (string-upcase
+		     (coerce (loop with init = (first dyn-list)
+				   repeat 3 ;;max 3 ppp or fff
+				   for v in dyn-list
+				   while (equal v init)
+				   collect v)
+			     'string))
+		    :keyword)))
 	  (t
-	   (progn (print (string+ "setting fallback velocity = 0, none found for: " dynamic))
+	   (progn (print (string+ "setting fallback velocity = 0, none found for: " orch-dyn))
 		  0)))))
+
+
+;; (defun get-velocity-from-orch-note-dynamic (dynamic) 
+;;   (let ((checked-dyn (force-om-dyns dynamic))
+;; 	(dyn (intern dynamic :keyword)))
+;;     (cond ((equal dyn :n)
+;; 	   (progn (print (string+ "using velocity 0 for: " dynamic))
+;; 		  0))
+;; 	  ((get-vel-from-dyn dyn))
+;; 	  (t
+;; 	   (progn (print (string+ "setting fallback velocity = 0, none found for: " dynamic))
+;; 		  0)))))
 
 
 (defun orch-output->multi-seq (orch-output)
