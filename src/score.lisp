@@ -6,14 +6,6 @@
 ;;; (chord, chord-seq, multi-seq, poly, voice...)
 ;;;
 
-(defun orch-output->chord-seq (orch-output)     
-  (make-instance 'chord-seq 
-                 :lmidic (mapcar #'(lambda (segment) 
-                                     (solution->chord (notes 
-                                                       (solution segment))
-                                                      (orchestration orch-output))) 
-                                 (segments orch-output))
-                 :lonset (mapcar #'onset (segments orch-output))))
 
 (defun orch-list-until-unvalid_ (lst)
   "return part of orch-note before potentially invalid part - '+ or '_"
@@ -99,6 +91,14 @@
       ;;                :lchan channels)
       
       )))
+
+(defun orch-output->chord-seq (orch-output)     
+  "return a chord-seq with one chord for each segment in output"
+  (let ((onsets (mapcar #'onset (segments orch-output)))
+	(chords (loop for seg in (segments orch-output)
+		      collect (objfromobjs (notes (solution seg))
+					   (mki 'chord)))))
+    (mki 'chord-seq :lonset onsets :lmidic chords)))
 
 
 
