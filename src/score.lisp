@@ -9,11 +9,11 @@
 (defun orch-output->chord-seq (orch-output)     
   (make-instance 'chord-seq 
                  :lmidic (mapcar #'(lambda (segment) 
-                                     (solution->chord (orch-solution-notes 
-                                                       (car (orch-segment-solutions segment)))
-                                                      (orch-output-orchestration orch-output))) 
-                                 (orch-output-segments orch-output))
-                 :lonset (mapcar #'orch-segment-onset (orch-output-segments orch-output))))
+                                     (solution->chord (notes 
+                                                       (solution segment))
+                                                      (orchestration orch-output))) 
+                                 (segments orch-output))
+                 :lonset (mapcar #'onset (segments orch-output))))
 
 (defun orch-list-until-unvalid_ (lst)
   "return part of orch-note before potentially invalid part - '+ or '_"
@@ -61,7 +61,7 @@
                for note in notes
                for channel = (loop for sym in orchestration
                                    for ch from 1
-                                   when (and (equal (orch-note-instrument note) sym)
+                                   when (and (equal (instrument note) sym)
                                              (not (find ch used-channels)))
                                    return ch)
                do (push channel used-channels)
@@ -70,32 +70,32 @@
     (progn
       (print (loop for note in notes
 		   collect
-		   (list (orch-note-detune note)
-			 (orch-note-pitch-name note)
-			 (orch-note-2-om-note (orch-note-pitch-name note))
-			 (n->mc (orch-note-2-om-note (orch-note-pitch-name note))))))
+		   (list (detune note)
+			 (pitch-name note)
+			 (orch-note-2-om-note (pitch-name note))
+			 (n->mc (orch-note-2-om-note (pitch-name note))))))
       
 
       ;; (mapcar #'(lambda (note)
       ;; 		(print (format nil
-      ;; 			       "(orch-note-pitch-name note): ~a (orch-note-detune note) ~A ~%"
-      ;; 			       (orch-note-pitch-name note)
-      ;; 			       (orch-note-detune note))))
+      ;; 			       "(pitch-name note): ~a (detune note) ~A ~%"
+      ;; 			       (pitch-name note)
+      ;; 			       (detune note))))
       ;;         notes)
     
       ;; (cerror "cont" "solution->chord (notes orchestration)")
 
       (make-instance 'chord 
                      :lmidic (mapcar #'(lambda (n)
-					 (+ (n->mc (orch-note-2-om-note (orch-note-pitch-name n)))
-					    (orch-note-detune n)))
+					 (+ (n->mc (orch-note-2-om-note (pitch-name n)))
+					    (detune n)))
                                      notes)
                      :lchan channels)
 
       ;; (make-instance 'chord 
       ;;                :lmidic (loop for note in notes
       ;; 				   collect (+ (n->mc (orch-note-2-om-note (orch-note-pitch-name note)))
-      ;; 					      (orch-note-detune note)))
+      ;; 					      (detune note)))
       ;;                :lchan channels)
       
       )))
@@ -106,12 +106,12 @@
 
 (defun orch-output->mf-info (orch-output)
   (correct-channels (sort (mapcan #'(lambda (segment) 
-                    (mapcar #'(lambda (note) 
-                                (note->mf-note note (orch-segment-onset segment) (orch-output-orchestration orch-output)))
-                            (orch-solution-notes (car (orch-segment-solutions segment)))))
-                (orch-output-segments orch-output))
-        #'< 
-        :key #'second)))
+				      (mapcar #'(lambda (note) 
+						  (note->mf-note note (onset segment) (orchestration orch-output)))
+					      (notes (solution segment))))
+				  (segments orch-output))
+			  #'< 
+			  :key #'second)))
 
 (defun correct-channels (mf-info)
   "corrects simultaneous notes on the same channel by getting the next available channel. Provided the overlap is caused by adjacent instruments with the same name, and overlaps have been avoided already in previous steps (like, in the orchidea executable) then this should work fine."
@@ -128,11 +128,11 @@
         collect corrected-note))
 
 (defun note->mf-note (note onset orchestration)
-  (list (* (n->mc (orch-note-2-om-note (orch-note-pitch-name note))) 0.01)
+  (list (* (n->mc (orch-note-2-om-note (pitch-name note))) 0.01)
         onset
-        (orch-note-duration-ms note)
-        (get-velocity-from-orch-note-dynamic (orch-note-dynamic note))
-        (1+ (position (orch-note-instrument note) orchestration))))
+        (duration-ms note)
+        (get-velocity-from-orch-note-dynamic (dynamic note))
+        (1+ (position (instrument note) orchestration))))
 
 (defun get-velocity-from-orch-note-dynamic (dynamic) 
   (let ((dyn (intern (string-upcase dynamic) :keyword)))
