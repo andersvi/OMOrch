@@ -30,7 +30,7 @@
 					     valid-part-of-note-name)))
     
     (if (equalp (car om-note-string-list) #\N)
-	"A4" ;; for now: return something for orchidea's note "N" (= unpitched noise sounds ?) ?
+	"C3" ;; just return default for OMs note-class
 	(coerce om-note-string-list 'string))))
 
 #|
