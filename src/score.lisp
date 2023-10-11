@@ -144,8 +144,8 @@
 		  0))
 	  ((get-vel-from-dyn dyn))
 	  (t
-	   (progn (print (string+ "using fallback velocity 64, none found for: " dynamic))
-		  64)))))
+	   (progn (print (string+ "setting fallback velocity = 0, none found for: " dynamic))
+		  0)))))
 
 
 (defun orch-output->multi-seq (orch-output)
