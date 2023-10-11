@@ -23,8 +23,11 @@
    :instrument (nth 2 lis)
    :style (nth 3 lis)
    :pitch-name (string (nth 4 lis))
+   :midic (n->mc (orch-note-2-om-note (string (nth 4 lis))))
    :dynamic (string (nth 5 lis))
    :instance (nth 6 lis)
    :sample-path (string (nth 7 lis))
    :detune (nth 8 lis)))
+
+
 
