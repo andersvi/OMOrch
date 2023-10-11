@@ -33,10 +33,10 @@ ikke så kult, lite data?  lite målinger?  kanskje finne egna targets?
 * nye features, tilpasninger, forbedringer
 
 
-
 ** TODO specialize classes
 
-*** orchidea-note-class from om::note
+*** DONE orchidea-note-class from om::note
+	CLOSED: [2023-10-10 ti. 11:49]
 
 *** orchidea-chord-seq
 
@@ -45,7 +45,9 @@ ikke så kult, lite data?  lite målinger?  kanskje finne egna targets?
 
 
 
-* bugs?
+** TODO path support - binary, db-path, config-files - w. exception handling
+
+* bugs
 
 ** TODO orchestrate class : check lock-mode	
 
