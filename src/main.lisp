@@ -23,16 +23,13 @@
     o))
 
 
-
-
 ;;;
 ;;; TODO: create orch-orchestration class, to contain settings and output.
 ;;; 
 ;;; TODO: set up control of all globals from object/method
 ;;; 
-;;;	next-step: find way to avoid  loading (the same) database for each run
+;;; POSSIBLY: is there a way to avoid loading (the same) database for each run?
 ;;; 
-
 
 (defmethod! orchestrate ((sound sound) (orchestration string) (onsets-threshold number) (output-format t) &key quantizer)
   :initvals '(nil *orchidea-default-orchestration* 0.1 :chord-seq)
@@ -47,77 +44,65 @@
                  ("poly" :poly))))
                 
                  
-  (when (null *orchidea-db-file*) (error "db file not set, use set-db-file function"))
+  (cond ((not *orchidea-db-file*) (error "db file not set, use orchidea-set-db-file-and-sound-path function"))
+	((not *orchidea-executable-path*) (error "orchidea binary not set, use orchidea-set-executable-path function")))
   ;; (unless (and (= (sample-rate sound) 44100) (= (sample-size sound) 16)) (error "sound file must be 44.1k, 16 bit"))
-  (let* ((output-dir (namestring (make-pathname 
-			       :directory (append (pathname-directory *om-tmpfiles-folder*)
-						  (list (string+ "orchidea-" (time-tag)))))))
-         (db-sound-path (namestring (derive-sound-path-from-db-file)))
-         (output-basename (string+ (pathname-name (filename sound)) "-orch"))
-	 (tmp-config-file (format nil "~A~A" output-dir "orch.txt")))
+  (let ((db-sound-path (namestring (derive-sound-path-from-db-file)))
 
-    (print (format nil "output-dir: ~A" output-dir))
-    (print (format nil "tmp-config-file: ~A" tmp-config-file))
-    (print (format nil "output-basename: ~A" output-basename))
-    (print (format nil "orchestration ~A" orchestration))
-    (print (format nil "db-sound-path ~A" db-sound-path))
+	;; set up various input and output filenames
+	(output-dir (namestring (make-pathname 
+				 :directory (append (pathname-directory *om-tmpfiles-folder*)
+						    (list (string+ "orchidea-" (time-tag))))))))
     
+
     (create-directory output-dir)
-    
-    ;; (&key
-    ;; 				       (orchestration *orchidea-default-orchestration*)
-    ;; 				       (template-file *orchidea-config-template-path*)
-    ;; 				       (output-config-file "orch.config.txt")
-    ;; 				       (db-sound-path (derive-sound-path-from-db-file))
-    ;; 				       (onsets-threshold 2))  
 
+    (let* ((target-sound (filename sound))
+	   (output-basename (pathname-name target-sound))
+	   (output-sound (format nil "~A~A.wav" output-dir output-basename)) ;current orchidea supports only RIFF/wav
+	   (output-orchestration (format nil "~A~A.orchestration.txt" output-dir output-basename))
+	   (config-file (format nil "~A~A.config.txt" output-dir output-basename)))
 
-    ;; TODO: allow control of all globals from this method
+      (print (format nil "output-dir: ~A" output-dir))
+      (print (format nil "config-file: ~A" config-file))
+      (print (format nil "output-basename: ~A" output-basename))
+      (print (format nil "output-orchestration ~A" output-orchestration))
+      (print (format nil "output-sound ~A" output-sound))
 
-    (orch-set-up-orch-config-file :orchestration orchestration
-				  :onsets-threshold onsets-threshold
-				  :template-file *orchidea-config-template-path*
-				  :output-config-file tmp-config-file
-				  :db-sound-path db-sound-path)
+      ;; TODO: allow control of all globals from this method
+
+      (orch-set-up-orch-config-file :output-config-file config-file
+				    :orchestration orchestration
+				    :onsets-threshold onsets-threshold
+				    :template-file *orchidea-config-template-path*
+				    :db-sound-path db-sound-path)
 								      
     
-    (let ((cmd (format nil "cd ~A && ~A ~A ~A"
-		       output-dir
-		       (namestring *orchidea-executable-path*)
-		       (namestring (filename sound))
-		       tmp-config-file
-		       )))
+      (let ((cmd (format nil "cd ~A && ~A ~A ~A"
+			 output-dir
+			 (namestring *orchidea-executable-path*)
+			 (namestring (filename sound))
+			 config-file
+			 )))
 
-      (progn
+	(progn
 
-	(om-cmd-line cmd)
+	  (om-cmd-line cmd)
 
-	;; (print cmd)
-
-
-	(rename-file (string+ output-dir "connection.wav")
-		     (string+ output-dir output-basename ".wav"))
-	(rename-file (string+ output-dir "connection.txt")
-		     (string+ output-dir output-basename ".txt"))
-	(rename-file (string+ output-dir "orch.txt")
-		     (string+ output-dir output-basename ".orch.txt"))
+	  (rename-file (string+ output-dir "connection.wav") output-sound)
+	  (rename-file (string+ output-dir "connection.txt") output-orchestration)
     
-	(let* ((orch-struct (om-read-file (string+ output-dir output-basename ".txt")))
-	       (orch-output (parse-orchidea-output orch-struct)))
-	  ;; (pprint (setq sol orch-output))
-	  (values 
-	   (string+ output-dir output-basename ".wav")
-	   ;; (case output-format
-           ;;   (:struct (list orch-output)) ;; a list so we can instantiate it in a patch
-           ;;   (:mf-info (orch-output->mf-info orch-output))
-           ;;   (:chord-seq (orch-output->chord-seq orch-output))
-           ;;   (:multi-seq (orch-output->multi-seq orch-output))
-           ;;   (:poly (orch-output->poly orch-output quantizer)))
-	   ))
-	)
-      )
-    ))
-
-
-
-
+	  (let* ((orch-struct (om-read-file output-orchestration))
+		 (orch-output (parse-orchidea-output orch-struct)))
+	    (values
+	     output-sound
+	     (case output-format
+	       (:struct (list orch-struct)) ;; a list so we can instantiate it in a patch
+	       ;; (:mf-info (orch-output->mf-info orch-output))
+	       (:chord-seq (orch-output->chord-seq orch-output))
+	       ;; (:multi-seq (orch-output->multi-seq orch-output))
+	       ;; (:poly (orch-output->poly orch-output quantizer)))
+	       ))
+	    )
+	  )
+	))))
