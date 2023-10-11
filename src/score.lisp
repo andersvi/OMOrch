@@ -135,7 +135,10 @@
         (1+ (position (instrument note) orchestration))))
 
 (defun get-velocity-from-orch-note-dynamic (dynamic) 
-  (let ((dyn (intern (string-upcase dynamic) :keyword)))
+  (let ((dyn (intern
+	      ;; limit "ppppp" or "fffffff" to 3 chars: "ppp" or "fff"
+	      (subseq (string-upcase dynamic) 0 (min 3 (length dynamic)))
+	      :keyword)))
     (cond ((equal dyn :n)
 	   (progn (print (string+ "using velocity 0 for: " dynamic))
 		  0))
