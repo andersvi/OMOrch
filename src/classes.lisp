@@ -52,11 +52,13 @@
 	 'orch-note 
 	 :instrument instrument
 	 :style style 
-	 :pitch-name pitch-name 
+	 :pitch-name pitch-name
+	 :midic (n->mc (orch-note-2-om-note pitch-name))
 	 :dynamic dynamic 
 	 :instance instance 
 	 :sample-path sample-path 
 	 :detune detune
 	 initargs))
+
 
 
