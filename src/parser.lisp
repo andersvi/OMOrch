@@ -1,5 +1,55 @@
 (in-package om)
 
+
+;;
+;; various translations from orch-style syntax into something which
+;; fits OM-classes and methods
+;; 
+
+(defun orch-note-name-list-until-unvalid_ (lst)
+  "return part of orch-note before potentially invalid part - '+ or '_"
+  (subseq lst 0
+	  (position-if #'(lambda (c) (member c '(#\_ #\+)))
+		       lst)))
+
+(defun orch-note-2-om-note  (notestring &optional (default "A0"))
+  "parse orchidea-type note-string, return valid OM note string."
+  ;; orch-added-dynamics: '("ffpp" "fp" "N" "ppff" "ppmfpp")
+  (let* ((orch-note-string-list (coerce (string notestring) 'list))
+	 (valid-part-of-note-name (orch-note-name-list-until-unvalid_ orch-note-string-list))
+	 (om-note-string-list (substitute-if #\+
+					     #'(lambda (c) (or (member c '(#\q #\Q) )))
+					     valid-part-of-note-name)))
+    
+    (if (equalp (car om-note-string-list) #\N)
+	default ;; just return default for OMs note-class
+	(coerce om-note-string-list 'string))))
+
+
+(defun get-velocity-from-orch-note-dynamic (orch-dyn)
+  "support extra dynamics from orch: - ffpp fp N ppff ppmfpp pppppp..."
+  ;; oomph... find something less hacky...
+  (let ((dyn-list (coerce orch-dyn 'list))
+	(dyn-keyword (intern (string-upcase orch-dyn) :keyword)))
+    (cond ((equal dyn-keyword :n)
+	   (progn (print (string+ "using velocity 0 for: " orch-dyn))
+		  0))
+	  ((member dyn-keyword *dynamics-symbols-list* :test #'(lambda (a b) (equal a (car b))))
+	   (get-vel-from-dyn dyn-keyword))
+	  ((get-vel-from-dyn
+	    (intern (string-upcase
+		     (coerce (loop with init = (first dyn-list)
+				   repeat 3 ;;max 3 ppp or fff
+				   for v in dyn-list
+				   while (equal v init)
+				   collect v)
+			     'string))
+		    :keyword)))
+	  (t
+	   (progn (print (string+ "setting fallback velocity = 0, none found for: " orch-dyn))
+		  0)))))
+
+
 (defun parse-orchidea-output (orch-output-struct)
   (let ((orch-output (parse-[-delmited-string-to-list orch-output-struct)))
     (make-orch-output :orchestration (car orch-output)
