@@ -46,12 +46,22 @@
 
 (defgeneric l-slot (class slot))
 
-(defmethod l-slot ((self chord) (slot symbol))
-  (mapcar #'(lambda (note)
-	      (funcall slot note))
-	  (inside self)))
 
-(defmethod l-slot ((self chord-seq) (slot symbol))
-  (mapcar #'(lambda (crd)
-	      (l-slot crd slot))
-	  (inside self)))
+
+(defmethod l-slot ((class chord) (slot symbol))
+  (if (slot-exists-p (first (inside self)) slot)
+      (mapcar #'(lambda (note)
+		  (funcall slot note))
+	      (inside self))
+      (print (format nil "no-such-slot: ~A in class: ~A " slot class))))
+
+(setf aaa (parse-orchidea-output aaa))
+
+(inside aaa)
+
+
+(defmethod l-slot ((class chord-seq) (slot symbol))
+  (if (slot-exists-p (first (inside self)) slot)
+      (mapcar #'(lambda (crd)
+		  (l-slot crd slot))
+	      (inside self)))
