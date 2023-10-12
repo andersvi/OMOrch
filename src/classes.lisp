@@ -19,7 +19,8 @@
 (defun make-orch-segment (&key onset solution duration)
   (make-instance 'orch-segment :onset onset :solution solution :duration duration))
 
-(defclass! orch-solution ()
+(defclass! orch-solution (chord)
+  ;; subclass of chord?
   ((id :accessor id :initarg :id :initform nil)
    (notes :accessor notes :initarg :notes :initform nil)))
 
