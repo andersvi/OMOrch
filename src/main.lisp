@@ -31,7 +31,7 @@
 ;;; POSSIBLY: is there a way to avoid loading (the same) database for each run?
 ;;; 
 
-(defmethod! orchestrate ((sound sound) (orchestration string) (onsets-threshold number) (output-format t) &key quantizer)
+(defmethod! orchestrate ((sound sound) (orchestration string) (onsets-threshold number) (output-format t))
   :initvals '(nil *orchidea-default-orchestration* 0.1 :chord-seq)
   :indoc '("source sound object" "instrument abbreviations (space-delimited string)" "onsets threshold (ex. static = 2, dynamic = 0.1)" "score-format" "quantizer (for voice/poly)")
   :icon 451
