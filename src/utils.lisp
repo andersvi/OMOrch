@@ -55,10 +55,6 @@
 	      (inside self))
       (print (format nil "no-such-slot: ~A in class: ~A " slot class))))
 
-(setf aaa (parse-orchidea-output aaa))
-
-(inside aaa)
-
 
 (defmethod l-slot ((class chord-seq) (slot symbol))
   (if (slot-exists-p (first (inside self)) slot)
