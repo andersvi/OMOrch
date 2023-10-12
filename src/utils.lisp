@@ -40,3 +40,18 @@
 
 (defun setq-symbol (symbol data)
   (eval `(setq ,symbol (quote ,data))))
+
+
+;; collect arbitrary slot-value, along the lines of lvel, ldur etc.
+
+(defgeneric l-slot (class slot))
+
+(defmethod l-slot ((self chord) (slot symbol))
+  (mapcar #'(lambda (note)
+	      (funcall slot note))
+	  (inside self)))
+
+(defmethod l-slot ((self chord-seq) (slot symbol))
+  (mapcar #'(lambda (crd)
+	      (l-slot crd slot))
+	  (inside self)))
