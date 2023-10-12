@@ -34,3 +34,9 @@
                            :end (or pos (length string)))
           when pos do (write-string replacement out)
             while pos)))
+
+
+;; convenience while debugging graphic patches
+
+(defun setq-symbol (symbol data)
+  (eval `(setq ,symbol (quote ,data))))
