@@ -62,5 +62,27 @@
 	 :detune detune
 	 initargs))
 
+;; 
+;; main orchestration class:
+;; class to contain outputs from call to orchestrate
+;; slots store instance of inputs and outputs
+;; use orch-output->chord-seq, orch-output->multi-seq and others
+;;
+;; method orchestrate returns an instance of class 'orchestration
+;; 
+   
+
+;; TODO: consider using omNG-box-value on this class instead of separate call on #'orchestration
+
+(defclass! orchestration (container)
+  ((target :accessor target :accessor orch-target :initarg :target :type sound :initform nil)
+   (output-sound :accessor output-sound :accessor orch-sound :initarg :output-sound :type sound :initform nil)
+   (orchestration :accessor orchestration :accessor orch-orchestration  :initarg :orchestration :type string :initform nil )
+   (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
+   (config :accessor config :accessor orch-config :initarg :config :type textfile :initform nil)
+   (onsets-threshold :accessor onsets-threshold :initarg :onsets-threshold :type number :initform 1 )
+   ;; (output-format :accessor output-format :initarg :output-format :initform :struct :documentation "output struct")
+   )
+  (:documentation "main orchestration class, stores call and results from orchestrate method"))
 
 
