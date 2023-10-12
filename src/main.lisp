@@ -20,33 +20,25 @@
 		 (setf line (replace-all line "__ORCHESTRA__"		orchestration))
 		 (setf line (replace-all line "__ONSETS_THRESHOLD__"	(prin1-to-string onsets-threshold))))
 	       (write-line line o)))
-    o))
+    output-config-file))
 
 
 ;;;
-;;; TODO: create orch-orchestration class, to contain settings and output.
-;;; 
-;;; TODO: set up control of all globals from object/method
-;;; 
 ;;; POSSIBLY: is there a way to avoid loading (the same) database for each run?
 ;;; 
 
-(defmethod! orchestrate ((sound sound) (orchestration string) (onsets-threshold number) (output-format t))
-  :initvals '(nil *orchidea-default-orchestration* 0.1 :chord-seq)
-  :indoc '("source sound object" "instrument abbreviations (space-delimited string)" "onsets threshold (ex. static = 2, dynamic = 0.1)" "score-format" "quantizer (for voice/poly)")
+;;; method orchestrate returns an instance of class 'orchestration
+
+(defmethod! orchestrate ((target sound) (orchestration string) (onsets-threshold number))
+  :initvals '(nil *orchidea-default-orchestration* 0.7)
+  :indoc '("source target object" "instrument abbreviations (space-delimited string)" "onsets threshold (ex. static = 2, dynamic = 0.1)")
   :icon 451
-  :doc "generate orchestration from source sample and database"
-  :numouts 2
-  :menuins '((3 (("struct" :struct)
-                 ("mf-info" :mf-info)
-                 ("chord-seq" :chord-seq)
-                 ("multi-seq" :multi-seq)
-                 ("poly" :poly))))
-                
-                 
+  :doc "generate orchestration from source sample and database, return instance of orchestration"
+  :numouts 1
+
   (cond ((not *orchidea-db-file*) (error "db file not set, use orchidea-set-db-file-and-sound-path function"))
 	((not *orchidea-executable-path*) (error "orchidea binary not set, use orchidea-set-executable-path function")))
-  ;; (unless (and (= (sample-rate sound) 44100) (= (sample-size sound) 16)) (error "sound file must be 44.1k, 16 bit"))
+  (unless (and (= (sample-rate target) 44100) (= (sample-size target) 16)) (error "orchestrate: target file must be 44.1k, 16 bit"))
   (let ((db-sound-path (namestring (derive-sound-path-from-db-file)))
 
 	;; set up various input and output filenames
@@ -57,7 +49,7 @@
 
     (create-directory output-dir)
 
-    (let* ((target-sound (filename sound))
+    (let* ((target-sound (filename target))
 	   (output-basename (pathname-name target-sound))
 	   (output-sound (format nil "~A~A.wav" output-dir output-basename)) ;current orchidea supports only RIFF/wav
 	   (output-orchestration (format nil "~A~A.orchestration.txt" output-dir output-basename))
@@ -69,21 +61,19 @@
       (print (format nil "output-orchestration ~A" output-orchestration))
       (print (format nil "output-sound ~A" output-sound))
 
-      ;; TODO: allow control of all globals from this method
-
-      (orch-set-up-orch-config-file :output-config-file config-file
-				    :orchestration orchestration
-				    :onsets-threshold onsets-threshold
-				    :template-file *orchidea-config-template-path*
-				    :db-sound-path db-sound-path)
-								      
+      ;; TODO: allow control of all options in config from here
     
-      (let ((cmd (format nil "cd ~A && ~A ~A ~A"
-			 output-dir
-			 (namestring *orchidea-executable-path*)
-			 (namestring (filename sound))
-			 config-file
-			 )))
+      (let* ((conf-file (orch-set-up-orch-config-file :output-config-file config-file
+						      :orchestration orchestration
+						      :onsets-threshold onsets-threshold
+						      :template-file *orchidea-config-template-path*
+						      :db-sound-path db-sound-path))
+	     (cmd (format nil "cd ~A && ~A ~A ~A"
+			  output-dir
+			  (namestring *orchidea-executable-path*)
+			  (namestring (filename target))
+			  conf-file
+			  )))
 
 	(progn
 
@@ -92,17 +82,20 @@
 	  (rename-file (string+ output-dir "connection.wav") output-sound)
 	  (rename-file (string+ output-dir "connection.txt") output-orchestration)
     
+	  ;; 
+	  ;; return some useful output from call:
+	  ;; 
 	  (let* ((orch-struct (om-read-file output-orchestration))
-		 (orch-output (parse-orchidea-output orch-struct)))
-	    (values
-	     output-sound
-	     (case output-format
-	       (:struct (list orch-struct)) ;; a list so we can instantiate it in a patch
-	       ;; (:mf-info (orch-output->mf-info orch-output))
-	       (:chord-seq (orch-output->chord-seq orch-output))
-	       ;; (:multi-seq (orch-output->multi-seq orch-output))
-	       ;; (:poly (orch-output->poly orch-output quantizer)))
-	       ))
-	    )
-	  )
-	))))
+		 (orch-output (parse-orchidea-output orch-struct))
+		 (orch-config (objfromobjs conf-file (mki 'textfile)))
+		 (output-sound (objfromobjs output-sound (mki 'sound))))
+	    
+	    (make-instance 'orchestration
+			   :target target
+			   :output-sound output-sound
+			   :orchestration orch-output
+			   :command-line cmd
+			   :config orch-config
+			   :onsets-threshold onsets-threshold)))))))
+
+
