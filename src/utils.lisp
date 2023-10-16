@@ -60,4 +60,4 @@
   (if (slot-exists-p (first (inside self)) slot)
       (mapcar #'(lambda (crd)
 		  (l-slot crd slot))
-	      (inside self)))
+	      (inside self))))
