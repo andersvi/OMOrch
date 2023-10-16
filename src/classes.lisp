@@ -79,6 +79,7 @@
    (output-sound :accessor output-sound :accessor orch-sound :initarg :output-sound :type sound :initform nil)
    (orchestration :accessor orchestration :accessor orch-orchestration  :initarg :orchestration :type string :initform nil )
    (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
+   (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
    (config :accessor config :accessor orch-config :initarg :config :type textfile :initform nil)
    (onsets-threshold :accessor onsets-threshold :initarg :onsets-threshold :type number :initform 1 ))
   (:documentation "main orchestration class, stores call and results from orchestrate method"))
