@@ -14,6 +14,9 @@
 					   (mki 'chord)))))
     (mki 'chord-seq :lonset onsets :lmidic chords)))
 
+(defmethod objfromobjs ((self orchestration) (out chord-seq))
+  (let ((orch (orchestration self)))
+    (orch-output->chord-seq orch)))
 
 
 
