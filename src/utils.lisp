@@ -61,3 +61,17 @@
       (mapcar #'(lambda (crd)
 		  (l-slot crd slot))
 	      (inside self))))
+
+(defun collect-string-items (string &optional (separation-string " "))
+  "collect items from string separated by space"
+  (labels ((collect-string-items-rec (str out)
+	     (let ((end (position separation-string str :test #'string=)))
+	       (if end
+		   (let ((item (subseq str 0 end)))
+		     (collect-string-items-rec (subseq str (1+ end))
+					       (cons item out)))
+		   (nreverse (remove "" (cons str out) :test #'string=))))))
+    (collect-string-items-rec string '())))
+    
+;;; (collect-string-items "  3 n fire to tre")
+
