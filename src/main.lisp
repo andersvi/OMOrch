@@ -94,6 +94,7 @@
 			   :target target
 			   :output-sound output-sound
 			   :orchestration orch-output
+			   :instruments output-instrument-list
 			   :command-line cmd
 			   :config orch-config
 			   :onsets-threshold onsets-threshold)))))))
