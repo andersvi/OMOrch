@@ -75,7 +75,7 @@
 ;; TODO: consider using omNG-box-value on this class instead of separate call on #'orchestration
 
 (defclass! orchestration (container)
-  ((target-sound :accessor target-sound :accessor target :accessor orch-target :initarg :target :type sound :initform nil)
+  ((target-sound :accessor target-sound :accessor target :accessor orch-target :initarg :target :initarg :target-sound :type sound :initform nil)
    (output-sound :accessor output-sound :accessor orch-sound :initarg :output-sound :type sound :initform nil)
    (orchestration :accessor orchestration :accessor orch-orchestration  :initarg :orchestration :type string :initform nil )
    (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
