@@ -29,7 +29,7 @@
 
 ;;; method orchestrate returns an instance of class 'orchestration
 
-(defmethod! orchestrate ((target sound) (orchestration string) (onsets-threshold number))
+(defmethod! orchestrate ((target sound) (instrument-pool string) (onsets-threshold number))
   :initvals '(nil *orchidea-default-orchestration* 0.7)
   :indoc '("source target object" "instrument abbreviations (space-delimited string)" "onsets threshold (ex. static = 2, dynamic = 0.1)")
   :icon 451
@@ -64,7 +64,7 @@
       ;; TODO: allow control of all options in config from here
     
       (let* ((conf-file (orch-set-up-orch-config-file :output-config-file config-file
-						      :orchestration orchestration
+						      :orchestration instrument-pool
 						      :onsets-threshold onsets-threshold
 						      :template-file *orchidea-config-template-path*
 						      :db-sound-path db-sound-path))
@@ -88,10 +88,11 @@
 	  (let* ((orch-struct (om-read-file output-orchestration))
 		 (orch-output (parse-orchidea-output orch-struct))
 		 (orch-config (objfromobjs conf-file (mki 'textfile)))
-		 (output-sound (objfromobjs output-sound (mki 'sound))))
+		 (output-sound (objfromobjs output-sound (mki 'sound)))
+		 (output-instrument-list (collect-string-items instrument-pool " ")))
 	    
 	    (make-instance 'orchestration
-			   :target target
+			   :target-sound target
 			   :output-sound output-sound
 			   :orchestration orch-output
 			   :instruments output-instrument-list
