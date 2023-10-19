@@ -1,15 +1,32 @@
 (in-package :om)
 
+;; 
+;; main orchestration class:
+;; class to contain outputs from call to orchestrate
+;; slots store instance of inputs and outputs
+;; use orch-output->chord-seq, orch-output->multi-seq and others
 ;;
-;; replace original structs with CLOS classes, perhaps use some OMs built-in general functionality?
-;;
+;; method orchestrate returns an instance of class 'orchestration
+;; 
+
+(defclass! orchestration (container)
+  ((target-sound :accessor target-sound :accessor target :accessor orch-target :initarg :target :initarg :target-sound :type sound :initform nil)
+   (output-sound :accessor output-sound :accessor orch-sound :initarg :output-sound :type sound :initform nil)
+   (orch-output  :accessor orch-output  :initarg :orch-output :type string :initform nil )
+   (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
+   (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
+   (config :accessor config :accessor orch-config :initarg :config :type textfile :initform nil)
+   (onsets-threshold :accessor onsets-threshold :initarg :onsets-threshold :type number :initform 1 ))
+  (:documentation "main orchestration class, stores call and results from orchestrate method"))
 
 (defclass! orch-output ()
   ((orchestration :accessor orchestration :initarg :orchestration :initform nil)
+   (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
    (segments :accessor segments :initarg :segments :initform nil)))
 
-(defun make-orch-output (&key orchestration segments)
-  (make-instance 'orch-output :orchestration orchestration :segments segments))
+(defun make-orch-output (&key orchestration instruments segments)
+  (make-instance 'orch-output :orchestration orchestration :instruments instruments :segments segments))
+
 ;; hierarchy in orchestrate output:
 ;; 
 ;; [ segment 4272.45 417.959
@@ -78,27 +95,4 @@
 	 :sample-path sample-path 
 	 :detune detune
 	 initargs))
-
-;; 
-;; main orchestration class:
-;; class to contain outputs from call to orchestrate
-;; slots store instance of inputs and outputs
-;; use orch-output->chord-seq, orch-output->multi-seq and others
-;;
-;; method orchestrate returns an instance of class 'orchestration
-;; 
-   
-
-;; TODO: consider using omNG-box-value on this class instead of separate call on #'orchestration
-
-(defclass! orchestration (container)
-  ((target-sound :accessor target-sound :accessor target :accessor orch-target :initarg :target :initarg :target-sound :type sound :initform nil)
-   (output-sound :accessor output-sound :accessor orch-sound :initarg :output-sound :type sound :initform nil)
-   (orchestration :accessor orchestration :accessor orch-orchestration  :initarg :orchestration :type string :initform nil )
-   (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
-   (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
-   (config :accessor config :accessor orch-config :initarg :config :type textfile :initform nil)
-   (onsets-threshold :accessor onsets-threshold :initarg :onsets-threshold :type number :initform 1 ))
-  (:documentation "main orchestration class, stores call and results from orchestrate method"))
-
 
