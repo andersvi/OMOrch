@@ -10,6 +10,23 @@
 
 (defun make-orch-output (&key orchestration segments)
   (make-instance 'orch-output :orchestration orchestration :segments segments))
+;; hierarchy in orchestrate output:
+;; 
+;; [ segment 4272.45 417.959
+;; 	[ solution 2
+;;  		[ note 417.959 Fl cre_dec C5 ppmfpp N /Winds/Flute/crescendo_to_decrescendo/Fl-cre_dec-C5-ppmfpp-N-R100u.wav 0 ]
+;; 		[ note 417.959 Fl cre_dec C5 ppmfpp N /Winds/Flute/crescendo_to_decrescendo/Fl-cre_dec-C5-ppmfpp-N-R100u.wav 0 ]
+;; 		[ note 957.846 Gtr ord F4 mf 4c /PluckedStrings/Guitar/ordinario/Gtr-ord-F4-mf-4c-T11d.wav 0 ]
+;; 		[ note 417.959 Gtr pizz_bartok C3 ff 5c /PluckedStrings/Guitar/pizzicato_bartok/Gtr-pizz_bartok-C3-ff-5c-N.wav 0 ]
+;;
+;;
+;; (segment onset dur
+;;	(solution N
+;;		(note dur instrument technique .....)
+;;		(note dur instrument technique .....)
+;;		...))
+
+
 
 (defclass! orch-segment ()
   ((onset :accessor onset :initarg :onset :initform 0)
