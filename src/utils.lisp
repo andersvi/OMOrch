@@ -46,21 +46,15 @@
 
 (defgeneric l-slot (class slot))
 
-
-
-(defmethod l-slot ((class chord) (slot symbol))
+(defmethod l-slot ((self chord) (slot symbol))
   (if (slot-exists-p (first (inside self)) slot)
       (mapcar #'(lambda (note)
 		  (funcall slot note))
 	      (inside self))
-      (print (format nil "no-such-slot: ~A in class: ~A " slot class))))
+      (print (format nil "no-such-slot: ~A in class: ~A " slot self))))
 
-
-(defmethod l-slot ((class chord-seq) (slot symbol))
-  (if (slot-exists-p (first (inside self)) slot)
-      (mapcar #'(lambda (crd)
-		  (l-slot crd slot))
-	      (inside self))))
+(defmethod l-slot ((self chord-seq) (slot symbol))
+  (mapcar #'(lambda (chord) (l-slot chord slot)) (inside self)))
 
 (defun collect-string-items (string &optional (separation-string " "))
   "collect items from string separated by space"
