@@ -134,3 +134,17 @@
 
 (defmacro orch-pop-note-from-stack (note stack)
   `(remove ,note ,stack :test #'(lambda (a b) (equalp a b)) :count 1))
+
+;; update allocator with the selected note
+
+(defun update-allocator (alloc note-w-onset)
+  ;; add this note to this allocators seq
+  (let* ((note (car note-w-onset))			    ; note-struct = '(note . onset)
+	 (onset (cdr note-w-onset))
+	 (dur (slot-value note 'dur)))
+    (progn
+      (setf (note-seq alloc) (append (note-seq alloc) (list note)))
+      (setf (slot-value alloc 'next-possible-onset) (+ onset dur))
+      (setf (slot-value alloc 'this-onset) onset)
+      (setf (slot-value alloc 'duration) dur)
+      (setf (slot-value alloc 'lonsets)  (append (slot-value alloc 'lonsets) (list onset))))))
