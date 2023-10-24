@@ -95,3 +95,27 @@
 	collect (make-instance 'voice-allocator
 			       :name ins
 			       :name-w-voice ins+voice)))
+
+
+;; 
+;; consider each orch-note for: a) instrument, b) available, ie not already playing
+;; 
+
+;; allow round-off-errors (ms) in input float onsets from parser
+
+(defparameter *orch-onset-roundoff-threshold-ms* 2)
+
+(defun should-i-play-this? (note-struct allocator)
+  ;; predicate: from note - return boolean
+  (let* ((note (car note-struct))
+	 (onset (cdr note-struct))
+	 (dur (slot-value note 'dur))
+	 (instrument (slot-value note 'instrument))
+	 (name-w-voice (slot-value allocator 'name-w-voice))
+	 (allocator-instrument (instrument-name allocator))
+	 (next-possible-onset (slot-value allocator 'next-possible-onset))
+	 (prev-finished? (>= (+ onset *orch-onset-roundoff-threshold-ms*) next-possible-onset))
+	 ;; instrument names are currently strings, possibly w. different case
+	 (playable? (and (string-equal instrument allocator-instrument)	
+			 prev-finished?)))
+    playable?))
