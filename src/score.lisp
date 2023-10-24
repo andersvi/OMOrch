@@ -7,15 +7,16 @@
 ;;;
 
 (defun orch-output->chord-seq (orch-output)     
-  "return a chord-seq with one chord of orch-notes per segment"
+  "return a chord-seq with one chord for each segment in output"
   (let ((onsets (mapcar #'onset (segments orch-output)))
 	(chords (loop for seg in (segments orch-output)
 		      collect (objfromobjs (notes (solution seg))
-					   (mki 'chord)))))
-    (mki 'chord-seq :lonset onsets :lmidic chords)))
+					   (make-instance 'chord)))))
+    ;; :lmidic seems to work,  why not initargs :inside or :chords ?
+    (make-instance 'chord-seq :lonset onsets :lmidic chords)))
 
 (defmethod objfromobjs ((self orchestration) (out chord-seq))
-  (let ((orch (orchestration self)))
+  (let ((orch (orch-output self)))
     (orch-output->chord-seq orch)))
 
 
