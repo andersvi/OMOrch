@@ -1,0 +1,40 @@
+* From https://forum.ircam.fr/projects/detail/fullsol/ :
+
+** info
+
+TinySOL, OrchideaSOL and FullSOL are three dataset containing instrumental samples, including a wide range of extended
+techniques. They have been created starting from the original version of SOL (Studio On Line), keeping the proximity
+microphone only and trying to recover plausible dynamics level either according to the technical recording reports (when
+available) or using statistical and empirical methods.
+
+** detune
+
+The samples off by more than 10 cents have been retuned (via straightforward resampling); for the set of playing styles
+that were sampled with steps larger than a semitone, the intermediate samples have been added by resampling the nearest
+ones (up to 1 tone).
+
+** processing included in filename
+
+The information about the processing performed on the samples is embedded in the last element of the filename (T=sample
+has been retuned by the written amount in cents; R=sample have been added via resampling of another sample by the
+written amount in cents; N=no treatment performed; u=up, d= down).
+
+** availability
+
+FullSOL represents the whole dataset and requires premium access; OrchideaSOL contains about 35% of the playing styles,
+and is available as free starting set for the Orchidea framework; TinySOL is freely available for non-commercial
+purposes and only contains ordinario sounds.
+
+** content
+
+FullSOL amounts in total to 19,91 Gb of audio samples. There’s no change in instrumentarium from previous releases, so
+there’s no Percussion…
+
+** Instrumentarium
+
+Instrumentarium: Bass Tuba, Horn, Trombone, Trumpet in C, Accordion, Harp, Guitar, Violin, Viola, Violoncello,
+Contrabass, Bassoon, Bb Clarinet, Flute, Oboe, Alto Saxophone;
+
+**  Number of playing techniques: 146;
+
+** Number of audio samples: 23819 (including 250 multiphonics’ audio samples.)

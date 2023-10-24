@@ -1,0 +1,1145 @@
+* instruments + styles
+
+	| BTb    | bisb                      |
+	|        | blow                      |
+	|        | brassy                    |
+	|        | breath                    |
+	|        | buzz                      |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | dsclrd_fngr               |
+	|        | explo_slap                |
+	|        | explo_slap_unp            |
+	|        | voice_filt                |
+	|        | flatt                     |
+	|        | flatt_and_voice_uni       |
+	|        | flatt_ord                 |
+	|        | gl_fst                    |
+	|        | gl_mod                    |
+	|        | gl_slw                    |
+	|        | growl                     |
+	|        | inhl                      |
+	|        | kiss                      |
+	|        | mul                       |
+	|        | ord                       |
+	|        | ord_hi_reg                |
+	|        | ord_flatt                 |
+	|        | pdl_tone                  |
+	|        | perc_emb                  |
+	|        | play_and_sing_aug_forth   |
+	|        | play_and_sing_fifth       |
+	|        | play_and_sing_gl          |
+	|        | play_and_sing_maj_seventh |
+	|        | play_and_sing_min_second  |
+	|        | play_and_sing_uni         |
+	|        | sfz                       |
+	|        | sngl_tng                  |
+	|        | slap                      |
+	|        | slap_unp                  |
+	|        | speak                     |
+	|        | stacc                     |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	| BTb+S  | ord                       |
+	|--------+---------------------------|
+	|        |                           |
+	| Hn     | brassy                    |
+	|        | brassy_ord                |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | flatt                     |
+	|        | flatt_stopped             |
+	|        | flatt_ord                 |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | open_stopped              |
+	|        | ord                       |
+	|        | ord_brassy                |
+	|        | ord_flatt                 |
+	|        | sfz                       |
+	|        | slap                      |
+	|        | stacc                     |
+	|        | stopped                   |
+	|        | stopped_open              |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	| Hn+S   | flatt                     |
+	| Hn+S   | ord                       |
+	|--------+---------------------------|
+	| Tbn    | brassy                    |
+	|        | brassy_ord                |
+	|        | scale_chr_asc             |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | flatt                     |
+	|        | flatt_no_mthpc            |
+	|        | flatt_ord                 |
+	|        | gl_fst                    |
+	|        | gl_mod                    |
+	|        | gl_slw                    |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | ord                       |
+	|        | ord_no_mthpc              |
+	|        | ord_brassy                |
+	|        | ord_flatt                 |
+	|        | pdl_tone                  |
+	|        | sfz                       |
+	|        | slap                      |
+	|        | stacc                     |
+	| Tbn+SC | flatt                     |
+	|        | ord                       |
+	| Tbn+SH | flatt                     |
+	|        | ord                       |
+	| Tbn+SS | flatt                     |
+	|        | ord                       |
+	| Tbn+SW | closed_open               |
+	|        | flatt_closed              |
+	|        | flatt_open                |
+	|        | open_closed               |
+	|        | ord_closed                |
+	|        | ord_open                  |
+	|--------+---------------------------|
+	| TpC    | brassy                    |
+	|        | brassy_ord                |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | flatt                     |
+	|        | flatt_ord                 |
+	|        | emb_gl                    |
+	|        | hfvl_gl_fst               |
+	|        | hfvl_gl_mod               |
+	|        | hfvl_gl_slw               |
+	|        | harms_gl_fst              |
+	|        | harms_gl_mod              |
+	|        | harms_gl_slw              |
+	|        | incr_interv_leg_fst       |
+	|        | incr_interv_leg_slw       |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | ord                       |
+	|        | ord_brassy                |
+	|        | ord_flatt                 |
+	|        | pdl_tone                  |
+	|        | sfz                       |
+	|        | slap                      |
+	|        | stacc                     |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	|        | voc_harms                 |
+	| TpC+SC | flatt                     |
+	|        | ord                       |
+	| TpC+SH | flatt                     |
+	|        | ord                       |
+	| TpC+SS | flatt                     |
+	|        | ord                       |
+	| TpC+SW | closed_open               |
+	|        | flatt_open                |
+	|        | open_closed               |
+	|        | ord_closed                |
+	|        | ord_open                  |
+	|--------+---------------------------|
+	| Acc    | backw                     |
+	|        | bellowshake               |
+	|        | breath                    |
+	|        | reg_combi                 |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | diff_tn                   |
+	|        | key_cl                    |
+	|        | ord                       |
+	|        | sfz                       |
+	|        | stacc                     |
+	|        | tap_body                  |
+	|--------+---------------------------|
+	| Gtr    | behind_frog               |
+	|        | bell                      |
+	|        | bottle                    |
+	|        | bottle_chord              |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | dedillo                   |
+	|        | drum                      |
+	|        | gl_fst                    |
+	|        | harm_fngr                 |
+	|        | ord                       |
+	|        | ord_hi_reg                |
+	|        | pizz                      |
+	|        | pizz_bartok               |
+	|        | rasg_long                 |
+	|        | rasg_short                |
+	|        | scratch_and_nail          |
+	|        | slide                     |
+	|        | pont                      |
+	|        | tasto                     |
+	|        | tap_body                  |
+	|        | tap_and_stick             |
+	|--------+---------------------------|
+	| Hp     | bisb                      |
+	|        | bisb_and_stick            |
+	|        | buzz_ped                  |
+	|        | cluster_hi                |
+	|        | cluster_lo                |
+	|        | cluster_mid               |
+	|        | cluster_and_nail_hi       |
+	|        | cluster_and_nail_lo       |
+	|        | cluster_and_nail_mid      |
+	|        | damp                      |
+	|        | dbl_gl_asc                |
+	|        | dbl_gl_dsc                |
+	|        | gl_slw_asc                |
+	|        | gl_slw_dsc                |
+	|        | gl_fluido_and_stick_hi    |
+	|        | gl_fluido_and_stick_himid |
+	|        | gl_fluido_and_stick_lo    |
+	|        | gl_fluido_and_stick_lomid |
+	|        | gl_near_board_asc         |
+	|        | gl_near_board_dsc         |
+	|        | gl_and_nail_asc           |
+	|        | gl_and_nail_dsc           |
+	|        | gl_and_ped                |
+	|        | gl_and_stick_asc          |
+	|        | gl_and_stick_dsc          |
+	|        | harm_fngr                 |
+	|        | harm_wood                 |
+	|        | near_board                |
+	|        | near_board_and_nail       |
+	|        | near_pegs                 |
+	|        | ord                       |
+	|        | pizz_bartok               |
+	|        | scratch_and_nail          |
+	|        | tap_body                  |
+	|        | tap_and_stick             |
+	|        | trem_and_fngrtip          |
+	|        | xyl                       |
+	|--------+---------------------------|
+	| Cb     | art_harm                  |
+	|        | art_harm_trem             |
+	|        | behind_bridge             |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | legno_batt                |
+	|        | legno_tratto              |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | crush_ord                 |
+	|        | decr                      |
+	|        | hit_body                  |
+	|        | nat_harm_gl_fst_asc       |
+	|        | nat_harm_gl_fst_dsc       |
+	|        | nat_harm_gl_mod_asc       |
+	|        | nat_harm_gl_mod_dsc       |
+	|        | nat_harm_gl_slw_asc       |
+	|        | nat_harm_gl_slw_dsc       |
+	|        | nonvib                    |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | on_bridge                 |
+	|        | on_tailpiece              |
+	|        | on_tuning_pegs            |
+	|        | ord                       |
+	|        | ord_crush                 |
+	|        | ord_pont                  |
+	|        | ord_tasto                 |
+	|        | ord_trem                  |
+	|        | pizz_bartok               |
+	|        | pizz_lv                   |
+	|        | pizz_sec                  |
+	|        | sfz                       |
+	|        | stacc                     |
+	|        | pont                      |
+	|        | pont_ord                  |
+	|        | pont_tasto                |
+	|        | pont_trem                 |
+	|        | tasto                     |
+	|        | tasto_ord                 |
+	|        | tasto_pont                |
+	|        | tasto_trem                |
+	|        | trem                      |
+	|        | trem_ord                  |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	| Cb+S   | nonvib                    |
+	|        | ord                       |
+	|        | trem                      |
+	|--------+---------------------------|
+	| Va     | art_harm                  |
+	|        | art_harm_trem             |
+	|        | behind_bridge             |
+	|        | behind_fngrbrd            |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | legno_batt                |
+	|        | legno_tratto              |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | crush_ord                 |
+	|        | decr                      |
+	|        | hit_body                  |
+	|        | nat_harm_gl_fst_asc       |
+	|        | nat_harm_gl_fst_dsc       |
+	|        | nat_harm_gl_mod_asc       |
+	|        | nat_harm_gl_mod_dsc       |
+	|        | nat_harm_gl_slw_asc       |
+	|        | nat_harm_gl_slw_dsc       |
+	|        | nonvib                    |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | on_bridge                 |
+	|        | on_frog                   |
+	|        | on_tuning_pegs            |
+	|        | ord                       |
+	|        | ord_crush                 |
+	|        | ord_pont                  |
+	|        | ord_tasto                 |
+	|        | ord_trem                  |
+	|        | pizz_bartok               |
+	|        | pizz_lv                   |
+	|        | pizz_sec                  |
+	|        | sfz                       |
+	|        | stacc                     |
+	|        | pont                      |
+	|        | pont_ord                  |
+	|        | pont_tasto                |
+	|        | pont_trem                 |
+	|        | tasto                     |
+	|        | tasto_ord                 |
+	|        | tasto_pont                |
+	|        | tasto_trem                |
+	|        | trem                      |
+	|        | trem_ord                  |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	| Va+S   | nonvib                    |
+	|        | ord                       |
+	|        | trem                      |
+	| Va+SP  | nonvib                    |
+	|        | ord                       |
+	|        | trem                      |
+	|--------+---------------------------|
+	| Vn     | art_harm                  |
+	|        | art_harm_trem             |
+	|        | behind_bridge             |
+	|        | behind_fngrbrd            |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | legno_batt                |
+	|        | legno_tratto              |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | crush_ord                 |
+	|        | decr                      |
+	|        | hit_body                  |
+	|        | nat_harm_gl_fst_asc       |
+	|        | nat_harm_gl_fst_dsc       |
+	|        | nat_harm_gl_mod_asc       |
+	|        | nat_harm_gl_mod_dsc       |
+	|        | nat_harm_gl_slw_asc       |
+	|        | nat_harm_gl_slw_dsc       |
+	|        | nonvib                    |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | on_tailpiece              |
+	|        | on_tuning_pegs            |
+	|        | ord                       |
+	|        | ord_crush                 |
+	|        | ord_pont                  |
+	|        | ord_tasto                 |
+	|        | ord_trem                  |
+	|        | pizz_bartok               |
+	|        | pizz_lv                   |
+	|        | pizz_sec                  |
+	|        | sfz                       |
+	|        | stacc                     |
+	|        | pont                      |
+	|        | pont_ord                  |
+	|        | pont_tasto                |
+	|        | pont_trem                 |
+	|        | tasto                     |
+	|        | tasto_ord                 |
+	|        | tasto_pont                |
+	|        | trem                      |
+	|        | trem_ord                  |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	| Vn+S   | nonvib                    |
+	| Vn+S   | ord                       |
+	| Vn+S   | trem                      |
+	| Vn+SP  | nonvib                    |
+	| Vn+SP  | ord                       |
+	| Vn+SP  | trem                      |
+	|--------+---------------------------|
+	| Vc     | art_harm                  |
+	|        | art_harm_trem             |
+	|        | behind_bridge             |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | legno_batt                |
+	|        | legno_tratto              |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | crush_ord                 |
+	|        | decr                      |
+	|        | hit_body                  |
+	|        | nat_harm_gl_fst_asc       |
+	|        | nat_harm_gl_fst_dsc       |
+	|        | nat_harm_gl_mod_asc       |
+	|        | nat_harm_gl_mod_dsc       |
+	|        | nat_harm_gl_slw_asc       |
+	|        | nat_harm_gl_slw_dsc       |
+	|        | nonvib                    |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | on_bridge                 |
+	|        | on_frog                   |
+	|        | on_tailpiece              |
+	|        | on_tuning_pegs            |
+	|        | ord                       |
+	|        | ord_crush                 |
+	|        | ord_pont                  |
+	|        | ord_tasto                 |
+	|        | ord_trem                  |
+	|        | pizz_bartok               |
+	|        | pizz_lv                   |
+	|        | pizz_sec                  |
+	|        | sfz                       |
+	|        | stacc                     |
+	|        | pont                      |
+	|        | pont_ord                  |
+	|        | pont_tasto                |
+	|        | pont_trem                 |
+	|        | tasto                     |
+	|        | tasto_ord                 |
+	|        | tasto_pont                |
+	|        | tasto_trem                |
+	|        | trem                      |
+	|        | trem_ord                  |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	| Vc+S   | nonvib                    |
+	| Vc+S   | ord                       |
+	| Vc+S   | trem                      |
+	| Vc+SP  | nonvib                    |
+	| Vc+SP  | ord                       |
+	| Vc+SP  | trem                      |
+	|--------+---------------------------|
+	| Bn     | blow_no_reed              |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | flatt                     |
+	|        | throat_gl_asc_fst         |
+	|        | throat_gl_asc_mod         |
+	|        | throat_gl_asc_slw         |
+	|        | throat_gl_dsc_fst         |
+	|        | throat_gl_dsc_mod         |
+	|        | throat_gl_dsc_slw         |
+	|        | harm_fngr                 |
+	|        | key_cl                    |
+	|        | mul                       |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | ord                       |
+	|        | sfz                       |
+	|        | stacc                     |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	|        | vib                       |
+	| Bn+S   | ord                       |
+	|--------+---------------------------|
+	| ClBb   | aeol_and_ord              |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | flatt                     |
+	|        | flatt_hi_reg              |
+	|        | gl_fst                    |
+	|        | gl_mod                    |
+	|        | gl_slw                    |
+	|        | key_cl                    |
+	|        | mul                       |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | ord                       |
+	|        | ord_hi_reg                |
+	|        | sfz                       |
+	|        | stacc                     |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	|--------+---------------------------|
+	| Fl     | aeol                      |
+	|        | aeol_and_ord              |
+	|        | aeol_ord                  |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | dsclrd_fngr               |
+	|        | flatt                     |
+	|        | flatt_ord                 |
+	|        | harm_fngr                 |
+	|        | jet_wh                    |
+	|        | key_cl                    |
+	|        | mul                       |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | ord                       |
+	|        | ord_aeol                  |
+	|        | ord_flatt                 |
+	|        | pizz                      |
+	|        | play_and_sing             |
+	|        | play_and_sing_uni         |
+	|        | sfz                       |
+	|        | stacc                     |
+	|        | tng_ram                   |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	|        | whst_tn                   |
+	|        | whst_tn_sw_fst            |
+	|        | whst_tn_sw_slw            |
+	|--------+---------------------------|
+	| Ob     | blow_no_reed              |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | dsclrd_fngr               |
+	|        | dbl_trill_maj_second      |
+	|        | dbl_trill_min_second      |
+	|        | flatt                     |
+	|        | harm_fngr                 |
+	|        | key_cl                    |
+	|        | kiss                      |
+	|        | lip_gl_asc_fst            |
+	|        | lip_gl_asc_mod            |
+	|        | lip_gl_asc_slow           |
+	|        | lip_gl_dsc_fst            |
+	|        | lip_gl_dsc_mod            |
+	|        | lip_gl_dsc_slow           |
+	|        | mul                       |
+	|        | lasting_half_sec          |
+	|        | lasting_one_sec           |
+	|        | ord                       |
+	|        | sfz                       |
+	|        | stacc                     |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+	|        | vib                       |
+	| Ob+S   | ord                       |
+	|--------+---------------------------|
+	| ASax   | aeol                      |
+	|        | backw                     |
+	|        | bisb                      |
+	|        | blow_no_reed              |
+	|        | scale_chr_asc             |
+	|        | scale_chr_dsc             |
+	|        | cresc                     |
+	|        | cre_dec                   |
+	|        | decresc                   |
+	|        | dsclrd_fngr               |
+	|        | dbl_tng                   |
+	|        | explo_slap                |
+	|        | flatt                     |
+	|        | flatt_ord                 |
+	|        | gl_fst                    |
+	|        | gl_mod                    |
+	|        | gl_slw                    |
+	|        | harm_fngr                 |
+	|        | harm_gl_slw_asc           |
+	|        | key_cl                    |
+	|        | kiss                      |
+	|        | move_bell_down_to_up      |
+	|        | move_bell_left_to_right   |
+	|        | mul                       |
+	|        | ord                       |
+	|        | ord_hi_reg                |
+	|        | ord_flatt                 |
+	|        | play_and_sing_gl_fst      |
+	|        | play_and_sing_gl_slw      |
+	|        | play_and_sing_min_second  |
+	|        | play_and_sing_uni         |
+	|        | sfz                       |
+	|        | slap                      |
+	|        | slap_unp                  |
+	|        | stacc                     |
+	|        | trill_maj_second          |
+	|        | trill_min_second          |
+
+
+* styles + instruments
+
+	|                           |        |
+	| aeol                      | ASax   |
+	| aeol                      | Fl     |
+	| aeol_and_ord              | ClBb   |
+	| aeol_and_ord              | Fl     |
+	| aeol_ord                  | Fl     |
+	| art_harm                  | Cb     |
+	| art_harm                  | Va     |
+	| art_harm                  | Vc     |
+	| art_harm                  | Vn     |
+	| art_harm_trem             | Cb     |
+	| art_harm_trem             | Va     |
+	| art_harm_trem             | Vc     |
+	| art_harm_trem             | Vn     |
+	| backw                     | ASax   |
+	| backw                     | Acc    |
+	| behind_bridge             | Cb     |
+	| behind_bridge             | Va     |
+	| behind_bridge             | Vc     |
+	| behind_bridge             | Vn     |
+	| behind_fngrbrd            | Va     |
+	| behind_fngrbrd            | Vn     |
+	| behind_frog               | Gtr    |
+	| bell                      | Gtr    |
+	| bellowshake               | Acc    |
+	| bisb                      | ASax   |
+	| bisb                      | BTb    |
+	| bisb                      | Hp     |
+	| bisb_and_stick            | Hp     |
+	| blow                      | BTb    |
+	| blow_no_reed              | ASax   |
+	| blow_no_reed              | Bn     |
+	| blow_no_reed              | Ob     |
+	| bottle                    | Gtr    |
+	| bottle_chord              | Gtr    |
+	| brassy                    | BTb    |
+	| brassy                    | Hn     |
+	| brassy                    | Tbn    |
+	| brassy                    | TpC    |
+	| brassy_ord                | Hn     |
+	| brassy_ord                | Tbn    |
+	| brassy_ord                | TpC    |
+	| breath                    | Acc    |
+	| breath                    | BTb    |
+	| buzz                      | BTb    |
+	| buzz_ped                  | Hp     |
+	| closed_open               | Tbn+SW |
+	| closed_open               | TpC+SW |
+	| cluster_and_nail_hi       | Hp     |
+	| cluster_and_nail_lo       | Hp     |
+	| cluster_and_nail_mid      | Hp     |
+	| cluster_hi                | Hp     |
+	| cluster_lo                | Hp     |
+	| cluster_mid               | Hp     |
+	| cre_dec                   | ASax   |
+	| cre_dec                   | Acc    |
+	| cre_dec                   | BTb    |
+	| cre_dec                   | Bn     |
+	| cre_dec                   | Cb     |
+	| cre_dec                   | ClBb   |
+	| cre_dec                   | Fl     |
+	| cre_dec                   | Hn     |
+	| cre_dec                   | Ob     |
+	| cre_dec                   | Tbn    |
+	| cre_dec                   | TpC    |
+	| cre_dec                   | Va     |
+	| cre_dec                   | Vc     |
+	| cre_dec                   | Vn     |
+	| cresc                     | ASax   |
+	| cresc                     | Acc    |
+	| cresc                     | BTb    |
+	| cresc                     | Bn     |
+	| cresc                     | Cb     |
+	| cresc                     | ClBb   |
+	| cresc                     | Fl     |
+	| cresc                     | Hn     |
+	| cresc                     | Ob     |
+	| cresc                     | Tbn    |
+	| cresc                     | TpC    |
+	| cresc                     | Va     |
+	| cresc                     | Vc     |
+	| cresc                     | Vn     |
+	| crush_ord                 | Cb     |
+	| crush_ord                 | Va     |
+	| crush_ord                 | Vc     |
+	| crush_ord                 | Vn     |
+	| damp                      | Hp     |
+	| dbl_gl_asc                | Hp     |
+	| dbl_gl_dsc                | Hp     |
+	| dbl_tng                   | ASax   |
+	| dbl_trill_maj_second      | Ob     |
+	| dbl_trill_min_second      | Ob     |
+	| decr                      | Cb     |
+	| decr                      | Va     |
+	| decr                      | Vc     |
+	| decr                      | Vn     |
+	| decresc                   | ASax   |
+	| decresc                   | Acc    |
+	| decresc                   | BTb    |
+	| decresc                   | Bn     |
+	| decresc                   | ClBb   |
+	| decresc                   | Fl     |
+	| decresc                   | Hn     |
+	| decresc                   | Ob     |
+	| decresc                   | Tbn    |
+	| decresc                   | TpC    |
+	| dedillo                   | Gtr    |
+	| diff_tn                   | Acc    |
+	| drum                      | Gtr    |
+	| dsclrd_fngr               | ASax   |
+	| dsclrd_fngr               | BTb    |
+	| dsclrd_fngr               | Fl     |
+	| dsclrd_fngr               | Ob     |
+	| emb_gl                    | TpC    |
+	| explo_slap                | ASax   |
+	| explo_slap                | BTb    |
+	| explo_slap_unp            | BTb    |
+	| flatt                     | ASax   |
+	| flatt                     | BTb    |
+	| flatt                     | Bn     |
+	| flatt                     | ClBb   |
+	| flatt                     | Fl     |
+	| flatt                     | Hn     |
+	| flatt                     | Hn+S   |
+	| flatt                     | Ob     |
+	| flatt                     | Tbn    |
+	| flatt                     | Tbn+SC |
+	| flatt                     | Tbn+SH |
+	| flatt                     | Tbn+SS |
+	| flatt                     | TpC    |
+	| flatt                     | TpC+SC |
+	| flatt                     | TpC+SH |
+	| flatt                     | TpC+SS |
+	| flatt_and_voice_uni       | BTb    |
+	| flatt_closed              | Tbn+SW |
+	| flatt_hi_reg              | ClBb   |
+	| flatt_no_mthpc            | Tbn    |
+	| flatt_open                | Tbn+SW |
+	| flatt_open                | TpC+SW |
+	| flatt_ord                 | ASax   |
+	| flatt_ord                 | BTb    |
+	| flatt_ord                 | Fl     |
+	| flatt_ord                 | Hn     |
+	| flatt_ord                 | Tbn    |
+	| flatt_ord                 | TpC    |
+	| flatt_stopped             | Hn     |
+	| gl_and_nail_asc           | Hp     |
+	| gl_and_nail_dsc           | Hp     |
+	| gl_and_ped                | Hp     |
+	| gl_and_stick_asc          | Hp     |
+	| gl_and_stick_dsc          | Hp     |
+	| gl_fluido_and_stick_hi    | Hp     |
+	| gl_fluido_and_stick_himid | Hp     |
+	| gl_fluido_and_stick_lo    | Hp     |
+	| gl_fluido_and_stick_lomid | Hp     |
+	| gl_fst                    | ASax   |
+	| gl_fst                    | BTb    |
+	| gl_fst                    | ClBb   |
+	| gl_fst                    | Gtr    |
+	| gl_fst                    | Tbn    |
+	| gl_mod                    | ASax   |
+	| gl_mod                    | BTb    |
+	| gl_mod                    | ClBb   |
+	| gl_mod                    | Tbn    |
+	| gl_near_board_asc         | Hp     |
+	| gl_near_board_dsc         | Hp     |
+	| gl_slw                    | ASax   |
+	| gl_slw                    | BTb    |
+	| gl_slw                    | ClBb   |
+	| gl_slw                    | Tbn    |
+	| gl_slw_asc                | Hp     |
+	| gl_slw_dsc                | Hp     |
+	| growl                     | BTb    |
+	| harm_fngr                 | ASax   |
+	| harm_fngr                 | Bn     |
+	| harm_fngr                 | Fl     |
+	| harm_fngr                 | Gtr    |
+	| harm_fngr                 | Hp     |
+	| harm_fngr                 | Ob     |
+	| harm_gl_slw_asc           | ASax   |
+	| harm_wood                 | Hp     |
+	| harms_gl_fst              | TpC    |
+	| harms_gl_mod              | TpC    |
+	| harms_gl_slw              | TpC    |
+	| hfvl_gl_fst               | TpC    |
+	| hfvl_gl_mod               | TpC    |
+	| hfvl_gl_slw               | TpC    |
+	| hit_body                  | Cb     |
+	| hit_body                  | Va     |
+	| hit_body                  | Vc     |
+	| hit_body                  | Vn     |
+	| incr_interv_leg_fst       | TpC    |
+	| incr_interv_leg_slw       | TpC    |
+	| inhl                      | BTb    |
+	| jet_wh                    | Fl     |
+	| key_cl                    | ASax   |
+	| key_cl                    | Acc    |
+	| key_cl                    | Bn     |
+	| key_cl                    | ClBb   |
+	| key_cl                    | Fl     |
+	| key_cl                    | Ob     |
+	| kiss                      | ASax   |
+	| kiss                      | BTb    |
+	| kiss                      | Ob     |
+	| lasting_half_sec          | Bn     |
+	| lasting_half_sec          | Cb     |
+	| lasting_half_sec          | ClBb   |
+	| lasting_half_sec          | Fl     |
+	| lasting_half_sec          | Hn     |
+	| lasting_half_sec          | Ob     |
+	| lasting_half_sec          | Tbn    |
+	| lasting_half_sec          | TpC    |
+	| lasting_half_sec          | Va     |
+	| lasting_half_sec          | Vc     |
+	| lasting_half_sec          | Vn     |
+	| lasting_one_sec           | Bn     |
+	| lasting_one_sec           | Cb     |
+	| lasting_one_sec           | ClBb   |
+	| lasting_one_sec           | Fl     |
+	| lasting_one_sec           | Hn     |
+	| lasting_one_sec           | Ob     |
+	| lasting_one_sec           | Tbn    |
+	| lasting_one_sec           | TpC    |
+	| lasting_one_sec           | Va     |
+	| lasting_one_sec           | Vc     |
+	| lasting_one_sec           | Vn     |
+	| legno_batt                | Cb     |
+	| legno_batt                | Va     |
+	| legno_batt                | Vc     |
+	| legno_batt                | Vn     |
+	| legno_tratto              | Cb     |
+	| legno_tratto              | Va     |
+	| legno_tratto              | Vc     |
+	| legno_tratto              | Vn     |
+	| lip_gl_asc_fst            | Ob     |
+	| lip_gl_asc_mod            | Ob     |
+	| lip_gl_asc_slow           | Ob     |
+	| lip_gl_dsc_fst            | Ob     |
+	| lip_gl_dsc_mod            | Ob     |
+	| lip_gl_dsc_slow           | Ob     |
+	| move_bell_down_to_up      | ASax   |
+	| move_bell_left_to_right   | ASax   |
+	| mul                       | ASax   |
+	| mul                       | BTb    |
+	| mul                       | Bn     |
+	| mul                       | ClBb   |
+	| mul                       | Fl     |
+	| mul                       | Ob     |
+	| nat_harm_gl_fst_asc       | Cb     |
+	| nat_harm_gl_fst_asc       | Va     |
+	| nat_harm_gl_fst_asc       | Vc     |
+	| nat_harm_gl_fst_asc       | Vn     |
+	| nat_harm_gl_fst_dsc       | Cb     |
+	| nat_harm_gl_fst_dsc       | Va     |
+	| nat_harm_gl_fst_dsc       | Vc     |
+	| nat_harm_gl_fst_dsc       | Vn     |
+	| nat_harm_gl_mod_asc       | Cb     |
+	| nat_harm_gl_mod_asc       | Va     |
+	| nat_harm_gl_mod_asc       | Vc     |
+	| nat_harm_gl_mod_asc       | Vn     |
+	| nat_harm_gl_mod_dsc       | Cb     |
+	| nat_harm_gl_mod_dsc       | Va     |
+	| nat_harm_gl_mod_dsc       | Vc     |
+	| nat_harm_gl_mod_dsc       | Vn     |
+	| nat_harm_gl_slw_asc       | Cb     |
+	| nat_harm_gl_slw_asc       | Va     |
+	| nat_harm_gl_slw_asc       | Vc     |
+	| nat_harm_gl_slw_asc       | Vn     |
+	| nat_harm_gl_slw_dsc       | Cb     |
+	| nat_harm_gl_slw_dsc       | Va     |
+	| nat_harm_gl_slw_dsc       | Vc     |
+	| nat_harm_gl_slw_dsc       | Vn     |
+	| near_board                | Hp     |
+	| near_board_and_nail       | Hp     |
+	| near_pegs                 | Hp     |
+	| nonvib                    | Cb     |
+	| nonvib                    | Cb+S   |
+	| nonvib                    | Va     |
+	| nonvib                    | Va+S   |
+	| nonvib                    | Va+SP  |
+	| nonvib                    | Vc     |
+	| nonvib                    | Vc+S   |
+	| nonvib                    | Vc+SP  |
+	| nonvib                    | Vn     |
+	| nonvib                    | Vn+S   |
+	| nonvib                    | Vn+SP  |
+	| on_bridge                 | Cb     |
+	| on_bridge                 | Va     |
+	| on_bridge                 | Vc     |
+	| on_frog                   | Va     |
+	| on_frog                   | Vc     |
+	| on_tailpiece              | Cb     |
+	| on_tailpiece              | Vc     |
+	| on_tailpiece              | Vn     |
+	| on_tuning_pegs            | Cb     |
+	| on_tuning_pegs            | Va     |
+	| on_tuning_pegs            | Vc     |
+	| on_tuning_pegs            | Vn     |
+	| open_closed               | Tbn+SW |
+	| open_closed               | TpC+SW |
+	| open_stopped              | Hn     |
+	| ord                       | ASax   |
+	| ord                       | Acc    |
+	| ord                       | BTb    |
+	| ord                       | BTb+S  |
+	| ord                       | Bn     |
+	| ord                       | Bn+S   |
+	| ord                       | Cb     |
+	| ord                       | Cb+S   |
+	| ord                       | ClBb   |
+	| ord                       | Fl     |
+	| ord                       | Gtr    |
+	| ord                       | Hn     |
+	| ord                       | Hn+S   |
+	| ord                       | Hp     |
+	| ord                       | Ob     |
+	| ord                       | Ob+S   |
+	| ord                       | Tbn    |
+	| ord                       | Tbn+SC |
+	| ord                       | Tbn+SH |
+	| ord                       | Tbn+SS |
+	| ord                       | TpC    |
+	| ord                       | TpC+SC |
+	| ord                       | TpC+SH |
+	| ord                       | TpC+SS |
+	| ord                       | Va     |
+	| ord                       | Va+S   |
+	| ord                       | Va+SP  |
+	| ord                       | Vc     |
+	| ord                       | Vc+S   |
+	| ord                       | Vc+SP  |
+	| ord                       | Vn     |
+	| ord                       | Vn+S   |
+	| ord                       | Vn+SP  |
+	| ord_aeol                  | Fl     |
+	| ord_brassy                | Hn     |
+	| ord_brassy                | Tbn    |
+	| ord_brassy                | TpC    |
+	| ord_closed                | Tbn+SW |
+	| ord_closed                | TpC+SW |
+	| ord_crush                 | Cb     |
+	| ord_crush                 | Va     |
+	| ord_crush                 | Vc     |
+	| ord_crush                 | Vn     |
+	| ord_flatt                 | ASax   |
+	| ord_flatt                 | BTb    |
+	| ord_flatt                 | Fl     |
+	| ord_flatt                 | Hn     |
+	| ord_flatt                 | Tbn    |
+	| ord_flatt                 | TpC    |
+	| ord_hi_reg                | ASax   |
+	| ord_hi_reg                | BTb    |
+	| ord_hi_reg                | ClBb   |
+	| ord_hi_reg                | Gtr    |
+	| ord_no_mthpc              | Tbn    |
+	| ord_open                  | Tbn+SW |
+	| ord_open                  | TpC+SW |
+	| ord_pont                  | Cb     |
+	| ord_pont                  | Va     |
+	| ord_pont                  | Vc     |
+	| ord_pont                  | Vn     |
+	| ord_tasto                 | Cb     |
+	| ord_tasto                 | Va     |
+	| ord_tasto                 | Vc     |
+	| ord_tasto                 | Vn     |
+	| ord_trem                  | Cb     |
+	| ord_trem                  | Va     |
+	| ord_trem                  | Vc     |
+	| ord_trem                  | Vn     |
+	| pdl_tone                  | BTb    |
+	| pdl_tone                  | Tbn    |
+	| pdl_tone                  | TpC    |
+	| perc_emb                  | BTb    |
+	| pizz                      | Fl     |
+	| pizz                      | Gtr    |
+	| pizz_bartok               | Cb     |
+	| pizz_bartok               | Gtr    |
+	| pizz_bartok               | Hp     |
+	| pizz_bartok               | Va     |
+	| pizz_bartok               | Vc     |
+	| pizz_bartok               | Vn     |
+	| pizz_lv                   | Cb     |
+	| pizz_lv                   | Va     |
+	| pizz_lv                   | Vc     |
+	| pizz_lv                   | Vn     |
+	| pizz_sec                  | Cb     |
+	| pizz_sec                  | Va     |
+	| pizz_sec                  | Vc     |
+	| pizz_sec                  | Vn     |
+	| play_and_sing             | Fl     |
+	| play_and_sing_aug_forth   | BTb    |
+	| play_and_sing_fifth       | BTb    |
+	| play_and_sing_gl          | BTb    |
+	| play_and_sing_gl_fst      | ASax   |
+	| play_and_sing_gl_slw      | ASax   |
+	| play_and_sing_maj_seventh | BTb    |
+	| play_and_sing_min_second  | ASax   |
+	| play_and_sing_min_second  | BTb    |
+	| play_and_sing_uni         | ASax   |
+	| play_and_sing_uni         | BTb    |
+	| play_and_sing_uni         | Fl     |
+	| pont                      | Cb     |
+	| pont                      | Gtr    |
+	| pont                      | Va     |
+	| pont                      | Vc     |
+	| pont                      | Vn     |
+	| pont_ord                  | Cb     |
+	| pont_ord                  | Va     |
+	| pont_ord                  | Vc     |
+	| pont_ord                  | Vn     |
+	| pont_tasto                | Cb     |
+	| pont_tasto                | Va     |
+	| pont_tasto                | Vc     |
+	| pont_tasto                | Vn     |
+	| pont_trem                 | Cb     |
+	| pont_trem                 | Va     |
+	| pont_trem                 | Vc     |
+	| pont_trem                 | Vn     |
+	| rasg_long                 | Gtr    |
+	| rasg_short                | Gtr    |
+	| reg_combi                 | Acc    |
+	| scale_chr_asc             | ASax   |
+	| scale_chr_asc             | BTb    |
+	| scale_chr_asc             | Bn     |
+	| scale_chr_asc             | Cb     |
+	| scale_chr_asc             | Fl     |
+	| scale_chr_asc             | Gtr    |
+	| scale_chr_asc             | Hn     |
+	| scale_chr_asc             | Ob     |
+	| scale_chr_asc             | Tbn    |
+	| scale_chr_asc             | Va     |
+	| scale_chr_asc             | Vc     |
+	| scale_chr_asc             | Vn     |
+	| scale_chr_dsc             | ASax   |
+	| scale_chr_dsc             | BTb    |
+	| scale_chr_dsc             | Bn     |
+	| scale_chr_dsc             | Cb     |
+	| scale_chr_dsc             | Fl     |
+	| scale_chr_dsc             | Gtr    |
+	| scale_chr_dsc             | Hn     |
+	| scale_chr_dsc             | Ob     |
+	| scale_chr_dsc             | Va     |
+	| scale_chr_dsc             | Vc     |
+	| scale_chr_dsc             | Vn     |
+	| scratch_and_nail          | Gtr    |
+	| scratch_and_nail          | Hp     |
+	| sfz                       | ASax   |
+	| sfz                       | Acc    |
+	| sfz                       | BTb    |
+	| sfz                       | Bn     |
+	| sfz                       | Cb     |
+	| sfz                       | ClBb   |
+	| sfz                       | Fl     |
+	| sfz                       | Hn     |
+	| sfz                       | Ob     |
+	| sfz                       | Tbn    |
+	| sfz                       | TpC    |
+	| sfz                       | Va     |
+	| sfz                       | Vc     |
+	| sfz                       | Vn     |
+	| slap                      | ASax   |
+	| slap                      | BTb    |
+	| slap                      | Hn     |
+	| slap                      | Tbn    |
+	| slap                      | TpC    |
+	| slap_unp                  | ASax   |
+	| slap_unp                  | BTb    |
+	| slide                     | Gtr    |
+	| sngl_tng                  | BTb    |
+	| speak                     | BTb    |
+	| stacc                     | ASax   |
+	| stacc                     | Acc    |
+	| stacc                     | BTb    |
+	| stacc                     | Bn     |
+	| stacc                     | Cb     |
+	| stacc                     | ClBb   |
+	| stacc                     | Fl     |
+	| stacc                     | Hn     |
+	| stacc                     | Ob     |
+	| stacc                     | Tbn    |
+	| stacc                     | TpC    |
+	| stacc                     | Va     |
+	| stacc                     | Vc     |
+	| stacc                     | Vn     |
+	| stopped                   | Hn     |
+	| stopped_open              | Hn     |
+	| tap_and_stick             | Gtr    |
+	| tap_and_stick             | Hp     |
+	| tap_body                  | Acc    |
+	| tap_body                  | Gtr    |
+	| tap_body                  | Hp     |
+	| tasto                     | Cb     |
+	| tasto                     | Gtr    |
+	| tasto                     | Va     |
+	| tasto                     | Vc     |
+	| tasto                     | Vn     |
+	| tasto_ord                 | Cb     |
+	| tasto_ord                 | Va     |
+	| tasto_ord                 | Vc     |
+	| tasto_ord                 | Vn     |
+	| tasto_pont                | Cb     |
+	| tasto_pont                | Va     |
+	| tasto_pont                | Vc     |
+	| tasto_pont                | Vn     |
+	| tasto_trem                | Cb     |
+	| tasto_trem                | Va     |
+	| tasto_trem                | Vc     |
+	| throat_gl_asc_fst         | Bn     |
+	| throat_gl_asc_mod         | Bn     |
+	| throat_gl_asc_slw         | Bn     |
+	| throat_gl_dsc_fst         | Bn     |
+	| throat_gl_dsc_mod         | Bn     |
+	| throat_gl_dsc_slw         | Bn     |
+	| tng_ram                   | Fl     |
+	| trem                      | Cb     |
+	| trem                      | Cb+S   |
+	| trem                      | Va     |
+	| trem                      | Va+S   |
+	| trem                      | Va+SP  |
+	| trem                      | Vc     |
+	| trem                      | Vc+S   |
+	| trem                      | Vc+SP  |
+	| trem                      | Vn     |
+	| trem                      | Vn+S   |
+	| trem                      | Vn+SP  |
+	| trem_and_fngrtip          | Hp     |
+	| trem_ord                  | Cb     |
+	| trem_ord                  | Va     |
+	| trem_ord                  | Vc     |
+	| trem_ord                  | Vn     |
+	| trill_maj_second          | ASax   |
+	| trill_maj_second          | BTb    |
+	| trill_maj_second          | Bn     |
+	| trill_maj_second          | Cb     |
+	| trill_maj_second          | ClBb   |
+	| trill_maj_second          | Fl     |
+	| trill_maj_second          | Hn     |
+	| trill_maj_second          | Ob     |
+	| trill_maj_second          | TpC    |
+	| trill_maj_second          | Va     |
+	| trill_maj_second          | Vc     |
+	| trill_maj_second          | Vn     |
+	| trill_min_second          | ASax   |
+	| trill_min_second          | BTb    |
+	| trill_min_second          | Bn     |
+	| trill_min_second          | Cb     |
+	| trill_min_second          | ClBb   |
+	| trill_min_second          | Fl     |
+	| trill_min_second          | Hn     |
+	| trill_min_second          | Ob     |
+	| trill_min_second          | TpC    |
+	| trill_min_second          | Va     |
+	| trill_min_second          | Vc     |
+	| trill_min_second          | Vn     |
+	| vib                       | Bn     |
+	| vib                       | Ob     |
+	| voc_harms                 | TpC    |
+	| voice_filt                | BTb    |
+	| whst_tn                   | Fl     |
+	| whst_tn_sw_fst            | Fl     |
+	| whst_tn_sw_slw            | Fl     |
+	| xyl                       | Hp     |
