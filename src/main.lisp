@@ -94,7 +94,7 @@
 	    (make-instance 'orchestration
 			   :target-sound target
 			   :output-sound output-sound
-			   :orchestration orch-output
+			   :orch-output orch-output
 			   :instruments output-instrument-list
 			   :command-line cmd
 			   :config orch-config
