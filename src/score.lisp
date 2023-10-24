@@ -49,5 +49,26 @@
 ;;; 
 
 
+;; UTILS:
+;; 
+;; modify instrument-list, separate divisi instruments by voice-numbers,
+;; return list of strings, e.g ("Gtr" "Gtr") -> ("Gtr-1" "Gtr-2")
+;; 
 
+(defun inst+voice-to-string (ins+voice)
+  (format nil "~A-~A" (car ins+voice) (cdr ins+voice)))
+
+(defun add-voice-nr-to-instruments (instruments)
+  ;; add voice-no to separate more than 1 voices using the same instrument-class:
+  (let ((instruments-+-voices '()))
+    (loop for ins in instruments
+	  do (let ((voice-no
+		     (1+ (count-if #'(lambda (a) (string-equal (car a) ins))
+				   instruments-+-voices))))
+	       ;; uses cons here - ("GTR" . 1) - to support future changes of repr.
+	       (push (cons ins voice-no) instruments-+-voices)))
+    ;; instruments-+-voices
+    (nreverse (mapcar #'(lambda (ins+voice)
+			  (inst+voice-to-string ins+voice))
+		      instruments-+-voices))))
 
