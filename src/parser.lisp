@@ -49,7 +49,6 @@
 	   (progn (print (string+ "setting fallback velocity = 0, none found for: " orch-dyn))
 		  0)))))
 
-
 (defun parse-orchidea-output (orch-output-struct)
   (let ((orch-output (parse-[-delmited-string-to-list orch-output-struct)))
     (make-orch-output :orchestration (car orch-output)
@@ -71,7 +70,7 @@
 (defun parse-note (lis)
   (make-orch-note
    :duration-ms (round (nth 1 lis))
-   :instrument (nth 2 lis)
+   :instrument (string (nth 2 lis))
    :style (nth 3 lis)
    :pitch-name (string (nth 4 lis))
    :midic (n->mc (orch-note-2-om-note (string (nth 4 lis))))
