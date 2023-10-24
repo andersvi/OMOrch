@@ -1,10 +1,15 @@
 (in-package :om)
 
 
+;;; 
+;;; transfer output from orchidea to relevant OM-classes
+;;; (chord-seq, multi-seq)
 ;;;
-;;; transfer output from orchidea to various OM-classes
-;;; (chord, chord-seq, multi-seq, poly, voice...)
-;;;
+
+;;; 
+;;; ORCHESTRATION -> CHORD-SEQ
+;;; 
+
 
 (defun orch-output->chord-seq (orch-output)     
   "return a chord-seq with one chord for each segment in output"
