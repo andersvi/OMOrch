@@ -146,3 +146,29 @@
       (setf (slot-value alloc 'duration) dur)
       (setf (slot-value alloc 'lonsets)  (append (slot-value alloc 'lonsets) (list onset))))))
 
+
+;; finally: fill allocators and output to multi-seq
+
+(defun orchestration-to-allocators (orch)
+  ;; init note-stack and allocators
+  (let ((stack (orch-push-note-to-stack orch))
+	(allocators (set-up-allocators-for-orchestration orch)))
+    ;; collect 
+    (loop for this-allocator in allocators
+	  do
+	     (loop for note in stack
+		   when (should-i-play-this? note this-allocator)
+		     do
+			(progn
+			  (update-allocator this-allocator note)
+			  ;; remove this note from stack
+			  (setf stack (orch-pop-note-from-stack note stack))))
+	  collect this-allocator)))
+
+(defmethod objfromobjs ((self orchestration) (out multi-seq))
+  (let ((allocators (orchestration-to-allocators self)))
+    (let ((cs-es (loop for alloc in allocators
+		       collect (make-instance  'chord-seq
+					       :lmidic (note-seq alloc)
+					       :lonset (lonsets alloc)))))
+      (make-instance 'multi-seq :chord-seqs cs-es))))
