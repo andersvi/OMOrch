@@ -70,7 +70,7 @@
 (defclass! orch-note (note)
   (
    ;; add accessors for om::note's dur:
-   (dur :accessor duration-ms :initarg :duration-ms)
+   (dur :accessor duration-ms :accessor duration :initarg :duration-ms)
    (instrument :accessor instrument :initarg :instrument :initform nil)
    (style :accessor style :initarg :style :initform nil)
    (pitch-name :accessor pitch-name :initarg :pitch-name :initform nil)
