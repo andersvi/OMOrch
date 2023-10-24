@@ -119,3 +119,18 @@
 	 (playable? (and (string-equal instrument allocator-instrument)	
 			 prev-finished?)))
     playable?))
+
+;; push all notes to a single stack
+
+(defun orch-push-note-to-stack (orchestration)
+  (let ((segs (segments (orch-output orchestration))))
+    (loop for segment-notes in (mapcar #'(lambda (seg) (notes (solution seg))) segs)
+	  for onset in (mapcar #'onset segs)
+	  ;;output flat list of all '(note . onset):
+	  append (loop for note in segment-notes
+		       collect (cons note onset)))))
+
+;; pop off note from stack when handled by an allocator
+
+(defmacro orch-pop-note-from-stack (note stack)
+  `(remove ,note ,stack :test #'(lambda (a b) (equalp a b)) :count 1))
