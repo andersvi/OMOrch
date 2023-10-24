@@ -27,6 +27,9 @@
 
 ;;; 
 ;;; ORCHESTRATION -> MULTI-SEQ
+;;;
+;;; instruments of same type are not tagged in output from orchestration, complicates scheduling, esp. for overlapping
+;;; notes
 ;;; 
 ;;; set up list of "note-allocators", one per instrument
 ;;;
