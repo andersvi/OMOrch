@@ -91,7 +91,6 @@
 (defun set-up-allocators-for-orchestration (orchestration)
   (loop for ins in (instruments orchestration)
 	for ins+voice in (add-voice-nr-to-instruments (instruments orchestration)) ;careful! we need whole list
-	for onset in (mapcar #'onset (segments (orch-output orchestration)))
 	collect (make-instance 'voice-allocator
 			       :name ins
 			       :name-w-voice ins+voice)))
@@ -109,9 +108,7 @@
   ;; predicate: from note - return boolean
   (let* ((note (car note-struct))
 	 (onset (cdr note-struct))
-	 (dur (slot-value note 'dur))
 	 (instrument (slot-value note 'instrument))
-	 (name-w-voice (slot-value allocator 'name-w-voice))
 	 (allocator-instrument (instrument-name allocator))
 	 (next-possible-onset (slot-value allocator 'next-possible-onset))
 	 (prev-finished? (>= (+ onset *orch-onset-roundoff-threshold-ms*) next-possible-onset))
@@ -148,3 +145,4 @@
       (setf (slot-value alloc 'this-onset) onset)
       (setf (slot-value alloc 'duration) dur)
       (setf (slot-value alloc 'lonsets)  (append (slot-value alloc 'lonsets) (list onset))))))
+
