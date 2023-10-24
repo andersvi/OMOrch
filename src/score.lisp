@@ -72,3 +72,26 @@
 			  (inst+voice-to-string ins+voice))
 		      instruments-+-voices))))
 
+
+
+;;; 
+;;; allocators: one per voice in ensemble
+;;; 
+
+(defclass voice-allocator () 
+  ((instrument-name :initarg :name :accessor instrument-name :initform "")
+   (name-w-voice :initarg :name-w-voice :accessor name-w-voice :initform "")
+   (this-onset :initarg :this-onset :accessor this-onset :initform 0)
+   (next-possible-onset :initarg :next-possible-onset :accessor next-possible-onset :initform 0)
+   (input-onsets :initarg :input-onsets :accessor input-onsets :initform '())
+   (lonsets :initarg :lonsets :accessor lonsets :initform '())
+   (duration :initarg :duration :initarg dur :accessor duration :initform 0)
+   (note-seq :initarg :note-seq :accessor note-seq :initform nil)))
+
+(defun set-up-allocators-for-orchestration (orchestration)
+  (loop for ins in (instruments orchestration)
+	for ins+voice in (add-voice-nr-to-instruments (instruments orchestration)) ;careful! we need whole list
+	for onset in (mapcar #'onset (segments (orch-output orchestration)))
+	collect (make-instance 'voice-allocator
+			       :name ins
+			       :name-w-voice ins+voice)))
