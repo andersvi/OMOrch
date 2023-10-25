@@ -180,3 +180,9 @@
 
 (defmethod objfromobjs ((self orchestration) (out multi-seq))
   (orchestration->multi-seq (orchestration-to-allocators self)))
+
+
+;; output synthesized/connected output-sound from orchestration
+
+(defmethod objfromobjs ((self orchestration) (out sound))
+  (output-sound self))
