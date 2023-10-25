@@ -168,10 +168,15 @@
 			  (setf stack (orch-pop-note-from-stack note stack))))
 	  collect this-allocator)))
 
+(defun orchestration->multi-seq (allocators)
+  (let ((cseqs (loop for alloc in allocators
+		     collect				    ;one chord-seq per allocator
+		     (let ((chords (mapcar #'(lambda (note)
+					       (objfromobjs note (make-instance 'chord)))
+					   (note-seq alloc)))
+			   (onsets (lonsets alloc)))
+		       (make-instance 'chord-seq :lmidic chords :lonset onsets)))))
+    (make-instance 'multi-seq :chord-seqs cseqs)))
+
 (defmethod objfromobjs ((self orchestration) (out multi-seq))
-  (let ((allocators (orchestration-to-allocators self)))
-    (let ((cs-es (loop for alloc in allocators
-		       collect (make-instance  'chord-seq
-					       :lmidic (note-seq alloc)
-					       :lonset (lonsets alloc)))))
-      (make-instance 'multi-seq :chord-seqs cs-es))))
+  (orchestration->multi-seq (orchestration-to-allocators self)))
