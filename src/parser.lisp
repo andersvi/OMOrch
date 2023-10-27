@@ -12,7 +12,7 @@
 	  (position-if #'(lambda (c) (member c '(#\_ #\+)))
 		       lst)))
 
-(defun orch-note-2-om-note  (notestring &optional (default "A0"))
+(defun orch-note-string-2-om-note-string  (notestring &optional (default "A0"))
   "parse orchidea-type note-string, return valid OM note string."
   ;; orch-added-dynamics: '("ffpp" "fp" "N" "ppff" "ppmfpp")
   (let* ((orch-note-string-list (coerce (string notestring) 'list))
@@ -68,17 +68,19 @@
 
 
 (defun parse-note (lis)
-  (make-orch-note
-   :duration-ms (round (nth 1 lis))
-   :instrument (string (nth 2 lis))
-   :style (nth 3 lis)
-   :pitch-name (string (nth 4 lis))
-   :midic (n->mc (orch-note-2-om-note (string (nth 4 lis))))
-   :dynamic (get-velocity-from-orch-note-dynamic (string (nth 5 lis)))
-   :vel (get-velocity-from-orch-note-dynamic (string (nth 5 lis)))
-   :instance (nth 6 lis)
-   :sample-path (string (nth 7 lis))
-   :detune (nth 8 lis)))
+  (let ((pitch-name (string (nth 4 lis)))
+	(dynamic-string (string (nth 5 lis))))
+    (make-orch-note
+     :duration-ms (round (nth 1 lis))
+     :instrument (string (nth 2 lis))
+     :style (nth 3 lis)
+     :pitch-name pitch-name
+     :midic (n->mc (orch-note-string-2-om-note-string pitch-name))
+     :dynamic dynamic-string
+     :vel (get-velocity-from-orch-note-dynamic dynamic-string)
+     :instance (nth 6 lis)
+     :sample-path (string (nth 7 lis))
+     :detune (nth 8 lis))))
 
 
 
