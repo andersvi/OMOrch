@@ -71,7 +71,7 @@
   (let ((pitch-name (string (nth 4 lis)))
 	(dynamic-string (string (nth 5 lis))))
     (make-orch-note
-     :duration-ms (round (nth 1 lis))
+     :dur (round (nth 1 lis))
      :instrument (string (nth 2 lis))
      :style (nth 3 lis)
      :pitch-name pitch-name
