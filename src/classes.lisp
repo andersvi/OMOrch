@@ -64,14 +64,10 @@
 ;;
 ;; subclassing OM's regular note,
 ;; 
-;; allow the orig orch-struct :duration-ms together with om::note :dur
 ;; 
 
 (defclass! orch-note (note)
-  (
-   ;; add accessors for om::note's dur:
-   (dur :accessor duration-ms :accessor duration :initarg :duration-ms)
-   (instrument :accessor instrument :initarg :instrument :initform nil)
+  ((instrument :accessor instrument :initarg :instrument :initform nil)
    (style :accessor style :initarg :style :initform nil)
    (pitch-name :accessor pitch-name :initarg :pitch-name :initform nil)
    (dynamic :accessor dynamic :initarg :dynamic :initform nil)
@@ -79,13 +75,17 @@
    (sample-path :accessor sample-path :initarg :sample-path :initform nil)
    (detune :accessor detune :initarg :detune :initform 0)))
 
+(defmethod initialize-instance :after ((self orch-note) &rest args)
+  (setf (slot-value self 'dynamic) (string (get-dyn-from-vel (slot-value self 'vel))))
+  (setf (slot-value self 'pitch-name) (mc->n (slot-value self 'midic))))
+
 
 (defun make-orch-note (&rest initargs
-		       &key (duration-ms 0) instrument style pitch-name dynamic instance sample-path detune
+		       &key (dur 0) instrument style pitch-name dynamic instance sample-path detune
 		       &allow-other-keys)
   (apply #'make-instance
 	 'orch-note 
-	 :dur (round duration-ms)
+	 :dur (round dur)
 	 :instrument instrument
 	 :style style 
 	 :pitch-name pitch-name
