@@ -76,7 +76,6 @@
    (detune :accessor detune :initarg :detune :initform 0)))
 
 (defmethod initialize-instance :after ((self orch-note) &rest args)
-  (setf (slot-value self 'dynamic) (string (get-dyn-from-vel (slot-value self 'vel))))
   (setf (slot-value self 'pitch-name) (mc->n (slot-value self 'midic))))
 
 
