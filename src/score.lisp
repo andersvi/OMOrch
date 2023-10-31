@@ -6,7 +6,9 @@
 ;;; (chord-seq, multi-seq)
 ;;;
 
-;;; 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;; ORCHESTRATION -> CHORD-SEQ
 ;;; 
 
@@ -25,6 +27,7 @@
     (orch-output->chord-seq orch)))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 
 ;;; ORCHESTRATION -> MULTI-SEQ
 ;;;
@@ -184,7 +187,16 @@
   (orchestration->multi-seq (orchestration-to-allocators self)))
 
 
-;; output synthesized/connected output-sound from orchestration
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;
+;;; SOUND output
+;;;
+;;; output synthesized/connected output-sound from 'orchestration'
+;;; 
 
 (defmethod objfromobjs ((self orchestration) (out sound))
   (output-sound self))
