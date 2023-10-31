@@ -88,7 +88,7 @@
    (next-possible-onset :initarg :next-possible-onset :accessor next-possible-onset :initform 0)
    (input-onsets :initarg :input-onsets :accessor input-onsets :initform '())
    (lonsets :initarg :lonsets :accessor lonsets :initform '())
-   (duration :initarg :duration :initarg dur :accessor duration :initform 0)
+   (duration :initarg :duration :accessor duration :initform 0)
    (note-seq :initarg :note-seq :accessor note-seq :initform nil)))
 
 (defun set-up-allocators-for-orchestration (orchestration)
