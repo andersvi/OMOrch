@@ -80,11 +80,10 @@
 
 
 (defun make-orch-note (&rest initargs
-		       &key (dur 0) instrument style pitch-name dynamic instance sample-path detune
+		       &key instrument style pitch-name dynamic instance sample-path detune
 		       &allow-other-keys)
   (apply #'make-instance
 	 'orch-note 
-	 :dur (round dur)
 	 :instrument instrument
 	 :style style 
 	 :pitch-name pitch-name
