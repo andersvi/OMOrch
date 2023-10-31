@@ -75,9 +75,6 @@
    (sample-path :accessor sample-path :initarg :sample-path :initform nil)
    (detune :accessor detune :initarg :detune :initform 0)))
 
-(defmethod initialize-instance :after ((self orch-note) &rest args)
-  (setf (slot-value self 'pitch-name) (mc->n (slot-value self 'midic))))
-
 
 (defun make-orch-note (&rest initargs
 		       &key instrument style pitch-name dynamic instance sample-path detune
