@@ -172,7 +172,9 @@
   (let ((cseqs (loop for alloc in allocators
 		     collect				    ;one chord-seq per allocator
 		     (let ((chords (mapcar #'(lambda (note)
-					       (objfromobjs note (make-instance 'chord)))
+					       (objfromobjs
+						(orch-add-extras-to-note note) ;wanted extras defined in draw-extras.lisp
+						(make-instance 'chord)))
 					   (note-seq alloc)))
 			   (onsets (lonsets alloc)))
 		       (make-instance 'chord-seq :lmidic chords :lonset onsets)))))
