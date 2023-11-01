@@ -56,6 +56,9 @@
 (defmethod l-slot ((self chord-seq) (slot symbol))
   (mapcar #'(lambda (chord) (l-slot chord slot)) (inside self)))
 
+(defmethod l-slot ((self list) (slot symbol))
+  (mapcar #'(lambda (x) (l-slot x slot)) self))
+
 (defun collect-string-items (string &optional (separation-string " "))
   "collect items from string separated by space"
   (labels ((collect-string-items-rec (str out)
