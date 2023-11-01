@@ -61,6 +61,24 @@
 (defun make-orch-solution (&key id notes)
   (make-instance 'orch-solution :id id :notes notes))
 
+
+
+;; just in case it might be needed somewhere, in addition to orch-segment above.  Dont know if its useful yet, perhaps
+;; because closer to regular 'chord'-class?
+
+(defclass! orch-chord (chord)
+  ;; class to carry orch-note info through to chord-seqs, omng-save etc.:
+  ((orch-notes :initarg :orch-notes :accessor orch-notes :initform (list (mki 'orch-note)))))
+
+;; TODO: handle slots 'inside' and 'orch-notes' as aliases in some way
+
+(defmethod initialize-instance :after ((self orch-chord) &rest args)
+  (setf (inside self) (orch-notes self)))
+
+(defmethod omng-save ((self orch-chord) &optional (values? nil))
+  `(let ((orch-notes ,(omng-save (orch-notes self))))
+     (make-instance 'orch-chord :orch-notes orch-notes)))
+
 ;;
 ;; subclassing OM's regular note,
 ;; 
