@@ -3,7 +3,7 @@
 
 ;;; 
 ;;; transfer output from orchidea to relevant OM-classes
-;;; (chord-seq, multi-seq)
+;;; (chord-seq, multi-seq, voice, poly)
 ;;;
 
 
@@ -29,15 +29,15 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 
-;;; ORCHESTRATION -> MULTI-SEQ
+;;; ORCHESTRATION -> MULTI-SEQ = MAIN WORKHORSE
 ;;;
 ;;; instruments of same type are not tagged in output from orchestration, complicates scheduling, esp. for overlapping
 ;;; notes
 ;;; 
-;;; set up list of "note-allocators", one per instrument
+;;; set up list of "note-ALLOCATORS", one per instrument
 ;;;
 ;;; 	1) setup: one allocator per instrument, to grab and pop relevant note from stack
-;;; 	2) setup: stack w. notes and onset from output
+;;; 	2) setup: note stack, w. notes and onset from output
 ;;; 	3) for each allocator, loop through stack:
 ;;; 
 ;;; 	   a) check if this note can be played by this instrument at this onset:
@@ -78,10 +78,8 @@
 			  (inst+voice-to-string ins+voice))
 		      instruments-+-voices))))
 
-
-
 ;;; 
-;;; allocators: one per voice in ensemble
+;;; ALLOCATORS: one per voice in ensemble
 ;;; 
 
 (defclass voice-allocator () 
@@ -105,7 +103,6 @@
 ;; 
 ;; consider each orch-note for: a) instrument, b) available, ie not already playing
 ;; 
-
 ;; allow round-off-errors (ms) in input float onsets from parser
 
 (defparameter *orch-onset-roundoff-threshold-ms* 2)
@@ -187,7 +184,39 @@
   (orchestration->multi-seq (orchestration-to-allocators self)))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; ORCHESTRATION -> VOICE, POLY
+;;;
+;;; mostly automatic, given the outputs for chord-seq and multi-seq above.
+;;; 
+;;; needs added around-method, to re-fit original chords containing orch-** data
+;;; in new voice.
+;;;
+;;; Might cause skipped chords if main-method merges chords during quantization?
+;;;
+;;; 
 
+(defmethod* objFromObjs :around ((self chord-seq) (type voice))
+  (let ((new-voice (call-next-method)))
+    (when (chords self) (setf (chords new-voice) (chords self)))
+    new-voice))
+
+(defmethod objfromobjs ((self orchestration) (out voice))
+  ;; via chord-seq
+  (objfromobjs
+   (objfromobjs self (mki 'chord-seq))
+   (mki 'voice)))
+
+;;voices->poly seems to maintain orch-note content for each chord
+;; 
+;; ORCHESTRATION -> POLY
+
+(defmethod objfromobjs ((self orchestration) (out poly))
+  ;; via multi-seq
+  (objfromobjs
+   (objfromobjs self (mki 'multi-seq))
+   (mki 'poly)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -200,3 +229,4 @@
 
 (defmethod objfromobjs ((self orchestration) (out sound))
   (output-sound self))
+
