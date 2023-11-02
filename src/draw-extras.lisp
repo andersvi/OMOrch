@@ -12,14 +12,6 @@
 ;;; usage: make instances of OM's various 'xxx-extra'-classes, then #'add-extra' these to note
 ;;;
 
-
-(defparameter *orch-draw-extras* t "should i draw dynamics marks, style-text indications etc. in editors?")
-
-;; various functions in this list gets funcalled on the note:
-
-(defvar *orch-extras-list* '())
-
-
 (defun orch-add-dynamic-sign (note)
   ;; add dynamic sign close to note
   (let ((dyn (mki 'vel-extra
@@ -36,6 +28,7 @@
 
 ;; add from functions above:
 (setf *orch-extras-list* '(orch-add-style-text orch-add-dynamic-sign))
+;; (setf *orch-extras-list* '(orch-add-style-text orch-add-dynamic-sign))
 
 
 ;; main function, called when setting up and filling relevant editors
