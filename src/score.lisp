@@ -13,14 +13,18 @@
 ;;; 
 
 
+(defun orch-collect-and-format-instrument-names (orch-output)
+  (format nil "~{~:(~S~)~^~%~}" (cdr (orchestration orch-output))))
+
 (defun orch-output->chord-seq (orch-output)     
   "return a chord-seq with one chord for each segment in output"
   (let ((onsets (mapcar #'onset (segments orch-output)))
 	(chords (loop for seg in (segments orch-output)
-		      collect (objfromobjs (notes (solution seg))
-					   (make-instance 'chord)))))
+		      for notes = (notes (solution seg))
+		      collect (objfromobjs notes (make-instance 'chord)) ))
+	(names (orch-collect-and-format-instrument-names orch-output)))
     ;; :lmidic seems to work,  why not initargs :inside or :chords ?
-    (make-instance 'chord-seq :lonset onsets :lmidic chords)))
+    (make-instance 'chord-seq :lonset onsets :lmidic chords :name names)))
 
 (defmethod objfromobjs ((self orchestration) (out chord-seq))
   (let ((orch (orch-output self)))
@@ -176,8 +180,9 @@
 						(orch-add-extras-to-note note) ;wanted extras defined in draw-extras.lisp
 						(make-instance 'chord)))
 					   (note-seq alloc)))
-			   (onsets (lonsets alloc)))
-		       (make-instance 'chord-seq :lmidic chords :lonset onsets)))))
+			   (onsets (lonsets alloc))
+			   (name (instrument-name alloc)))
+		       (make-instance 'chord-seq :lmidic chords :lonset onsets :name name)))))
     (make-instance 'multi-seq :chord-seqs cseqs)))
 
 (defmethod objfromobjs ((self orchestration) (out multi-seq))
@@ -200,13 +205,15 @@
 (defmethod* objFromObjs :around ((self chord-seq) (type voice))
   (let ((new-voice (call-next-method)))
     (when (chords self) (setf (chords new-voice) (chords self)))
+    ;; until fixed in main method in OMs sources
+    (when (name self) (setf (name new-voice) (name self)))
     new-voice))
 
 (defmethod objfromobjs ((self orchestration) (out voice))
   ;; via chord-seq
   (objfromobjs
    (objfromobjs self (mki 'chord-seq))
-   (mki 'voice)))
+   (make-instance 'voice)))
 
 ;;voices->poly seems to maintain orch-note content for each chord
 ;; 
