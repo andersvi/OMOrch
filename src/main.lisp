@@ -100,4 +100,9 @@
 			   :config orch-config
 			   :onsets-threshold onsets-threshold)))))))
 
+;; recall 'original' orchestration-instance:
+
+(defmethod objfromobjs ((self orch-output) (out orchestration))
+  (make-instance 'orchestration :orch-output self))
+
 
