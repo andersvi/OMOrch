@@ -33,7 +33,6 @@
 (defmethod objfromobjs ((self orch-output) (out chord-seq))
   (orch-output->chord-seq self))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 
 ;;; ORCHESTRATION -> MULTI-SEQ = MAIN WORKHORSE
@@ -190,6 +189,19 @@
 
 (defmethod objfromobjs ((self orchestration) (out multi-seq))
   (orchestration->multi-seq (orchestration-to-allocators self)))
+
+
+(defun orch-orch-to-instrument-strings (o)
+  (loop for ins in (cdr o)
+	collect (string-capitalize ins)))
+
+(defmethod objfromobjs ((self orch-output) (out multi-seq))
+  (let* ((inslist (loop for ins in (cdr (orchestration self))
+			collect (string-capitalize ins)))
+	 (orchestration (make-instance 'orchestration
+				      :orch-output self
+				      :instruments inslist)))
+    (orchestration->multi-seq (orchestration-to-allocators orchestration))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
