@@ -227,7 +227,7 @@
 (defmethod objfromobjs ((self orchestration) (out voice))
   ;; via chord-seq
   (objfromobjs
-   (objfromobjs self (mki 'chord-seq))
+   (objfromobjs self (make-instance 'chord-seq))
    (make-instance 'voice)))
 
 ;;voices->poly seems to maintain orch-note content for each chord
