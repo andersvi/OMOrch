@@ -230,6 +230,11 @@
    (objfromobjs self (make-instance 'chord-seq))
    (make-instance 'voice)))
 
+(defmethod objfromobjs ((self orch-output) (out voice))
+  (objfromobjs
+   (objfromobjs self (make-instance 'chord-seq))
+   (make-instance 'voice)))
+
 ;;voices->poly seems to maintain orch-note content for each chord
 ;; 
 ;; ORCHESTRATION -> POLY
