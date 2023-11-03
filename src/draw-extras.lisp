@@ -26,10 +26,6 @@
 			     :deltay -2.5)))
     (add-extra note text nil t)))
 
-;; add from functions above:
-(setf *orch-extras-list* '(orch-add-style-text orch-add-dynamic-sign))
-;; (setf *orch-extras-list* '(orch-add-style-text orch-add-dynamic-sign))
-
 
 ;; main function, called when setting up and filling relevant editors
 
