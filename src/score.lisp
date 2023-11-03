@@ -245,6 +245,12 @@
    (objfromobjs self (mki 'multi-seq))
    (mki 'poly)))
 
+(defmethod objfromobjs ((self orch-output) (out poly))
+  ;; via multi-seq
+  (objfromobjs
+   (objfromobjs self (mki 'multi-seq))
+   (mki 'poly)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
