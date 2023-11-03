@@ -30,6 +30,9 @@
   (let ((orch (orch-output self)))
     (orch-output->chord-seq orch)))
 
+(defmethod objfromobjs ((self orch-output) (out chord-seq))
+  (orch-output->chord-seq self))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 
