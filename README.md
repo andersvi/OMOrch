@@ -1,8 +1,8 @@
 # OM-Orchidea
 
-OM-Client for the Orchidea Orchestration tool created by Carmine-Emanuele Cella
-(alpha version)
+Control run and output from Carmine-Emanuele Cella "Orchidea"
+Orchestration tool in OpenMusic
 
-See the demo workspace (`/demo-ws`) for usage.
+The Orchidea [project page](https://http://www.orch-idea.org/)!
 
-And please visit the Orchidea [project page](https://http://www.orch-idea.org/)!
+Anders Vinjar, 2023
