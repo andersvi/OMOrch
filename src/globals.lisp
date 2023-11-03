@@ -58,4 +58,5 @@
 ;; various functions to funcall on a note to draw style, dynamics, other metadata, see src/draw-extras.lisp:
 
 (defvar *orch-extras-list* '())
-(setf *orch-extras-list* '(orch-add-style-text orch-add-dynamic-sign))
+;; (setf *orch-extras-list* '(orch-add-style-text orch-add-dynamic-sign))
+(setf *orch-extras-list* '(orch-add-style-text ))
