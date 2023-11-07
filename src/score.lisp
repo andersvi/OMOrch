@@ -14,7 +14,7 @@
 
 
 (defun orch-collect-and-format-instrument-names (orch-output )
-  (format nil "~{~:(~S~)~^~%~}"  (cdr (orchestration orch-output))))
+  (format nil "~{~:(~S~)~^~%~}"  (cdr (ensemble orch-output))))
 
 (defun orch-output->chord-seq (orch-output)     
   "return a chord-seq with one chord for each segment in output"
@@ -200,7 +200,7 @@
 	collect (string-capitalize ins)))
 
 (defmethod objfromobjs ((self orch-output) (out multi-seq))
-  (let* ((inslist (loop for ins in (cdr (orchestration self))
+  (let* ((inslist (loop for ins in (cdr (ensemble self))
 			collect (string-capitalize ins)))
 	 (orchestration (make-instance 'orchestration
 				      :orch-output self

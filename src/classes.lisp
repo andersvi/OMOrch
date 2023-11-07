@@ -59,17 +59,17 @@
 
 
 (defclass! orch-output ()
-  ((orchestration :accessor orchestration :initarg :orchestration :initform nil)
+  ((ensemble :accessor ensemble :initarg :ensemble :initform nil)
    (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
    (segments :accessor segments :initarg :segments :initform nil)))
 
-(defun make-orch-output (&key orchestration instruments segments)
-  (make-instance 'orch-output :orchestration orchestration :instruments instruments :segments segments))
+(defun make-orch-output (&key ensemble instruments segments)
+  (make-instance 'orch-output :ensemble ensemble :instruments instruments :segments segments))
 
 (defmethod omng-save ((self orch-output) &optional (values? nil))
   `(let ((segs ,(omng-save (segments self)))
-	 (orchestration ,(omng-save (orchestration self))))
-     (make-instance 'orch-output :segments segs :orchestration orchestration)))
+	 (ensemble ,(omng-save (ensemble self))))
+     (make-instance 'orch-output :segments segs :ensemble ensemble)))
 
 
 

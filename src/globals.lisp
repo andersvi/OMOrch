@@ -44,7 +44,7 @@
 	    (namestring
 	     (make-pathname :directory (append (pathname-directory *orchidea-db-file*) (list root))))))))
 
-(defparameter *orchidea-default-orchestration*
+(defparameter *orchidea-default-ensemble*
   "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
 
 

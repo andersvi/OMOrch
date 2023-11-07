@@ -51,7 +51,7 @@
 
 (defun parse-orchidea-output (orch-output-struct)
   (let ((orch-output (parse-[-delmited-string-to-list orch-output-struct)))
-    (make-orch-output :orchestration (car orch-output)
+    (make-orch-output :ensemble (car orch-output)
 		      :segments (mapcar #'parse-segment (cdr orch-output)))))
 
 (defun parse-segment (segment)

@@ -4,7 +4,7 @@
 
 
 (defun orch-set-up-orch-config-file (&key
-				       (orchestration *orchidea-default-orchestration*)
+				       (ensemble *orchidea-default-ensemble*)
 				       (template-file *orchidea-config-template-path*)
 				       (output-config-file "orch.config.txt")
 				       (db-sound-path (derive-sound-path-from-db-file))
@@ -17,7 +17,7 @@
 	       (progn
 		 (setf line (replace-all line "__DB_FILE__"		(namestring *orchidea-db-file*)))
 		 (setf line (replace-all line "__SOUND_PATH__"		(namestring db-sound-path)))
-		 (setf line (replace-all line "__ORCHESTRA__"		orchestration))
+		 (setf line (replace-all line "__ORCHESTRA__"		ensemble))
 		 (setf line (replace-all line "__ONSETS_THRESHOLD__"	(prin1-to-string onsets-threshold))))
 	       (write-line line o)))
     output-config-file))
@@ -30,7 +30,7 @@
 ;;; method orchestrate returns an instance of class 'orchestration
 
 (defmethod! orchestrate ((target sound) (instrument-pool string) (onsets-threshold number))
-  :initvals '(nil *orchidea-default-orchestration* 0.7)
+  :initvals '(nil *orchidea-default-ensemble* 0.7)
   :indoc '("source target object" "instrument abbreviations (space-delimited string)" "onsets threshold (ex. static = 2, dynamic = 0.1)")
   :icon 451
   :doc (format nil "Generate orchestration from source sample and database, return instance of orchestration.  Be sure to set appropriate various global orch-*** parameters")
@@ -64,7 +64,7 @@
       ;; TODO: allow control of all options in config from here
     
       (let* ((conf-file (orch-set-up-orch-config-file :output-config-file config-file
-						      :orchestration instrument-pool
+						      :ensemble instrument-pool
 						      :onsets-threshold onsets-threshold
 						      :template-file *orchidea-config-template-path*
 						      :db-sound-path db-sound-path))
