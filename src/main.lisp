@@ -51,7 +51,7 @@
 
     (let* ((target-sound (filename target))
 	   (output-basename (pathname-name target-sound))
-	   (output-sound (format nil "~A~A.wav" output-dir output-basename)) ;current orchidea supports only RIFF/wav
+	   (output-sound (format nil "~A~A.wav" output-dir output-basename)) ;current orchidea supports only RIFF/wav, 44.1k
 	   (output-orchestration (format nil "~A~A.orchestration.txt" output-dir output-basename))
 	   (config-file (format nil "~A~A.config.txt" output-dir output-basename)))
 
