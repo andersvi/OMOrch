@@ -91,6 +91,7 @@
 (defclass voice-allocator () 
   ((instrument-name :initarg :name :accessor instrument-name :initform "")
    (name-w-voice :initarg :name-w-voice :accessor name-w-voice :initform "")
+   (channel :initarg :channel :accessor channel :initform 1)
    (this-onset :initarg :this-onset :accessor this-onset :initform 0)
    (next-possible-onset :initarg :next-possible-onset :accessor next-possible-onset :initform 0)
    (input-onsets :initarg :input-onsets :accessor input-onsets :initform '())
@@ -100,11 +101,12 @@
 
 (defun set-up-allocators-for-orchestration (orchestration)
   (loop for ins in (instruments orchestration)
+	for channel from 1
 	for ins+voice in (add-voice-nr-to-instruments (instruments orchestration)) ;careful! we need whole list
 	collect (make-instance 'voice-allocator
 			       :name ins
-			       :name-w-voice ins+voice)))
-
+			       :name-w-voice ins+voice
+			       :channel channel)))
 
 ;; 
 ;; consider each orch-note for: a) instrument, b) available, ie not already playing
@@ -149,6 +151,7 @@
 	 (onset (cdr note-w-onset))
 	 (dur (slot-value note 'dur)))
     (progn
+      (setf (chan note) (channel alloc))
       (setf (note-seq alloc) (append (note-seq alloc) (list note)))
       (setf (slot-value alloc 'next-possible-onset) (+ onset dur))
       (setf (slot-value alloc 'this-onset) onset)
