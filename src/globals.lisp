@@ -1,31 +1,28 @@
 (in-package :om)
 
 ;; various global variables for om-orchidea
-
-
 (defparameter *orchidea-executable-path*
-  (make-pathname :directory (append (butlast (pathname-directory *load-pathname*)) (list "bin")) 
-                 :name "orchestrate"))
+  (namestring
+   (make-pathname :directory (append (butlast (pathname-directory *load-pathname*)) (list  "resources" "bin")) 
+                  :name "orchestrate")))
 
 (defmethod! orchidea-set-executable-path ((path string))
-  :initvals '("")
+  :initvals (list *orchidea-executable-path*)
   :icon 451
   :indoc '("path to orchestrate binary")
   :doc "set path to orchestrate binary"
   (setf *orchidea-executable-path* (or path (file-chooser))))
 
-
 (defparameter *orchidea-config-template-path*
-  (make-pathname :directory (pathname-directory *orchidea-executable-path*)
-                 :name "config_template.txt"))
+  (namestring (make-pathname :directory (pathname-directory *orchidea-executable-path*)
+			     :name "config_template.txt")))
 
 (defmethod! orchidea-set-config-template ((path string))
-  :initvals nil
+  :initvals (list *orchidea-config-template-path*)
   :icon 451
   :indoc '("path to orchidea config template file")
   :doc "set path to orchidea config template file"
   (setf *orchidea-config-template-path* (or path (file-chooser))))
-
 
 (defparameter *orchidea-db-file* nil)
 (defparameter *orchidea-sound-path* nil)
