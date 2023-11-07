@@ -7,3 +7,6 @@ reference-pages
 **/#*.lisp#
 *.64ufasl
 *~
+/resources/_FullSOL2020_release
+/resources/_TinySOL2020_release
+/resources/icon/Orchidea.png
