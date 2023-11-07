@@ -4,7 +4,7 @@
 		   (append (pathname-directory *load-pathname*) '("src"))
 		   '(:relative "src")			    ;while developing/debugging
 		   ))
-       (om-orchidea-files '("package"
+       (OMOrch-files '("package"
 			    "classes"
 			    "globals"
 			    ;; "om-sharp-compat"
@@ -15,34 +15,34 @@
 			    )))
   (mapc #'(lambda (f)
 	    (compile&load (make-pathname :directory srcdir :name f)))
-	om-orchidea-files))
+	OMOrch-files))
 
 
-(defparameter omorch::*om-orchidea-version* '0.2)
-(defparameter omorch::*om-orchidea-date* '2023-10-10)
+(defparameter omorch::*OMOrch-version* '0.2)
+(defparameter omorch::*OMOrch-date* '2023-10-10)
 
 (let ((funcs '(orchestrate))
-      (p (find-library "om-orchidea")))
+      (p (find-library "OMOrch")))
   (AddGenFun2Pack funcs p))
 
-(set-lib-release omorch::*om-orchidea-version* (find-library "om-orchidea"))
+(set-lib-release omorch::*OMOrch-version* (find-library "OMOrch"))
 
 (print
  (format nil "
 ;; ==============================================================
 ;; OM Orchidea Library
-;; Fork of Geof Holbrooks om-orchidea library
+;; Fork of Geof Holbrooks OMOrch library
 ;;  Version:	~A
 ;;  Date:	~A
-;;  Sources:    https://github.com/andersvi/om-orchidea
+;;  Sources:    https://github.com/andersvi/OMOrch
 ;;  Authors:	Anders Vinjar
 ;; ==============================================================
 "
-	 omorch::*om-orchidea-version*
-	 omorch::*om-orchidea-date*))
+	 omorch::*OMOrch-version*
+	 omorch::*OMOrch-date*))
 
 ;; generate html doc:
-;; (om::gen-lib-reference (exist-lib-p "om-orchidea"))
+;; (om::gen-lib-reference (exist-lib-p "OMOrch"))
 
 (defparameter *src-files* '(
 			    "package"

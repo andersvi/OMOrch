@@ -1,4 +1,4 @@
-* om-orchidea development work AV 2023->
+* OMOrch development work AV 2023->
 
 
 * SJEKKE
@@ -11,7 +11,7 @@
 	- ...
 
 
-*** GJORT tam_tam: [[file:~/site/OM/ORCHIDEA/om-orchidea.github/om-orchidea][file:~/site/OM/ORCHIDEA/om-orchidea.github/om-orchidea]]
+*** GJORT tam_tam: [[file:~/site/OM/ORCHIDEA/om-orchidea.github/om-orchidea][file:~/site/OM/ORCHIDEA/OMOrch.github/OMOrch]]
 CLOSED: [2023-10-06 fr. 11:49]
 
 	- State "GJORT"      from              [2023-10-06 fr. 11:49] \\
@@ -34,15 +34,6 @@ ikke så kult, lite data?  lite målinger?  kanskje finne egna targets?
 
 
 ** TODO specialize classes
-
-*** DONE orchidea-note-class from om::note
-	CLOSED: [2023-10-10 ti. 11:49]
-
-*** orchidea-chord-seq
-
-*** orchidea multi-seq?
-
-
 
 
 ** TODO path support - binary, db-path, config-files - w. exception handling

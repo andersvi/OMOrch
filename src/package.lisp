@@ -1,6 +1,6 @@
 (in-package :om)
 
-(defpackage "orchidea"
+(defpackage "OMOrch"
   (:nicknames :omorch)
   (:use :common-lisp))
 

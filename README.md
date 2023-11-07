@@ -1,4 +1,4 @@
-# OM-Orchidea
+# OMOrch
 
 Control run and output from Carmine-Emanuele Cella "Orchidea"
 Orchestration tool in OpenMusic
