@@ -13,8 +13,8 @@
 ;;; 
 
 
-(defun orch-collect-and-format-instrument-names (orch-output)
-  (format nil "~{~:(~S~)~^~%~}" (cdr (orchestration orch-output))))
+(defun orch-collect-and-format-instrument-names (orch-output )
+  (format nil "~{~:(~S~)~^~%~}"  (cdr (orchestration orch-output))))
 
 (defun orch-output->chord-seq (orch-output)     
   "return a chord-seq with one chord for each segment in output"
@@ -22,9 +22,10 @@
 	(chords (loop for seg in (segments orch-output)
 		      for notes = (notes (solution seg))
 		      collect (objfromobjs notes (make-instance 'chord)) ))
+	
 	(names (orch-collect-and-format-instrument-names orch-output)))
     ;; :lmidic seems to work,  why not initargs :inside or :chords ?
-    (make-instance 'chord-seq :lonset onsets :lmidic chords :name names)))
+    (make-instance 'chord-seq :lonset onsets :lmidic chords :name (format nil "~A~2%~A" "CHORD-SEQ" names) )))
 
 (defmethod objfromobjs ((self orchestration) (out chord-seq))
   (let ((orch (orch-output self)))
@@ -213,8 +214,7 @@
 ;;;
 ;;; mostly automatic, given the outputs for chord-seq and multi-seq above.
 ;;; 
-;;; needs added around-method, to re-fit original chords containing orch-** data
-;;; in new voice.
+;;; CHORD-SEQ->VOICE needs added around-method, to re-fit original chords containing orch-** data in new voice.
 ;;;
 ;;; Might cause skipped chords if main-method merges chords during quantization?
 ;;;
@@ -223,15 +223,15 @@
 (defmethod* objFromObjs :around ((self chord-seq) (type voice))
   (let ((new-voice (call-next-method)))
     (when (chords self) (setf (chords new-voice) (chords self)))
-    ;; until fixed in main method in OMs sources
-    (when (name self) (setf (name new-voice) (name self)))
+    (when (name self) (setf (name new-voice) (replace-all (name self) "CHORD-SEQ" "VOICE" )))
     new-voice))
 
 (defmethod objfromobjs ((self orchestration) (out voice))
   ;; via chord-seq
-  (objfromobjs
-   (objfromobjs self (make-instance 'chord-seq))
-   (make-instance 'voice)))
+  (let ((v (objfromobjs
+	    (objfromobjs self (make-instance 'chord-seq))
+	    (make-instance 'voice))))
+    v))
 
 (defmethod objfromobjs ((self orch-output) (out voice))
   (objfromobjs
