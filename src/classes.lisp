@@ -1,31 +1,5 @@
 (in-package :om)
 
-;; 
-;; main orchestration class:
-;; class to contain outputs from call to orchestrate
-;; slots store instance of inputs and outputs
-;; use orch-output->chord-seq, orch-output->multi-seq and others
-;;
-;; method orchestrate returns an instance of class 'orchestration
-;; 
-
-(defclass! orchestration (container)
-  ((target-sound :accessor target-sound :accessor target :accessor orch-target :initarg :target :initarg :target-sound :type sound :initform nil)
-   (output-sound :accessor output-sound :accessor orch-sound :initarg :output-sound :type sound :initform nil)
-   (orch-output  :accessor orch-output  :initarg :orch-output :type string :initform nil )
-   (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
-   (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
-   (config :accessor config :accessor orch-config :initarg :config :type textfile :initform nil)
-   (onsets-threshold :accessor onsets-threshold :initarg :onsets-threshold :type number :initform 1 ))
-  (:documentation "main orchestration class, stores call and results from orchestrate method"))
-
-(defclass! orch-output ()
-  ((orchestration :accessor orchestration :initarg :orchestration :initform nil)
-   (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
-   (segments :accessor segments :initarg :segments :initform nil)))
-
-(defun make-orch-output (&key orchestration instruments segments)
-  (make-instance 'orch-output :orchestration orchestration :instruments instruments :segments segments))
 
 ;; hierarchy in orchestrate output:
 ;; 
@@ -45,6 +19,60 @@
 
 
 
+
+;; 
+;; main orchestration class:
+;; class to contain outputs from call to orchestrate
+;; slots store instance of inputs and outputs
+;; use orch-output->chord-seq, orch-output->multi-seq and others
+;;
+;; method orchestrate returns an instance of class 'orchestration
+;; 
+
+(defclass! orchestration (container)
+  ((target-sound :accessor target-sound :accessor target :accessor orch-target :initarg :target :initarg :target-sound :type sound :initform nil)
+   (output-sound :accessor output-sound :accessor orch-sound :initarg :output-sound :type sound :initform nil)
+   (orch-output  :accessor orch-output  :initarg :orch-output :type string :initform nil )
+   (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
+   (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
+   (config :accessor config :accessor orch-config :initarg :config :type textfile :initform nil)
+   (onsets-threshold :accessor onsets-threshold :initarg :onsets-threshold :type number :initform 1 ))
+  (:documentation "main orchestration class, stores call and results from orchestrate method"))
+
+
+(defmethod omng-save ((self orchestration) &optional (values? nil))
+  `(let ((target-sound ,(omng-save (target-sound self)))
+	 (output-sound ,(omng-save (output-sound self)))
+	 (orch-output ,(omng-save (orch-output self)))
+	 (command-line ,(omng-save (command-line self)))
+	 (instruments ,(omng-save (instruments self)))
+	 (config ,(omng-save (config self)))
+	 (onsets-threshold ,(omng-save (onsets-threshold self))))
+     (make-instance 'orchestration
+		    :target-sound target-sound
+		    :output-sound output-sound
+		    :orch-output orch-output
+		    :command-line command-line
+		    :instruments instruments
+		    :config config)))
+
+
+
+(defclass! orch-output ()
+  ((orchestration :accessor orchestration :initarg :orchestration :initform nil)
+   (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
+   (segments :accessor segments :initarg :segments :initform nil)))
+
+(defun make-orch-output (&key orchestration instruments segments)
+  (make-instance 'orch-output :orchestration orchestration :instruments instruments :segments segments))
+
+(defmethod omng-save ((self orch-output) &optional (values? nil))
+  `(let ((segs ,(omng-save (segments self)))
+	 (orchestration ,(omng-save (orchestration self))))
+     (make-instance 'orch-output :segments segs :orchestration orchestration)))
+
+
+
 (defclass! orch-segment ()
   ((onset :accessor onset :initarg :onset :initform 0)
    (duration :accessor duration :initarg :duration :initform 0)
@@ -61,7 +89,9 @@
 (defun make-orch-solution (&key id notes)
   (make-instance 'orch-solution :id id :notes notes))
 
-
+(defmethod omng-save ((self orch-solution) &optional (values? nil))
+  `(let ((notes ,(omng-save (notes self))))
+     (make-instance 'orch-solution :notes notes)))
 
 ;; just in case it might be needed somewhere, in addition to orch-segment above.  Dont know if its useful yet, perhaps
 ;; because closer to regular 'chord'-class?
