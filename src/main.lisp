@@ -24,7 +24,7 @@
 
 
 ;;;
-;;; POSSIBLY: is there a way to avoid loading (the same) database for each run?
+;;; POSSIBLY: avoid loading (the same) database for each run using cli?  Ask Carmine-Emanuel for ffi-api
 ;;; 
 
 ;;; method orchestrate returns an instance of class 'orchestration
@@ -105,11 +105,13 @@
 (defmethod objfromobjs ((self orch-output) (out orchestration))
   (make-instance 'orchestration :orch-output self))
 
+(defmethod objfromobjs ((self orchestration) (out orch-output))
+  (orch-output self))
 
 ;; read input from external files and place in orch-output instance
 
 (defmethod objfromobjs ((orch-output-file pathname) (out orch-output))
-  ;; expects an "***.orchestration.txt" file (output from 'orchestrate' binary)
+  ;; "expects an ***.orchestration.txt file (output from 'orchestrate' binary)"
   (when orch-output-file
     (let ((orch-struct (om-read-file orch-output-file)))
       (parse-orchidea-output orch-struct))))
@@ -118,5 +120,7 @@
   (let* ((file (or orch-file (om-choose-file-dialog :prompt "select an orchidea output-file (xxx.orchestration.txt)"))))
     (when file
       (parse-orchidea-output (om-read-file file)))))
+
+
 
 
