@@ -38,6 +38,11 @@ ikke så kult, lite data?  lite målinger?  kanskje finne egna targets?
 
 ** TODO path support - binary, db-path, config-files - w. exception handling
 
+** DONE midi-channel per voice-allocotor: sequence, or lookup instrument in GM?
+CLOSED: [2023-11-07 ti. 14:24]
+
+- State "DONE"       from "TODO"       [2023-11-07 ti. 14:24]
+
 * bugs
 
 ** TODO orchestrate class : check lock-mode	
