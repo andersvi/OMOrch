@@ -1,0 +1,71 @@
+(orchestra Cb Cb Cb Fl Fl Fl )
+(segment 4829.73
+	[ solution 1
+		[ note 232.2 Cb tasto_trem C3 mf 1c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-C3-mf-1c-T13u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl ord Gq4 ff N /Winds/Flute/ordinario_quartertones/Fl-ord-Gq4-ff-N-N.wav 0 ]
+		[ note 232.2 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 232.2 Fl trill_maj_second D#5 mf N /Winds/Flute/trill_major_second_up/Fl-trill_maj_second-D#5-mf-N-N.wav 0 ]
+	]
+	[ solution 2
+		[ note 232.2 Cb tasto_trem C3 mf 1c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-C3-mf-1c-T13u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl ord Gq4 ff N /Winds/Flute/ordinario_quartertones/Fl-ord-Gq4-ff-N-N.wav 0 ]
+		[ note 232.2 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 232.2 Fl aeol_and_ord B4 pp N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-B4-pp-N-N.wav 0 ]
+	]
+	[ solution 3
+		[ note 232.2 Cb tasto_trem C3 mf 1c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-C3-mf-1c-T13u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl ord Gq4 ff N /Winds/Flute/ordinario_quartertones/Fl-ord-Gq4-ff-N-N.wav 0 ]
+		[ note 232.2 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 232.2 Fl stacc B4 mf N /Winds/Flute/staccato/Fl-stacc-B4-mf-N-N.wav 0 ]
+	]
+	[ solution 4
+		[ note 232.2 Cb tasto_trem C3 mf 1c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-C3-mf-1c-T13u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 232.2 Fl trill_maj_second D#5 mf N /Winds/Flute/trill_major_second_up/Fl-trill_maj_second-D#5-mf-N-N.wav 0 ]
+	]
+	[ solution 5
+		[ note 232.2 Cb tasto_trem C3 mf 1c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-C3-mf-1c-T13u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl ord Gq4 ff N /Winds/Flute/ordinario_quartertones/Fl-ord-Gq4-ff-N-N.wav 0 ]
+		[ note 232.2 Fl trill_maj_second D#5 mf N /Winds/Flute/trill_major_second_up/Fl-trill_maj_second-D#5-mf-N-N.wav 0 ]
+	]
+	[ solution 6
+		[ note 232.2 Cb tasto_trem C3 mf 1c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-C3-mf-1c-T13u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl ord G5 pp N /Winds/Flute/ordinario/Fl-ord-G5-pp-N-T11u.wav 0 ]
+		[ note 232.2 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 232.2 Fl trill_maj_second D#5 mf N /Winds/Flute/trill_major_second_up/Fl-trill_maj_second-D#5-mf-N-N.wav 0 ]
+	]
+	[ solution 7
+		[ note 232.2 Cb tasto_trem C3 mf 1c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-C3-mf-1c-T13u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl ord D#6 pp N /Winds/Flute/ordinario/Fl-ord-D#6-pp-N-N.wav 0 ]
+		[ note 232.2 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 232.2 Fl trill_maj_second D#5 mf N /Winds/Flute/trill_major_second_up/Fl-trill_maj_second-D#5-mf-N-N.wav 0 ]
+	]
+	[ solution 8
+		[ note 232.2 Cb tasto_trem C3 mf 1c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-C3-mf-1c-T13u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl aeol_and_ord F#5 pp N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-F#5-pp-N-N.wav 0 ]
+		[ note 232.2 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 232.2 Fl trill_maj_second D#5 mf N /Winds/Flute/trill_major_second_up/Fl-trill_maj_second-D#5-mf-N-N.wav 0 ]
+	]
+	[ solution 9
+		[ note 232.2 Cb tasto_trem D#2 mf 3c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-D#2-mf-3c-T17u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl ord Gq4 ff N /Winds/Flute/ordinario_quartertones/Fl-ord-Gq4-ff-N-N.wav 0 ]
+		[ note 232.2 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 232.2 Fl trill_maj_second D#5 mf N /Winds/Flute/trill_major_second_up/Fl-trill_maj_second-D#5-mf-N-N.wav 0 ]
+	]
+	[ solution 10
+		[ note 232.2 Cb tasto_trem C3 mf 1c /Strings/Contrabass/sul_tasto_tremolo/Cb-tasto_trem-C3-mf-1c-T13u.wav 0 ]
+		[ note 232.2 Cb pont_trem G#2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-G#2-mf-4c-N.wav 0 ]
+		[ note 232.2 Fl ord Gq4 ff N /Winds/Flute/ordinario_quartertones/Fl-ord-Gq4-ff-N-N.wav 0 ]
+		[ note 232.2 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 232.2 Fl aeol_and_ord F5 ff N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-F5-ff-N-N.wav 0 ]
+	]
+)

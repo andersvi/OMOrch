@@ -1,0 +1,73 @@
+(orchestra Cb Cb Cb Fl Fl Fl )
+(segment 2275.56
+	[ solution 1
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl aeol_and_ord F#4 mf N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-F#4-mf-N-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 mf N /Winds/Flute/flatterzunge/Fl-flatt-F4-mf-N-N.wav 0 ]
+	]
+	[ solution 2
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl ord G4 pp N /Winds/Flute/ordinario/Fl-ord-G4-pp-N-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 mf N /Winds/Flute/flatterzunge/Fl-flatt-F4-mf-N-N.wav 0 ]
+	]
+	[ solution 3
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl aeol A4 p N /Winds/Flute/aeolian/Fl-aeol-A4-p-N-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 mf N /Winds/Flute/flatterzunge/Fl-flatt-F4-mf-N-N.wav 0 ]
+	]
+	[ solution 4
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl aeol_and_ord D#5 pp N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-D#5-pp-N-T10u.wav 0 ]
+		[ note 139.297 Fl flatt F4 mf N /Winds/Flute/flatterzunge/Fl-flatt-F4-mf-N-N.wav 0 ]
+	]
+	[ solution 5
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl ord A#q5 pp N /Winds/Flute/ordinario_quartertones/Fl-ord-A#q5-pp-N-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 mf N /Winds/Flute/flatterzunge/Fl-flatt-F4-mf-N-N.wav 0 ]
+	]
+	[ solution 6
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl aeol_and_ord F#4 mf N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-F#4-mf-N-N.wav 0 ]
+		[ note 139.297 Fl key_cl D4 f N /Winds/Flute/key_click/Fl-key_cl-D4-f-N-N.wav 0 ]
+	]
+	[ solution 7
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl lasting_half_sec G#4 mf N /Winds/Flute/note_lasting/Fl-lasting_half_sec-G#4-mf-N-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 mf N /Winds/Flute/flatterzunge/Fl-flatt-F4-mf-N-N.wav 0 ]
+	]
+	[ solution 8
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl aeol_and_ord F#4 mf N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-F#4-mf-N-N.wav 0 ]
+		[ note 139.297 Fl trill_maj_second F#5 mf N /Winds/Flute/trill_major_second_up/Fl-trill_maj_second-F#5-mf-N-N.wav 0 ]
+	]
+	[ solution 9
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl dsclrd_fngr G#6 mf N /Winds/Flute/discolored_fingering/Fl-dsclrd_fngr-G#6-mf-N-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 mf N /Winds/Flute/flatterzunge/Fl-flatt-F4-mf-N-N.wav 0 ]
+	]
+	[ solution 10
+		[ note 139.297 Cb sfz C4 f 1c /Strings/Contrabass/sforzato/Cb-sfz-C4-f-1c-R200u.wav 0 ]
+		[ note 139.297 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 139.297 Fl flatt F4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F4-ff-N-N.wav 0 ]
+		[ note 139.297 Fl aeol_and_ord F#4 mf N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-F#4-mf-N-N.wav 0 ]
+		[ note 139.297 Fl trill_min_second D5 mf N /Winds/Flute/trill_minor_second_up/Fl-trill_min_second-D5-mf-N-N.wav 0 ]
+	]
+)
