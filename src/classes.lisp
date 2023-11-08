@@ -37,7 +37,8 @@
    (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
    (config :accessor config :accessor orch-config :initarg :config :type textfile :initform nil)
    (onsets-threshold :accessor onsets-threshold :initarg :onsets-threshold :type number :initform 1 ))
-  (:documentation "main orchestration class, stores call and results from orchestrate method"))
+  (:documentation "main orchestration class, stores call and results from orchestrate method")
+  (:icon 451))
 
 
 (defmethod omng-save ((self orchestration) &optional (values? nil))
@@ -56,12 +57,11 @@
 		    :instruments instruments
 		    :config config)))
 
-
-
 (defclass! orch-output ()
   ((ensemble :accessor ensemble :initarg :ensemble :initform nil)
    (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
-   (segments :accessor segments :initarg :segments :initform nil)))
+   (segments :accessor segments :initarg :segments :initform nil))
+  (:icon 451))
 
 (defun make-orch-output (&key ensemble instruments segments)
   (make-instance 'orch-output :ensemble ensemble :instruments instruments :segments segments))
