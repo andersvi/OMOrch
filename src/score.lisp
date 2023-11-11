@@ -212,7 +212,9 @@
 ;;;
 ;;; ORCHESTRATION -> VOICE, POLY
 ;;;
-;;; mostly automatic, given the outputs for chord-seq and multi-seq above.
+;;; mostly automatic with input from the chord-seq or multi-seq above
+;;;
+;;; must remove duplicate styles from 'continuation-chords' in tied chords
 ;;; 
 ;;; CHORD-SEQ->VOICE needs added around-method, to re-fit original chords containing orch-** data in new voice.
 ;;;
@@ -220,11 +222,51 @@
 ;;;
 ;;; 
 
+
+(defun orch-clean-note (orch-note)
+  ;; remove duplicate styles from 'continuation-chords' in tied chords
+  (setf (style orch-note) nil)
+  (setf (dynamic orch-note) nil)
+  (setf (extra-obj-list orch-note) nil
+	;; (remove-if #'(lambda (xtra) (typep xtra 'text-extra))
+	;; 	   (extra-obj-list orch-note))
+	)
+  orch-note)
+
+(defun orch-remove-extras-from-continuation-chords (my-voice)
+  ;; check each continuation-chord in voice and remove 'extras'
+  (loop for measures in (inside my-voice)
+	do
+	   (loop for group in (inside measures)
+		 unless (typep group 'rest)
+		   do
+		      (loop for chord in (inside group)
+			    when (typep chord 'continuation-chord)
+			      do
+				 (loop for note in (inside chord)
+				       do
+					  (setf note (orch-clean-note note))))))
+  my-voice)
+  
+
+(defmethod orch-clean-extras-from-cont ((self poly))
+  ;; called on new object, cleaning continuation chords
+  (progn
+    (mapc #'(lambda (v) (orch-remove-extras-from-continuation-chords v))
+	  (inside self))
+    self))
+
+(defmethod orch-clean-extras-from-cont ((self voice))
+  (progn
+    (orch-remove-extras-from-continuation-chords self)
+    self))
+
 (defmethod* objFromObjs :around ((self chord-seq) (type voice))
   (let ((new-voice (call-next-method)))
     (when (chords self) (setf (chords new-voice) (chords self)))
     (when (name self) (setf (name new-voice) (replace-all (name self) "CHORD-SEQ" "VOICE" )))
-    new-voice))
+    (orch-clean-extras-from-cont new-voice)))
+
 
 (defmethod objfromobjs ((self orchestration) (out voice))
   ;; via chord-seq
@@ -238,21 +280,23 @@
    (objfromobjs self (make-instance 'chord-seq))
    (make-instance 'voice)))
 
-;;voices->poly seems to maintain orch-note content for each chord
+;;voices->poly maintains orch-note content for each chord
 ;; 
 ;; ORCHESTRATION -> POLY
 
 (defmethod objfromobjs ((self orchestration) (out poly))
   ;; via multi-seq
-  (objfromobjs
-   (objfromobjs self (mki 'multi-seq))
-   (mki 'poly)))
+  (let ((new-poly (objfromobjs
+		   (objfromobjs self (mki 'multi-seq))
+		   (mki 'poly))))
+    (orch-clean-extras-from-cont new-poly)))
 
 (defmethod objfromobjs ((self orch-output) (out poly))
   ;; via multi-seq
-  (objfromobjs
-   (objfromobjs self (mki 'multi-seq))
-   (mki 'poly)))
+  (let ((new-poly (objfromobjs
+		   (objfromobjs self (mki 'multi-seq))
+		   (mki 'poly))))
+    (orch-clean-extras-from-cont new-poly)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
