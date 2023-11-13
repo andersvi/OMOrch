@@ -23,7 +23,7 @@
   ;; text style-indication at close to note
   (let ((text (make-instance 'text-extra
 			     :thetext (format nil "~S" (style note))
-			     :deltay -2.5)))
+			     :deltay -3)))
     (add-extra note text nil t)))
 
 
