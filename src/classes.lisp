@@ -35,7 +35,7 @@
    (orch-output  :accessor orch-output  :initarg :orch-output :type string :initform nil )
    (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
    (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
-   (config :accessor config :accessor orch-config :initarg :config :type textfile :initform nil)
+   (config-template :accessor config-template :accessor orch-config :initarg :config-template :type textfile :initform nil)
    (onsets-threshold :accessor onsets-threshold :initarg :onsets-threshold :type number :initform 1 ))
   (:documentation "main orchestration class, stores call and results from orchestrate method")
   (:icon 451))
@@ -47,7 +47,7 @@
 	 (orch-output ,(omng-save (orch-output self)))
 	 (command-line ,(omng-save (command-line self)))
 	 (instruments ,(omng-save (instruments self)))
-	 (config ,(omng-save (config self)))
+	 (config-template ,(omng-save (config-template self)))
 	 (onsets-threshold ,(omng-save (onsets-threshold self))))
      (make-instance 'orchestration
 		    :target-sound target-sound
@@ -55,7 +55,7 @@
 		    :orch-output orch-output
 		    :command-line command-line
 		    :instruments instruments
-		    :config config)))
+		    :config-template config-template)))
 
 (defclass! orch-output ()
   ((ensemble :accessor ensemble :initarg :ensemble :initform nil)

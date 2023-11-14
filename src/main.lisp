@@ -97,7 +97,7 @@
 			   :orch-output orch-output
 			   :instruments output-instrument-list
 			   :command-line cmd
-			   :config orch-config
+			   :config-template orch-config
 			   :onsets-threshold onsets-threshold)))))))
 
 ;; recall 'original' orchestration-instance:
