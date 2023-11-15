@@ -20,6 +20,7 @@
 		       "draw-extras"
 		       "score"
 		       "main"
+		       "omorch-prefs"
 		       )))
   (mapc #'(lambda (f)
 	    (compile&load (make-pathname :directory srcdir :name f)))
