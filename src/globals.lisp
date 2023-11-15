@@ -1,5 +1,34 @@
 (in-package :om)
 
+
+(defun test-orchestrate-binary ()
+  ;;returns 0 if found, 1 if not
+  (sys:run-shell-command "bash -l -c 'which orchestrate'"))
+
+
+(defun find-orchestrate-path ()
+  ;;outputs orchestrate binary unix path
+  (multiple-value-bind (out pid)
+      #+unix(sys:run-shell-command "bash -l -c 'which orchestrate'"
+                                   :wait nil
+                                   :output :stream
+                                   :error-output nil)
+     #+win32(sys:run-shell-command "where Orchestrate.exe"
+                                  :wait nil
+                                  :output :stream
+                                  :error-output nil)
+    (declare (ignore pid))
+    (with-open-stream (out out)
+      (values (read-line out)))))
+
+(defun orchestrate? ()
+  ;;tests if orchestrate-binary is installed"
+  (let ((test (test-orchestrate-binary)))
+    (if (not (= 1 test))
+	(find-orchestrate-path)
+	"ORCHSTRATE BINARY NOT FOUND")))
+
+
 ;; various global variables for om-orchidea
 (defparameter *orchidea-executable-path*
   (namestring
@@ -24,13 +53,13 @@
   :doc "set path to orchidea config template file"
   (setf *orchidea-config-template-path* (or path (file-chooser))))
 
-(defparameter *orchidea-db-file* nil)
-(defparameter *orchidea-sound-path* nil)
+(defparameter *orchidea-db-file*
+  (namestring (make-pathname :directory (pathname-directory *orchidea-config-template-path*)
+			     :name "SET_ORCHIDEA_DB-FILE.db")))
 
-(defun derive-sound-path-from-db-file ()
-  (let ((root (first (lw::split-sequence (list #\.) (pathname-name *orchidea-db-file*)))))
-    (namestring
-     (make-pathname :directory (append (pathname-directory *orchidea-db-file*) (list root))))))
+
+(defvar *orchidea-sound-path*)
+
 
 (defmethod! orchidea-set-db-file-and-sound-path ((path string))
   :initvals nil
@@ -44,12 +73,19 @@
 	    (namestring
 	     (make-pathname :directory (append (pathname-directory *orchidea-db-file*) (list root))))))))
 
+(defun derive-sound-path-from-db-file ()
+  (let ((root (first (lw::split-sequence (list #\.) (pathname-name *orchidea-db-file*)))))
+    (namestring
+     (make-pathname :directory (append (pathname-directory *orchidea-db-file*) (list root))))))
+
+;; TODO set this to something  more sensible
+(orchidea-set-db-file-and-sound-path "/NOT/YET/SET")
+
+
+
+
 (defparameter *orchidea-default-ensemble*
   "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
-
-
-
-
 
 
 
