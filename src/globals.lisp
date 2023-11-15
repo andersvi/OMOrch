@@ -48,17 +48,8 @@
   "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
 
 
-(defparameter *orch-draw-extras* t "should i draw dynamics marks, style-text indications etc. in editors?")
 
-;; various functions to funcall on a note to draw style, dynamics, other metadata, see src/draw-extras.lisp:
 
-(defvar *orch-extras-list* '(orch-add-style-text orch-add-dynamic-sign))
 
-(defmethod! orch-set-extras ((extras list))
-  :initvals nil
-  :icon 451
-  :indoc '("list of functions drawing relevant 'extras' to orch-notes")
-  :doc "list of functions to draw 'extras' in editors: currently #'orch-add-style-text #'orch-add-dynamic-sign"
-  (setf *orch-extras-list* extras))
 
 
