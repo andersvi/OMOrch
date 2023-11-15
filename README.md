@@ -1,6 +1,6 @@
 # OMOrch
 
-YAOMO - Yet Another OM orch** -lib!
+Yet Another OM orch** -lib!  (YAOMO!)
 
 OpenMusic lib to call and use output from Carmine-Emanuele Cella
 "Orchidea" orchestration tool: https://http://www.orch-idea.org/
