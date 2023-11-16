@@ -61,6 +61,7 @@
   ((ensemble :accessor ensemble :initarg :ensemble :initform nil)
    (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
    (segments :accessor segments :initarg :segments :initform nil))
+  (:documentation "orch-output stores the 'score' from orchestration")
   (:icon 451))
 
 (defun make-orch-output (&key ensemble instruments segments)
@@ -71,20 +72,22 @@
 	 (ensemble ,(omng-save (ensemble self))))
      (make-instance 'orch-output :segments segs :ensemble ensemble)))
 
-
-
 (defclass! orch-segment ()
   ((onset :accessor onset :initarg :onset :initform 0)
    (duration :accessor duration :initarg :duration :initform 0)
-   (solution :accessor solution :initarg :solution :initform nil)))
+   (solution :accessor solution :initarg :solution :initform nil))
+  (:documentation "'segment' level from orchestration")
+  (:icon 451))
 
 (defun make-orch-segment (&key onset solution duration)
   (make-instance 'orch-segment :onset onset :solution solution :duration duration))
 
 (defclass! orch-solution (chord)
-  ;; subclass of chord?
+  ;; subclass of chord
   ((id :accessor id :initarg :id :initform nil)
-   (notes :accessor notes :initarg :notes :initform nil)))
+   (notes :accessor notes :initarg :notes :initform nil))
+  (:documentation "'solution' level from orchestration")
+  (:icon 451))
 
 (defun make-orch-solution (&key id notes)
   (make-instance 'orch-solution :id id :notes notes))
@@ -98,7 +101,9 @@
 
 (defclass! orch-chord (chord)
   ;; class to carry orch-note info through to chord-seqs, omng-save etc.:
-  ((orch-notes :initarg :orch-notes :accessor orch-notes :initform (list (mki 'orch-note)))))
+  ((orch-notes :initarg :orch-notes :accessor orch-notes :initform (list (mki 'orch-note))))
+  (:documentation "subclass of chord, w slots for various metadata from Orchidea")
+  (:icon 451))
 
 ;; TODO: handle slots 'inside' and 'orch-notes' as aliases in some way
 
@@ -121,7 +126,9 @@
    (dynamic :accessor dynamic :initarg :dynamic :initform nil)
    (instance :accessor instance :initarg :instance :initform nil)
    (sample-path :accessor sample-path :initarg :sample-path :initform nil)
-   (detune :accessor detune :initarg :detune :initform 0)))
+   (detune :accessor detune :initarg :detune :initform 0))
+  (:documentation "subclass of note, w slots for various metadata from Orchidea")
+  (:icon 451))
 
 
 (defun make-orch-note (&rest initargs

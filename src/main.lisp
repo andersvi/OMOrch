@@ -31,7 +31,7 @@
 
 (defmethod! orchestrate ((target sound) (instrument-pool string) (onsets-threshold number))
   :initvals '(nil *orchidea-default-ensemble* 0.7)
-  :indoc '("source target object" "instrument abbreviations (space-delimited string)" "onsets threshold (ex. static = 2, dynamic = 0.1)")
+  :indoc '("target sound object" "instrument abbreviations (space-delimited string)" "onsets threshold (ex. static = 2, dynamic = 0.1)")
   :icon 451
   :doc (format nil "Generate orchestration from source sample and database, return instance of orchestration.  Be sure to set appropriate various global orch-*** parameters")
   :numouts 1
@@ -117,6 +117,7 @@
       (parse-orchidea-output orch-struct))))
 
 (defun read-orchestration-file (orch-file)
+  "reads an orchidea output-file (xxx.orchestration.txt) stored on disk"
   (let* ((file (or orch-file (om-choose-file-dialog :prompt "select an orchidea output-file (xxx.orchestration.txt)"))))
     (when file
       (parse-orchidea-output (om-read-file file)))))
