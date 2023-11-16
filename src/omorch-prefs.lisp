@@ -25,11 +25,10 @@
 (defmethod save-external-prefs ((module (eql 'omorch))) 
   `(:orchestrate ,(om-save-pathname *orchidea-executable-path*)))
 
-
 (defmethod put-external-preferences ((module (eql 'omorch)) moduleprefs)
-    (when (get-pref moduleprefs :orch)
-      (setf *orchidea-executable-path* (find-true-external (get-pref moduleprefs :omorch))))
-    t)
+  (when (get-pref moduleprefs :orch)
+    (setf *orchidea-executable-path* (find-true-external (get-pref moduleprefs :omorch))))
+  t)
       
 
 ;========================================================================================================================
@@ -48,6 +47,8 @@
 ;;   (set-pref (find-pref-module :omorch) :omorch-default-ensemble *orchidea-default-ensemble*)
 ;;   (set-pref (find-pref-module :omorch) :orchidea-db-file *orchidea-db-file*)
 ;;   (set-pref (find-pref-module :omorch) :omorch-default-extras *orch-extras-assoc-list*))
+;;   (set-pref (find-pref-module :omorch) :omorch-overwrite-previous-runs *orch-overwrite-previous-run*)
+
 
 
 (defmethod get-def-vals ((iconID (eql :omorch)))
@@ -57,7 +58,9 @@
     :orchidea-db-file *orchidea-db-file*
     :orchidea-sound-path *orchidea-sound-path*
     :omorch-default-ensemble *orchidea-default-ensemble*
-    :omorch-default-extras *orch-extras-assoc-list*))
+    :omorch-default-extras *orch-extras-assoc-list*
+    :omorch-overwrite-previous-runs *orch-overwrite-previous-run*
+    ))
 
 
 (defmethod put-preferences ((iconID (eql :omorch)))
@@ -67,7 +70,8 @@
     (setf *orchidea-db-file* (get-pref modulepref :orchidea-db-file))
     (setf *orchidea-sound-path* (get-pref modulepref :orchidea-sound-path))
     (setf *orchidea-default-ensemble* (get-pref modulepref :omorch-default-ensemble))
-    (setf *orch-extras-assoc-list* (get-pref modulepref :omorch-default-extras))))
+    (setf *orch-extras-assoc-list* (get-pref modulepref :omorch-default-extras))
+    (setf *orch-overwrite-previous-run* (get-pref modulepref :omorch-overwrite-previous-runs))))
 
 (defmethod save-pref-module ((iconID (eql :omorch)) item)
    (list iconID `(list 
@@ -76,7 +80,9 @@
 		  :orchidea-db-file ,*orchidea-db-file*
 		  :orchidea-sound-path ,*orchidea-sound-path*
 		  :omorch-default-ensemble ,*orchidea-default-ensemble*
-		  :omorch-default-extras ',*orch-extras-assoc-list*)
+		  :omorch-default-extras ',*orch-extras-assoc-list*
+		  :omorch-overwrite-previous-runs ,*orch-overwrite-previous-run*
+		  )
 	 
 	 *om-version*))
 
@@ -197,7 +203,7 @@
 				   :size (om-make-point 26 25)
                                    :action (om-dialog-item-act item
                                              (declare (ignore item))
-                                             (let ((file (om-choose-file-dialog :prompt "select orchidea .db-file:")))
+                                             (let ((file (om-choose-file-dialog :prompt "select an orchidea config template:")))
                                                (when file
                                                  (progn
 						   (orchidea-set-config-template (om-namestring file))
@@ -234,17 +240,25 @@
 
 
 		     ;; Default extras to draw in editors
-		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy 100)) (om-make-point (- l2 50) 30)
+		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy 80)) (om-make-point (- l2 50) 30)
 					  "Metadata to draw as 'extras' in editors :"
                                           :font *controls-font*)
 
-		     ;; *orch-extras-list*
-		     
 		     (om-make-view 'orch-extras-view ;; :background *om-light-gray-color*
-						     :position (om-make-point (- l2 150)
-									      posy)
-						     :size (om-make-point 150 l1) 
+						     :position (om-make-point (- l2 150) posy)
+						     :size (om-make-point 150 60) 
 						     :object modulepref)
+
+		     ;; should i keep previous output in out-file/omorch-[timetag]?
+		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy 70)) (om-make-point (- l2 50) 30)
+					  "Overwrite output from previous calls to orchestrate?:"
+                                          :font *controls-font*)
+
+                     (om-make-dialog-item 'om-check-box (om-make-point (- l2 150) posy) (om-make-point 20 20) ""
+                                          :font *controls-font*
+                                          :checked-p (get-pref modulepref :omorch-overwrite-previous-runs)
+                                          :di-action (om-dialog-item-act item 
+                                                       (set-pref modulepref :omorch-overwrite-previous-runs (om-checked-p item))))
 		     )
     ;; (setf posy 0)
     ;; (om-add-subviews thescroll)

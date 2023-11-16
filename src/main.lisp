@@ -44,7 +44,9 @@
 	;; set up various input and output filenames
 	(output-dir (namestring (make-pathname 
 				 :directory (append (pathname-directory *om-tmpfiles-folder*)
-						    (list (string+ "omorch-" (time-tag))))))))
+						    (if *orch-overwrite-previous-run*
+							(list "omorch")
+							(list (string+ "omorch-" (time-tag)))))))))
     
 
     (create-directory output-dir)
