@@ -1,5 +1,5 @@
-; OM File Header - Saved 2023/11/16 11:29:25
-; (7.04 :patc (om-make-point 22 180) (om-make-point 0 0) (om-make-point 1236 773) "" 183 0 "2023/11/01 11:27:42" "2023/11/16 11:29:25")
+; OM File Header - Saved 2023/11/16 13:18:34
+; (7.04 :patc (om-make-point 51 141) (om-make-point 0 0) (om-make-point 1236 746) "" 183 0 "2023/11/01 11:27:42" "2023/11/16 12:46:54")
 ; End File Header
 ; External resources 
 ; (list (list (quote :text) "#P\"../out-files/omorch-2023-11-16_11:20:37/africa.config.txt\"") (list (quote :sound) "#P\"../out-files/omorch-2023-11-16_11:20:37/africa.wav\"" "#P\"../../../../../CSOL/africa.wav\""))

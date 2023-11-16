@@ -1,5 +1,5 @@
-; OM File Header - Saved 2023/11/16 11:29:25
-; (7.04 :patc (om-make-point 229 179) (om-make-point 0 0) (om-make-point 1430 904) "" 183 0 "2023/11/03 19:57:54" "2023/11/16 11:29:25")
+; OM File Header - Saved 2023/11/16 13:18:34
+; (7.04 :patc (om-make-point 38 261) (om-make-point 0 0) (om-make-point 1430 877) "" 183 0 "2023/11/03 19:57:54" "2023/11/16 12:55:26")
 ; End File Header
 (in-package :om)(load-lib-for (quote ("OMOrch")))(setf *om-current-persistent* (om-load-patch1 "orchestrate import output-files" (quote ((let ((box (om-load-boxcomment "comment 2" (om-make-point 219 42) (quote "convenience method$allow loading direct from file-on-disk?") "" (om-make-point 986 232) nil (om-make-color 0 0 0) (om-make-font "Liberation Sans" 12 :family "Liberation Sans" :style (quote (:plain)) :mode (quote nil))))) (when (fboundp (quote set-active)) (set-active box nil)) box) (let ((box (om-load-editor-box1 "VOICE
 Fl
