@@ -53,7 +53,7 @@
 
     (let* ((target-sound (filename target))
 	   (output-basename (pathname-name target-sound))
-	   (output-sound (format nil "~A~A.wav" output-dir output-basename)) ;current orchidea supports only RIFF/wav, 44.1k
+	   (output-sound (format nil "~A~A-solution.wav" output-dir output-basename)) ;current orchidea supports only RIFF/wav, 44.1k
 	   (output-orchestration (format nil "~A~A.orchestration.txt" output-dir output-basename))
 	   (config-file (format nil "~A~A.config.txt" output-dir output-basename)))
 
@@ -123,7 +123,3 @@
   (let* ((file (or orch-file (om-choose-file-dialog :prompt "select an orchidea output-file (xxx.orchestration.txt)"))))
     (when file
       (parse-orchidea-output (om-read-file file)))))
-
-
-
-
