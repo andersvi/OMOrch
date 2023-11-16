@@ -1,0 +1,72 @@
+(orchestra Fl Gtr Cb Gtr Gtr )
+(segment 3854.49
+	[ solution 1
+		[ note 835.896 Fl flatt F#4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F#4-ff-N-N.wav 0 ]
+		[ note 835.896 Gtr pizz F3 mf 4c /PluckedStrings/Guitar/pizzicato/Gtr-pizz-F3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+	[ solution 2
+		[ note 835.896 Fl flatt_ord G#4 mf N /Winds/Flute/flatterzunge_to_ordinario/Fl-flatt_ord-G#4-mf-N-R100d.wav 0 ]
+		[ note 835.896 Gtr pizz F3 mf 4c /PluckedStrings/Guitar/pizzicato/Gtr-pizz-F3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+	[ solution 3
+		[ note 1375.78 Fl flatt F#4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F#4-ff-N-N.wav 0 ]
+		[ note 835.896 Gtr pizz F3 mf 4c /PluckedStrings/Guitar/pizzicato/Gtr-pizz-F3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_D4 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_D4-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+	[ solution 4
+		[ note 835.896 Fl play_and_sing_uni B3 mf N /Winds/Flute/play_and_sing_unison/Fl-play_and_sing_uni-B3-mf-N-N.wav 0 ]
+		[ note 835.896 Gtr pizz F3 mf 4c /PluckedStrings/Guitar/pizzicato/Gtr-pizz-F3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+	[ solution 5
+		[ note 835.896 Fl ord D#4 pp N /Winds/Flute/ordinario/Fl-ord-D#4-pp-N-N.wav 0 ]
+		[ note 835.896 Gtr pizz F3 mf 4c /PluckedStrings/Guitar/pizzicato/Gtr-pizz-F3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+	[ solution 6
+		[ note 835.896 Fl ord F#q6 pp N /Winds/Flute/ordinario_quartertones/Fl-ord-F#q6-pp-N-N.wav 0 ]
+		[ note 835.896 Gtr pizz F3 mf 4c /PluckedStrings/Guitar/pizzicato/Gtr-pizz-F3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+	[ solution 7
+		[ note 835.896 Fl trill_min_second G#5 mf N /Winds/Flute/trill_minor_second_up/Fl-trill_min_second-G#5-mf-N-N.wav 0 ]
+		[ note 835.896 Gtr pizz F3 mf 4c /PluckedStrings/Guitar/pizzicato/Gtr-pizz-F3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+	[ solution 8
+		[ note 835.896 Fl mul C#q6_Cq5_D#5_G5 mf N /Winds/Flute/multiphonics/Fl-mul-C#q6_Cq5_D#5_G5-mf-N-N.wav 0 ]
+		[ note 835.896 Gtr pizz F3 mf 4c /PluckedStrings/Guitar/pizzicato/Gtr-pizz-F3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+	[ solution 9
+		[ note 835.896 Fl trill_min_second B4 mf N /Winds/Flute/trill_minor_second_up/Fl-trill_min_second-B4-mf-N-N.wav 0 ]
+		[ note 835.896 Gtr pizz F3 mf 4c /PluckedStrings/Guitar/pizzicato/Gtr-pizz-F3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+	[ solution 10
+		[ note 835.896 Fl flatt F#4 ff N /Winds/Flute/flatterzunge/Fl-flatt-F#4-ff-N-N.wav 0 ]
+		[ note 835.896 Cb pizz_bartok A1 ff 4c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-A1-ff-4c-N.wav 0 ]
+		[ note 835.896 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+	]
+)

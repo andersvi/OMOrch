@@ -1,0 +1,71 @@
+(orchestra Fl Gtr Cb Gtr Gtr )
+(segment 3065.01
+	[ solution 1
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Gtr gl_fst F4 mf 1c /PluckedStrings/Guitar/glissando/Gtr-gl_fst-F4-mf-1c-N.wav 0 ]
+		[ note 417.959 Cb sfz F3 fp 1c /Strings/Contrabass/sforzato/Cb-sfz-F3-fp-1c-R100u.wav 0 ]
+		[ note 417.959 Gtr ord G4 mf 1c /PluckedStrings/Guitar/ordinario/Gtr-ord-G4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+	[ solution 2
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Gtr gl_fst F4 mf 1c /PluckedStrings/Guitar/glissando/Gtr-gl_fst-F4-mf-1c-N.wav 0 ]
+		[ note 417.959 Cb pont_tasto E3 mf 1c /Strings/Contrabass/sul_ponticello_to_sul_tasto/Cb-pont_tasto-E3-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord G4 mf 1c /PluckedStrings/Guitar/ordinario/Gtr-ord-G4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+	[ solution 3
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Gtr gl_fst F4 mf 1c /PluckedStrings/Guitar/glissando/Gtr-gl_fst-F4-mf-1c-N.wav 0 ]
+		[ note 417.959 Cb sfz F3 fp 1c /Strings/Contrabass/sforzato/Cb-sfz-F3-fp-1c-R100u.wav 0 ]
+		[ note 417.959 Gtr ord B4 mf 1c /PluckedStrings/Guitar/ordinario/Gtr-ord-B4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+	[ solution 4
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Gtr slide D3_D#3 mf 5c /PluckedStrings/Guitar/slide/Gtr-slide-D3_D#3-mf-5c-N.wav 0 ]
+		[ note 417.959 Cb sfz F3 fp 1c /Strings/Contrabass/sforzato/Cb-sfz-F3-fp-1c-R100u.wav 0 ]
+		[ note 417.959 Gtr ord G4 mf 1c /PluckedStrings/Guitar/ordinario/Gtr-ord-G4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+	[ solution 5
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Gtr gl_fst F4 mf 1c /PluckedStrings/Guitar/glissando/Gtr-gl_fst-F4-mf-1c-N.wav 0 ]
+		[ note 417.959 Cb ord C#3 mf 1c /Strings/Contrabass/ordinario/Cb-ord-C#3-mf-1c-T11u.wav 0 ]
+		[ note 417.959 Gtr ord G4 mf 1c /PluckedStrings/Guitar/ordinario/Gtr-ord-G4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+	[ solution 6
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Gtr harm_fngr G#6 p 1c /PluckedStrings/Guitar/harmonic_fingering/Gtr-harm_fngr-G#6-p-1c-N.wav 0 ]
+		[ note 417.959 Cb sfz F3 fp 1c /Strings/Contrabass/sforzato/Cb-sfz-F3-fp-1c-R100u.wav 0 ]
+		[ note 417.959 Gtr ord G4 mf 1c /PluckedStrings/Guitar/ordinario/Gtr-ord-G4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+	[ solution 7
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Gtr ord D3 mf 6c /PluckedStrings/Guitar/ordinario/Gtr-ord-D3-mf-6c-N.wav 0 ]
+		[ note 417.959 Cb sfz F3 fp 1c /Strings/Contrabass/sforzato/Cb-sfz-F3-fp-1c-R100u.wav 0 ]
+		[ note 417.959 Gtr ord G4 mf 1c /PluckedStrings/Guitar/ordinario/Gtr-ord-G4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+	[ solution 8
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Gtr gl_fst F4 mf 1c /PluckedStrings/Guitar/glissando/Gtr-gl_fst-F4-mf-1c-N.wav 0 ]
+		[ note 417.959 Cb sfz F3 fp 1c /Strings/Contrabass/sforzato/Cb-sfz-F3-fp-1c-R100u.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+	[ solution 9
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Gtr gl_fst F4 mf 1c /PluckedStrings/Guitar/glissando/Gtr-gl_fst-F4-mf-1c-N.wav 0 ]
+		[ note 417.959 Cb ord_trem F4 mf 1c /Strings/Contrabass/ordinario_to_tremolo/Cb-ord_trem-F4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord G4 mf 1c /PluckedStrings/Guitar/ordinario/Gtr-ord-G4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+	[ solution 10
+		[ note 417.959 Fl play_and_sing G#4+C4 mf N /Winds/Flute/play_and_sing/Fl-play_and_sing-G#4+C4-mf-N-N.wav 0 ]
+		[ note 417.959 Cb sfz F3 fp 1c /Strings/Contrabass/sforzato/Cb-sfz-F3-fp-1c-R100u.wav 0 ]
+		[ note 417.959 Gtr ord G4 mf 1c /PluckedStrings/Guitar/ordinario/Gtr-ord-G4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+)
