@@ -127,10 +127,14 @@
 		     (om-make-dialog-item 'om-static-text (om-make-point l1 (incf posy 20)) (om-make-point 200 30) "OMOrch prefs"
                                           :font *om-default-font2b*)
 
+		     (om-make-dialog-item 'om-static-text (om-make-point l1 (incf posy dy2)) (om-make-point l3 30)
+					  "Check docs included w. the CLI version of Orchidea"
+                                          :font *controls-font*)
+
                      
 		     ;; orchestrate executable:
 
-		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy dy1)) (om-make-point (- l2 50) 30)
+		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy dy2)) (om-make-point (- l2 50) 30)
 					  "Path to Orchidea's 'orchestrate' executable:"
                                           :font *controls-font*)
                      
@@ -154,7 +158,7 @@
 		     ;; db-file, and sound-file
 
 		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy dy2)) (om-make-point (- l2 50) 30)
-					  "Path to orchidea .db file (database sound folder must be adjacent):"
+					  (format nil "Path to orchidea ~S file (database sound folder must be adjacent):" "XXX.spectrum.db")
                                           :font *controls-font*)
                      
                      (om-make-view 'om-icon-button
@@ -214,12 +218,6 @@
                                           :font *om-default-font2b*)
 
 
-		     ;; orchestra
-		     
-		     ;; (defparameter *orchidea-default-ensemble*
-		     ;;   "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
-
-
 		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy dy1)) (om-make-point l3 200)
 					  "Default orchestra, valid choices depends on the db in use:"
                                           :font *controls-font*)
@@ -243,7 +241,7 @@
 		     ;; *orch-extras-list*
 		     
 		     (om-make-view 'orch-extras-view ;; :background *om-light-gray-color*
-						     :position (om-make-point (floor (- l3 l1) 2)
+						     :position (om-make-point (- l2 150)
 									      posy)
 						     :size (om-make-point 150 l1) 
 						     :object modulepref)
