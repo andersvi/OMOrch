@@ -42,7 +42,7 @@
   :doc "set path to orchestrate binary"
   (setf *orchidea-executable-path* (or path (file-chooser))))
 
-(defparameter *orch-overwrite-previous-run* nil
+(defparameter *orch-overwrite-previous-run* t
   "whether to overwrite output from previous calls in out-files/omorch-***")
 
 (defparameter *orchidea-config-template-path*
