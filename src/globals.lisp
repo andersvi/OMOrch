@@ -43,7 +43,7 @@
   (setf *orchidea-executable-path* (or path (file-chooser))))
 
 (defparameter *orch-overwrite-previous-run* nil
-  "wether to overwrite output from previous calls in out-files/omorch-***")
+  "whether to overwrite output from previous calls in out-files/omorch-***")
 
 (defparameter *orchidea-config-template-path*
   (namestring (make-pathname :directory (pathname-directory *orchidea-executable-path*)
