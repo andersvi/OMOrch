@@ -15,6 +15,8 @@ You will also need a compatible sample-dataset to work with Orchidea,
 fex.  "FullSOL" or "TinySOL":
 https://forum.ircam.fr/projects/detail/fullsol/
 
+There's a demo-workspace inside DEMO: "OMOrch_Intro_WS" - describing
+some of the features of OMOrch.
 
 OMOrch is very much under development, has a rather large TODO-list.
 I'd be happy if you contact me (anders@avinjar.no) if you find bugs,
