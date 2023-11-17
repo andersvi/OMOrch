@@ -4,10 +4,12 @@ reference-pages
 **/#*.lisp#
 *.64ufasl
 *~
+preferences.lisp
 /resources/_FullSOL2020_release
 /resources/_TinySOL2020_release
 /resources/icon/Orchidea.png
 /DEMO/OMOrch_Intro_WS/out-files
-/DEMO/OMOrch_Intro_WS/preferences.lisp
+
 /DEMO/OMOrch_Intro_WS/wsparams.lisp
 **/*segment*
+
