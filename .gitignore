@@ -13,3 +13,4 @@ preferences.lisp
 /DEMO/OMOrch_Intro_WS/wsparams.lisp
 **/*segment*
 
+**/*.wav
