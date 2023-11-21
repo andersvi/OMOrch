@@ -17,6 +17,7 @@
 		       "globals"
 		       "utils"
 		       "parser"
+		       "config"
 		       "draw-extras"
 		       "score"
 		       "main"

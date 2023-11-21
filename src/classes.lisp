@@ -35,11 +35,10 @@
    (orch-output  :accessor orch-output  :initarg :orch-output :type string :initform nil )
    (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
    (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
-   (config-template :accessor config-template :accessor orch-config :initarg :config-template :type textfile :initform nil)
-   (onsets-threshold :accessor onsets-threshold :initarg :onsets-threshold :type number :initform 1 ))
+   (config-file :accessor config-file  :initarg :config-file :type string :initform nil))
+  
   (:documentation "main orchestration class, stores call and results from orchestrate method")
   (:icon 451))
-
 
 (defmethod omng-save ((self orchestration) &optional (values? nil))
   `(let ((target-sound ,(omng-save (target-sound self)))
@@ -47,30 +46,28 @@
 	 (orch-output ,(omng-save (orch-output self)))
 	 (command-line ,(omng-save (command-line self)))
 	 (instruments ,(omng-save (instruments self)))
-	 (config-template ,(omng-save (config-template self)))
-	 (onsets-threshold ,(omng-save (onsets-threshold self))))
+	 (config-file ,(omng-save (config-file self))))
      (make-instance 'orchestration
 		    :target-sound target-sound
 		    :output-sound output-sound
 		    :orch-output orch-output
 		    :command-line command-line
 		    :instruments instruments
-		    :config-template config-template)))
+		    :config-file config-file)))
 
 (defclass! orch-output ()
-  ((ensemble :accessor ensemble :initarg :ensemble :initform nil)
-   (instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
+  ((instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
    (segments :accessor segments :initarg :segments :initform nil))
   (:documentation "orch-output stores the 'score' from orchestration")
   (:icon 451))
 
-(defun make-orch-output (&key ensemble instruments segments)
-  (make-instance 'orch-output :ensemble ensemble :instruments instruments :segments segments))
+(defun make-orch-output (&key instruments segments)
+  (make-instance 'orch-output :instruments instruments :segments segments))
 
 (defmethod omng-save ((self orch-output) &optional (values? nil))
   `(let ((segs ,(omng-save (segments self)))
-	 (ensemble ,(omng-save (ensemble self))))
-     (make-instance 'orch-output :segments segs :ensemble ensemble)))
+	 (instruments ,(omng-save (instruments self))))
+     (make-instance 'orch-output :segments segs :instruments instruments)))
 
 (defclass! orch-segment ()
   ((onset :accessor onset :initarg :onset :initform 0)

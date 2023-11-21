@@ -60,7 +60,7 @@
   (mapcar #'(lambda (x) (l-slot x slot)) self))
 
 (defun collect-string-items (string &optional (separation-string " "))
-  "collect items from string separated by space"
+  "collect items from string separated by some string"
   (labels ((collect-string-items-rec (str out)
 	     (let ((end (position separation-string str :test #'string=)))
 	       (if end
@@ -69,6 +69,68 @@
 					       (cons item out)))
 		   (nreverse (remove "" (cons str out) :test #'string=))))))
     (collect-string-items-rec string '())))
-    
-;;; (collect-string-items "  3 n fire to tre")
 
+
+
+;;;
+;;;
+;;; utils to grab instruments from config-file or -string
+;;; 
+;;;
+
+;; use lw:find-regexp-in-string instead below
+
+;; (defun remove-inital-whitespaces-from-string (str)
+;;   (labels ((check-ws (chars)
+;; 	     (if (alpha-char-p (car chars))
+;; 		 (coerce chars 'string)
+;; 		 (check-ws (cdr chars)))))
+;;     (check-ws (coerce str 'list))))
+
+;; (defun collect-instruments-from-string (orc-string tag)
+;;   (flet ((remove-inital-whitespaces-from-string (str)
+;; 	   (labels ((check-ws (chars)
+;; 		      (if (alpha-char-p (car chars))
+;; 			  (coerce chars 'string)
+;; 			  (check-ws (cdr chars)))))
+;; 	     (check-ws (coerce str 'list)))))
+;;     (collect-string-items
+;;      (remove-inital-whitespaces-from-string
+;;       (replace-all orc-string tag "")))))
+
+(defun read-instrument-list-from-config-file (conf-file &optional (line-tag "orchestra"))
+  (with-open-file (c conf-file :direction :input)
+     (find-instruments-in-stream c line-tag)))
+
+(defun read-instrument-list-from-string (string &optional (line-tag "orchestra"))
+  (with-input-from-string (c string)
+    (find-instruments-in-stream c line-tag)))
+
+(defun find-instruments-in-stream (c line-tag)
+  (let ((orc-string (loop for line = (read-line c nil) then (read-line c nil)
+			  while line
+			  do (when
+				 (find-regexp-in-string (string+ "^" line-tag ".+") line)
+			       (return line)))))
+    (when orc-string
+      (collect-instruments-from-string orc-string line-tag))))
+
+(defun collect-instruments-from-string (orc-string tag)
+  (multiple-value-bind (pos length)
+      (find-regexp-in-string (string+ "^" tag ".+") orc-string)
+    (when pos
+      (let ((resten (subseq orc-string (+ 1 pos (length tag)) (+ pos length))))
+	(collect-string-items
+	 (subseq resten (position-if-not  #'whitespace-char-p resten)))))))
+
+(defun parse-instruments-from-config (config &key (orchestra-tag "orchestra"))
+  "config can be string or file on disk"
+  (let ((instruments (cond ((file-readable-p config) (read-instrument-list-from-config-file config orchestra-tag))
+			   ((stringp config) (read-instrument-list-from-string  config orchestra-tag))
+			   (t nil))))
+    (or instruments
+	(error (format nil "no orchestra found in ~S" config)))))
+
+;; (parse-instruments-from-config "/home/andersvi/site/OM/ORCHIDEA/OM_ORCHIDEA_LIB/OMOrch/DEMO/OMOrch_Intro_WS/out-files/orch.config")
+;; (parse-instruments-from-config (orch-load-config *orchidea-config-template-path*) :orchestra-tag "orchestra")
+;; (parse-instruments-from-config "yo" :orchestra-tag "orchestra")

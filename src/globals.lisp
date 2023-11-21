@@ -76,10 +76,10 @@
 	    (namestring
 	     (make-pathname :directory (append (pathname-directory *orchidea-db-file*) (list root))))))))
 
-(defun derive-sound-path-from-db-file ()
-  (let ((root (first (lw::split-sequence (list #\.) (pathname-name *orchidea-db-file*)))))
+(defun derive-sound-path-from-db-file (db-file)
+  (let ((root (first (lw::split-sequence (list #\.) (pathname-name db-file)))))
     (namestring
-     (make-pathname :directory (append (pathname-directory *orchidea-db-file*) (list root))))))
+     (make-pathname :directory (append (pathname-directory db-file) (list root))))))
 
 ;; TODO set this to something  more sensible
 (orchidea-set-db-file-and-sound-path "/NOT/YET/SET")
