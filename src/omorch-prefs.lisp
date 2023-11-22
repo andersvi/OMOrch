@@ -45,6 +45,7 @@
 ;;   (set-pref (find-pref-module :omorch) :orchidea-sound-path (pathname (derive-sound-path-from-db-file)))
 ;;   (set-pref (find-pref-module :omorch) :orchidea-config-template-path *orchidea-config-template-path*)
 ;;   (set-pref (find-pref-module :omorch) :omorch-default-ensemble *orchidea-default-ensemble*)
+;;   (set-pref (find-pref-module :omorch) :orchidea-default-config-path *orchidea-default-config-path*)
 ;;   (set-pref (find-pref-module :omorch) :orchidea-db-file *orchidea-db-file*)
 ;;   (set-pref (find-pref-module :omorch) :omorch-default-extras *orch-extras-assoc-list*))
 ;;   (set-pref (find-pref-module :omorch) :omorch-overwrite-previous-runs *orch-overwrite-previous-run*)
@@ -54,7 +55,8 @@
 (defmethod get-def-vals ((iconID (eql :omorch)))
    (list 
     :orchidea-orchestrate-executable *orchidea-executable-path*
-    :orchidea-config-template-path *orchidea-config-template-path*
+    :orchidea-default-config-template-path *orchidea-default-config-template-path*
+    :orchidea-default-config-path *orchidea-default-config-path*
     :orchidea-db-file *orchidea-db-file*
     :orchidea-sound-path *orchidea-sound-path*
     :omorch-default-ensemble *orchidea-default-ensemble*
@@ -66,7 +68,7 @@
 (defmethod put-preferences ((iconID (eql :omorch)))
   (let* ((modulepref (find-pref-module iconID)))
     (setf *orchidea-executable-path* (get-pref modulepref :orchidea-orchestrate-executable))
-    (setf *orchidea-config-template-path* (get-pref modulepref :orchidea-config-template-path))
+    (setf *orchidea-default-config-template-path* (get-pref modulepref :orchidea-default-config-template-path))
     (setf *orchidea-db-file* (get-pref modulepref :orchidea-db-file))
     (setf *orchidea-sound-path* (get-pref modulepref :orchidea-sound-path))
     (setf *orchidea-default-ensemble* (get-pref modulepref :omorch-default-ensemble))
@@ -76,14 +78,13 @@
 (defmethod save-pref-module ((iconID (eql :omorch)) item)
    (list iconID `(list 
 		  :orchidea-orchestrate-executable ,*orchidea-executable-path*
-		  :orchidea-config-template-path ,*orchidea-config-template-path*
+		  :orchidea-default-config-template-path ,*orchidea-default-config-template-path*
 		  :orchidea-db-file ,*orchidea-db-file*
 		  :orchidea-sound-path ,*orchidea-sound-path*
 		  :omorch-default-ensemble ,*orchidea-default-ensemble*
 		  :omorch-default-extras ',*orch-extras-assoc-list*
 		  :omorch-overwrite-previous-runs ,*orch-overwrite-previous-run*
 		  )
-	 
 	 *om-version*))
 
 (defclass orch-extras-view (om-view) 
@@ -133,7 +134,7 @@
 		     (om-make-dialog-item 'om-static-text (om-make-point l1 (incf posy 20)) (om-make-point 200 30) "OMOrch prefs"
                                           :font *om-default-font2b*)
 
-		     (om-make-dialog-item 'om-static-text (om-make-point l1 (incf posy dy2)) (om-make-point l3 30)
+		     (om-make-dialog-item 'om-static-text (om-make-point (+ l1 100) posy) (om-make-point l3 30)
 					  "Check docs included w. the CLI version of Orchidea"
                                           :font *controls-font*)
 
@@ -146,7 +147,7 @@
                      
                      (om-make-view 'om-icon-button
                                    :icon1 "folder" :icon2 "folder-pushed"
-                                   :position (om-make-point l2 (- posy 5))
+                                   :position (om-make-point l2 posy)
 				   :size (om-make-point 26 25)
                                    :action (om-dialog-item-act item
                                              (declare (ignore item))
@@ -163,24 +164,23 @@
 		     
 		     ;; db-file, and sound-file
 
-		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy dy2)) (om-make-point (- l2 50) 30)
+		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy dy1)) (om-make-point (- l2 50) 30)
 					  (format nil "Path to orchidea ~S file (database sound folder must be adjacent):" "XXX.spectrum.db")
                                           :font *controls-font*)
                      
                      (om-make-view 'om-icon-button
                                    :icon1 "folder" :icon2 "folder-pushed"
-                                   :position (om-make-point l2 (- posy 5))
+                                   :position (om-make-point l2 posy)
 				   :size (om-make-point 26 25)
                                    :action (om-dialog-item-act item
                                              (declare (ignore item))
-                                             (let ((file (om-choose-file-dialog :prompt "select orchidea .db-file:")))
+                                             (let ((file (om-choose-file-dialog :prompt "select a SOL xxx.spectrum.db-file:")))
                                                (when file
                                                  (progn
 						   (orchidea-set-db-file-and-sound-path (om-namestring file))
 						   (om-set-dialog-item-text outtxt (om-namestring file)))
 						 (set-pref modulepref :orchidea-db-file file)
-						 (set-pref modulepref :orchidea-sound-path
-							   (derive-sound-path-from-db-file))
+						 (set-pref modulepref :orchidea-sound-path (derive-sound-path-from-db-file file))
 						 ))))
 
                      
@@ -193,13 +193,13 @@
 
 		     ;; default orchestrate config-template
 
-		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy (* 2 dy1))) (om-make-point (- l2 50) 30)
+		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy (* 1 dy1))) (om-make-point (- l2 50) 30)
 					  "Path to default orchidea config template:"
                                           :font *controls-font*)
                      
                      (om-make-view 'om-icon-button
                                    :icon1 "folder" :icon2 "folder-pushed"
-                                   :position (om-make-point l2 (- posy 5))
+                                   :position (om-make-point l2 posy)
 				   :size (om-make-point 26 25)
                                    :action (om-dialog-item-act item
                                              (declare (ignore item))
@@ -208,12 +208,37 @@
                                                  (progn
 						   (orchidea-set-config-template (om-namestring file))
 						   (om-set-dialog-item-text outtxt (om-namestring file)))
-						 (set-pref modulepref :orchidea-config-template-path file)
+						 (set-pref modulepref :orchidea-default-config-template-path file)
 						 ))))
 
                      
 		     (setq outtxt (om-make-dialog-item 'om-static-text  (om-make-point (+ l1 20) (incf posy dy1)) (om-make-point l3 45)
-                                                       (om-namestring (get-pref modulepref :orchidea-config-template-path))
+                                                       (om-namestring (get-pref modulepref :orchidea-default-config-template-path))
+                                                       :font *om-default-font1*))
+
+		     		     ;; default config
+
+		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy (* 1 dy1))) (om-make-point (- l2 50) 30)
+					  "Path to default config file:"
+                                          :font *controls-font*)
+                     
+                     (om-make-view 'om-icon-button
+                                   :icon1 "folder" :icon2 "folder-pushed"
+                                   :position (om-make-point l2 posy)
+				   :size (om-make-point 26 25)
+                                   :action (om-dialog-item-act item
+                                             (declare (ignore item))
+                                             (let ((file (om-choose-file-dialog :prompt "select a valid config file:")))
+                                               (when file
+                                                 (progn
+						   (orchidea-set-default-config  (om-namestring file))
+						   (om-set-dialog-item-text outtxt (om-namestring file)))
+						 (set-pref modulepref :orchidea-default-config-path file)
+						 ))))
+
+                     
+		     (setq outtxt (om-make-dialog-item 'om-static-text  (om-make-point (+ l1 20) (incf posy dy1)) (om-make-point l3 45)
+                                                       (om-namestring (get-pref modulepref :orchidea-default-config-path))
                                                        :font *om-default-font1*))
 
 

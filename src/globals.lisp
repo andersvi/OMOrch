@@ -45,16 +45,27 @@
 (defparameter *orch-overwrite-previous-run* t
   "whether to overwrite output from previous calls in out-files/omorch-***")
 
-(defparameter *orchidea-config-template-path*
+(defparameter *orchidea-default-config-template-path*
   (namestring (make-pathname :directory (pathname-directory *orchidea-executable-path*)
 			     :name "config_template.txt")))
 
 (defmethod! orchidea-set-config-template ((path string))
-  :initvals (list *orchidea-config-template-path*)
+  :initvals (list *orchidea-default-config-template-path*)
   :icon 451
   :indoc '("path to orchidea config template file")
   :doc "set path to orchidea config template file"
-  (setf *orchidea-config-template-path* (or path (file-chooser))))
+  (setf *orchidea-default-config-template-path* (or path (file-chooser))))
+
+(defparameter *orchidea-default-config-path*
+  (namestring (make-pathname :directory (pathname-directory *orchidea-executable-path*)
+			     :name "dynamic_orchestration.txt")))
+
+(defmethod! orchidea-set-default-config ((path string))
+  :initvals (list *orchidea-default-config-path*)
+  :icon 451
+  :indoc '("path to orchidea default config file")
+  :doc "set path to orchidea default config file"
+  (setf *orchidea-default-config-path* (or path (file-chooser))))
 
 (defparameter *orchidea-db-file*
   (namestring (make-pathname :directory (pathname-directory *orchidea-config-template-path*)
@@ -82,7 +93,7 @@
      (make-pathname :directory (append (pathname-directory db-file) (list root))))))
 
 ;; TODO set this to something  more sensible
-(orchidea-set-db-file-and-sound-path "/NOT/YET/SET")
+;; (orchidea-set-db-file-and-sound-path "/NOT/YET/SET")
 
 
 
