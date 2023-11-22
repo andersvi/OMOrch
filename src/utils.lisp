@@ -120,8 +120,7 @@
       (find-regexp-in-string (string+ "^" tag ".+") orc-string)
     (when pos
       (let ((resten (subseq orc-string (+ 1 pos (length tag)) (+ pos length))))
-	(collect-string-items
-	 (subseq resten (position-if-not  #'whitespace-char-p resten)))))))
+	(subseq resten (position-if-not  #'whitespace-char-p resten))))))
 
 (defun parse-instruments-from-config (config &key (orchestra-tag "orchestra"))
   "config can be string or file on disk"
