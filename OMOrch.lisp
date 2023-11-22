@@ -28,8 +28,8 @@
 	OMOrch-files))
 
 
-(defvar *OMOrch-version* '0.2)
-(defvar *OMOrch-date* '2023-10-10)
+(defvar *OMOrch-version* '0.3)
+(defvar *OMOrch-date* '2023-11-22)
 
 (let ((funcs '(orchestrate))
       (p (find-library "OMOrch")))
