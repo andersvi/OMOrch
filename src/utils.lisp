@@ -78,26 +78,6 @@
 ;;; 
 ;;;
 
-;; use lw:find-regexp-in-string instead below
-
-;; (defun remove-inital-whitespaces-from-string (str)
-;;   (labels ((check-ws (chars)
-;; 	     (if (alpha-char-p (car chars))
-;; 		 (coerce chars 'string)
-;; 		 (check-ws (cdr chars)))))
-;;     (check-ws (coerce str 'list))))
-
-;; (defun collect-instruments-from-string (orc-string tag)
-;;   (flet ((remove-inital-whitespaces-from-string (str)
-;; 	   (labels ((check-ws (chars)
-;; 		      (if (alpha-char-p (car chars))
-;; 			  (coerce chars 'string)
-;; 			  (check-ws (cdr chars)))))
-;; 	     (check-ws (coerce str 'list)))))
-;;     (collect-string-items
-;;      (remove-inital-whitespaces-from-string
-;;       (replace-all orc-string tag "")))))
-
 (defun read-instrument-list-from-config-file (conf-file &optional (line-tag "orchestra"))
   (with-open-file (c conf-file :direction :input)
      (find-instruments-in-stream c line-tag)))
@@ -106,6 +86,8 @@
   (with-input-from-string (c string)
     (find-instruments-in-stream c line-tag)))
 
+
+;; uses lw:find-regexp-in-string :
 (defun find-instruments-in-stream (c line-tag)
   (let ((orc-string (loop for line = (read-line c nil) then (read-line c nil)
 			  while line
@@ -129,7 +111,3 @@
 			   (t nil))))
     (or instruments
 	(error (format nil "no orchestra found in ~S" config)))))
-
-;; (parse-instruments-from-config "/home/andersvi/site/OM/ORCHIDEA/OM_ORCHIDEA_LIB/OMOrch/DEMO/OMOrch_Intro_WS/out-files/orch.config")
-;; (parse-instruments-from-config (orch-load-config *orchidea-config-template-path*) :orchestra-tag "orchestra")
-;; (parse-instruments-from-config "yo" :orchestra-tag "orchestra")
