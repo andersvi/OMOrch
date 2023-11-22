@@ -12,10 +12,9 @@
 ;;; method orchestrate returns an instance of class 'orchestration
 
 
-(defmethod! orchestrate ((target sound)  (config orch-config))
-  :initvals '(nil *orchidea-default-ensemble* 0.7 *orchidea-config-template-path* nil)
-  :indoc '("target sound object"
-	   "config is an instance of the orch-config class")
+(defmethod! orchestrate ((target sound) (config orch-config))
+  :initvals '(nil nil)
+  :indoc '("target sound object" "an orch-config")
   :icon 451
   :doc "Generate orchestration from a target sound and an instance of orch-config  Returns an instance of orchestration.
 "
@@ -57,9 +56,6 @@
 	  (print (format nil "output-orchestration ~A" output-orchestration))
 	  (print (format nil "output-sound ~A" output-sound))
 
-	  ;; TODO: allow control of all options in config from here
-      
-    
 	  (let ((cmd (format nil "cd ~S && ~S ~S ~S"
 			     output-dir
 			     (namestring *orchidea-executable-path*)
