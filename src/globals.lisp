@@ -45,17 +45,6 @@
 (defparameter *orch-overwrite-previous-run* t
   "whether to overwrite output from previous calls in out-files/omorch-***")
 
-(defparameter *orchidea-default-config-template-path*
-  (namestring (make-pathname :directory (pathname-directory *orchidea-executable-path*)
-			     :name "config_template.txt")))
-
-(defmethod! orchidea-set-config-template ((path string))
-  :initvals (list *orchidea-default-config-template-path*)
-  :icon 451
-  :indoc '("path to orchidea config template file")
-  :doc "set path to orchidea config template file"
-  (setf *orchidea-default-config-template-path* (or path (file-chooser))))
-
 (defparameter *orchidea-default-config-path*
   (namestring (make-pathname :directory (pathname-directory *orchidea-executable-path*)
 			     :name "dynamic_orchestration.txt")))
@@ -68,7 +57,7 @@
   (setf *orchidea-default-config-path* (or path (file-chooser))))
 
 (defparameter *orchidea-db-file*
-  (namestring (make-pathname :directory (pathname-directory *orchidea-config-template-path*)
+  (namestring (make-pathname :directory (pathname-directory *orch-path-to-orchestrate*)
 			     :name "SET_ORCHIDEA_DB-FILE.db")))
 
 
