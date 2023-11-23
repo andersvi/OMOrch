@@ -23,11 +23,11 @@
   (set-pref (find-pref-module :externals) :omorch (pathname (find-orchestrate-path))))
 
 (defmethod save-external-prefs ((module (eql 'omorch))) 
-  `(:orchestrate ,(om-save-pathname *orchidea-executable-path*)))
+  `(:orchestrate ,(om-save-pathname *orch-path-to-orchestrate*)))
 
 (defmethod put-external-preferences ((module (eql 'omorch)) moduleprefs)
   (when (get-pref moduleprefs :orch)
-    (setf *orchidea-executable-path* (find-true-external (get-pref moduleprefs :omorch))))
+    (setf *orch-path-to-orchestrate* (find-true-external (get-pref moduleprefs :omorch))))
   t)
       
 
@@ -35,17 +35,10 @@
 ;         PREFERENCES PANEL MODULE
 ;=========================================================================================================================
 
-;; *orchidea-db-file*
-;; *orchidea-sound-path*
-
-
-
 ;; (progn
-;;   (set-pref (find-pref-module :omorch) :orchidea-sound-path (pathname (derive-sound-path-from-db-file)))
-;;   (set-pref (find-pref-module :omorch) :orchidea-config-template-path *orchidea-config-template-path*)
-;;   (set-pref (find-pref-module :omorch) :omorch-default-ensemble *orchidea-default-ensemble*)
-;;   (set-pref (find-pref-module :omorch) :orchidea-default-config-path *orchidea-default-config-path*)
-;;   (set-pref (find-pref-module :omorch) :orchidea-db-file *orchidea-db-file*)
+;;   (set-pref (find-pref-module :omorch) :omorch-default-ensemble *orch-default-ensemble*)
+;;   (set-pref (find-pref-module :omorch) :orch-default-config-path *orch-default-config-path*)
+;;   (set-pref (find-pref-module :omorch) :orch-sol-db-file *orch-sol-db-file*)
 ;;   (set-pref (find-pref-module :omorch) :omorch-default-extras *orch-extras-assoc-list*))
 ;;   (set-pref (find-pref-module :omorch) :omorch-overwrite-previous-runs *orch-overwrite-previous-run*)
 
@@ -53,11 +46,10 @@
 
 (defmethod get-def-vals ((iconID (eql :omorch)))
    (list 
-    :orchidea-orchestrate-executable *orchidea-executable-path*
-    :orchidea-default-config-path *orchidea-default-config-path*
-    :orchidea-db-file *orchidea-db-file*
-    :orchidea-sound-path *orchidea-sound-path*
-    :omorch-default-ensemble *orchidea-default-ensemble*
+    :orch-orchestrate-program *orch-path-to-orchestrate*
+    :orch-default-config-path *orch-default-config-path*
+    :orch-sol-db-file *orch-sol-db-file*
+    :omorch-default-ensemble *orch-default-ensemble*
     :omorch-default-extras *orch-extras-assoc-list*
     :omorch-overwrite-previous-runs *orch-overwrite-previous-run*
     ))
@@ -66,16 +58,16 @@
 (defmethod put-preferences ((iconID (eql :omorch)))
   (let* ((modulepref (find-pref-module iconID)))
     (setf *orch-path-to-orchestrate* (get-pref modulepref :orch-orchestrate-program))
-    (setf *orchidea-db-file* (get-pref modulepref :orchidea-db-file))
-    (setf *orchidea-default-ensemble* (get-pref modulepref :omorch-default-ensemble))
+    (setf *orch-sol-db-file* (get-pref modulepref :orch-sol-db-file))
+    (setf *orch-default-ensemble* (get-pref modulepref :omorch-default-ensemble))
     (setf *orch-extras-assoc-list* (get-pref modulepref :omorch-default-extras))
     (setf *orch-overwrite-previous-run* (get-pref modulepref :omorch-overwrite-previous-runs))))
 
 (defmethod save-pref-module ((iconID (eql :omorch)) item)
    (list iconID `(list 
 		  :orch-orchestrate-program ,*orch-path-to-orchestrate*
-		  :orchidea-db-file ,*orchidea-db-file*
-		  :omorch-default-ensemble ,*orchidea-default-ensemble*
+		  :orch-sol-db-file ,*orch-sol-db-file*
+		  :omorch-default-ensemble ,*orch-default-ensemble*
 		  :omorch-default-extras ',*orch-extras-assoc-list*
 		  :omorch-overwrite-previous-runs ,*orch-overwrite-previous-run*
 		  )
@@ -148,18 +140,18 @@
                                              (let ((file (om-choose-file-dialog :prompt "choose orchestrate executable")))
                                                (when file
                                                  (om-set-dialog-item-text outtxt (om-namestring file))
-                                                 (set-pref modulepref :orchidea-orchestrate-executable file)))))
+                                                 (set-pref modulepref :orch-orchestrate-program file)))))
 
                      
 		     (setq outtxt (om-make-dialog-item 'om-static-text  (om-make-point (+ l1 20) (incf posy dy1)) (om-make-point l3 45)
-                                                       (om-namestring (get-pref modulepref :orchidea-orchestrate-executable))
+                                                       (om-namestring (get-pref modulepref :orch-orchestrate-program))
                                                        :font *om-default-font1*))
 		     
 		     
 		     ;; db-file, and sound-file
 
 		     (om-make-dialog-item 'om-static-text  (om-make-point l1 (incf posy dy1)) (om-make-point (- l2 50) 30)
-					  (format nil "Path to orchidea ~S file (database sound folder must be adjacent):" "XXX.spectrum.db")
+					  (format nil "Path to your SOL's ~S file (db-sound folder must be adjacent):" "XXX.spectrum.db")
                                           :font *controls-font*)
                      
                      (om-make-view 'om-icon-button
@@ -171,15 +163,15 @@
                                              (let ((file (om-choose-file-dialog :prompt "select a SOL xxx.spectrum.db-file:")))
                                                (when file
                                                  (progn
-						   (orchidea-set-db-file-and-sound-path (om-namestring file))
+						   (orch-set-db-file-and-sound-path (om-namestring file))
 						   (om-set-dialog-item-text outtxt (om-namestring file)))
-						 (set-pref modulepref :orchidea-db-file file)
-						 (set-pref modulepref :orchidea-sound-path (derive-sound-path-from-db-file file))
+						 (set-pref modulepref :orch-sol-db-file file)
+						 
 						 ))))
 
                      
 		     (setq outtxt (om-make-dialog-item 'om-static-text  (om-make-point (+ l1 20) (incf posy dy1)) (om-make-point l3 45)
-                                                       (om-namestring (get-pref modulepref :orchidea-db-file))
+                                                       (om-namestring (get-pref modulepref :orch-sol-db-file))
                                                        :font *om-default-font1*))
 
 
@@ -199,14 +191,14 @@
                                              (let ((file (om-choose-file-dialog :prompt "select a valid config file:")))
                                                (when file
                                                  (progn
-						   (orchidea-set-default-config  (om-namestring file))
+						   (orch-set-default-config  (om-namestring file))
 						   (om-set-dialog-item-text outtxt (om-namestring file)))
-						 (set-pref modulepref :orchidea-default-config-path file)
+						 (set-pref modulepref :orch-default-config-path file)
 						 ))))
 
                      
 		     (setq outtxt (om-make-dialog-item 'om-static-text  (om-make-point (+ l1 20) (incf posy dy1)) (om-make-point l3 45)
-                                                       (om-namestring (get-pref modulepref :orchidea-default-config-path))
+                                                       (om-namestring (get-pref modulepref :orch-default-config-path))
                                                        :font *om-default-font1*))
 
 

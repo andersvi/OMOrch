@@ -29,52 +29,52 @@
 	"ORCHSTRATE BINARY NOT FOUND")))
 
 
-;; various global variables for om-orchidea
-(defparameter *orchidea-executable-path*
+;; various global variables for OMOorch
+(defparameter *orch-path-to-orchestrate*
   (namestring
    (make-pathname :directory (append (butlast (pathname-directory *load-pathname*)) (list  "resources" "bin")) 
                   :name "orchestrate")))
 
-(defmethod! orchidea-set-executable-path ((path string))
-  :initvals (list *orchidea-executable-path*)
+(defmethod! orch-set-path-to-orchestrate ((path string))
+  :initvals (list *orch-path-to-orchestrate*)
   :icon 451
   :indoc '("path to orchestrate binary")
   :doc "set path to orchestrate binary"
-  (setf *orchidea-executable-path* (or path (file-chooser))))
+  (setf *orch-path-to-orchestrate* (or path (file-chooser))))
 
 (defparameter *orch-overwrite-previous-run* t
   "whether to overwrite output from previous calls in out-files/omorch-***")
 
-(defparameter *orchidea-default-config-path*
-  (namestring (make-pathname :directory (pathname-directory *orchidea-executable-path*)
+(defparameter *orch-default-config-path*
+  (namestring (make-pathname :directory (pathname-directory *orch-path-to-orchestrate*)
 			     :name "dynamic_orchestration.txt")))
 
-(defmethod! orchidea-set-default-config ((path string))
-  :initvals (list *orchidea-default-config-path*)
+(defmethod! orch-set-default-config ((path string))
+  :initvals (list *orch-default-config-path*)
   :icon 451
-  :indoc '("path to orchidea default config file")
-  :doc "set path to orchidea default config file"
-  (setf *orchidea-default-config-path* (or path (file-chooser))))
+  :indoc '("path to default config file")
+  :doc "set path to default config file"
+  (setf *orch-default-config-path* (or path (file-chooser))))
 
-(defparameter *orchidea-db-file*
+(defparameter *orch-sol-db-file*
   (namestring (make-pathname :directory (pathname-directory *orch-path-to-orchestrate*)
-			     :name "SET_ORCHIDEA_DB-FILE.db")))
+			     :name "SET_SOL_DB-FILE.db")))
 
 
-(defvar *orchidea-sound-path*)
+(defvar *orch-sol-sound-directory*)
 
 
-(defmethod! orchidea-set-db-file-and-sound-path ((path string))
-  :initvals nil
+(defmethod! orch-set-db-file-and-sound-path ((path string))
+  :initvals *orch-sol-db-file*
   :icon 451
   :indoc '("path to .spectrum.db file")
   :doc "set path to .spectrum.db (database sound folder must be adjacent)"
   (progn
-    (setf *orchidea-db-file* (or path (file-chooser)))
-    (setf *orchidea-sound-path*
-	  (let ((root (first (lw::split-sequence (list #\.) (pathname-name *orchidea-db-file*)))))
+    (setf *orch-sol-db-file* (or path (file-chooser)))
+    (setf *orch-sol-sound-directory*
+	  (let ((root (first (lw::split-sequence (list #\.) (pathname-name *orch-sol-db-file*)))))
 	    (namestring
-	     (make-pathname :directory (append (pathname-directory *orchidea-db-file*) (list root))))))))
+	     (make-pathname :directory (append (pathname-directory *orch-sol-db-file*) (list root))))))))
 
 (defun derive-sound-path-from-db-file (db-file)
   (let ((root (first (lw::split-sequence (list #\.) (pathname-name db-file)))))
@@ -82,12 +82,12 @@
      (make-pathname :directory (append (pathname-directory db-file) (list root))))))
 
 ;; TODO set this to something  more sensible
-;; (orchidea-set-db-file-and-sound-path "/NOT/YET/SET")
+;; (orch-set-db-file-and-sound-path "/NOT/YET/SET")
 
 
 
 
-(defparameter *orchidea-default-ensemble*
+(defparameter *orch-default-ensemble*
   "Fl Fl Ob Ob ClBb ClBb Bn Bn Hn Hn TpC TpC Tbn Tbn BTb Vn Vn Va Va Vc Vc Cb Cb")
 
 

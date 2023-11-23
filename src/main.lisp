@@ -21,8 +21,8 @@
   :numouts 1
 
   
-  (cond ((not *orchidea-db-file*) (error "db file not set, use orchidea-set-db-file-and-sound-path function"))
-	((not *orchidea-executable-path*) (error "orchidea binary not set, use orchidea-set-executable-path function"))
+  (cond ((not *orch-sol-db-file*) (error "db file not set, use orch-set-db-file-and-sound-path function"))
+	((not *orch-path-to-orchestrate*) (error "orchestrate binary not set, use #'orch-set-path-to-orchestrate"))
 	((not (and (= (sample-rate target) 44100) (= (sample-size target) 16))) (error "orchestrate: target file must be 44.1k, 16 bit, RIFF")))
 	   
   (let (
@@ -58,7 +58,7 @@
 
 	  (let ((cmd (format nil "cd ~S && ~S ~S ~S"
 			     output-dir
-			     (namestring *orchidea-executable-path*)
+			     (namestring *orch-path-to-orchestrate*)
 			     (namestring (filename target))
 			     config-file-name
 			     )))
