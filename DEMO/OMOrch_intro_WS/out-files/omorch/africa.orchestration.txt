@@ -1,0 +1,79 @@
+[ orchestra Fl Gtr Cb Gtr Gtr ]
+[ segment 0 510.816
+	[ solution 1
+		[ note 1207.41 Fl lasting_half_sec C5 mf N /Winds/Flute/note_lasting/Fl-lasting_half_sec-C5-mf-N-T13d.wav 0 ]
+		[ note 510.816 Gtr tasto G#4 mf 1c /PluckedStrings/Guitar/sul_tasto/Gtr-tasto-G#4-mf-1c-N.wav 0 ]
+		[ note 510.816 Cb trem E3 ff 1c /Strings/Contrabass/tremolo/Cb-trem-E3-ff-1c-N.wav 0 ]
+		[ note 510.816 Gtr slide C4_G#3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_G#3-mf-3c-N.wav 0 ]
+		[ note 510.816 Gtr ord F#4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-F#4-mf-2c-N.wav 0 ]
+	]
+]
+[ segment 510.816 696.599
+	[ solution 1
+		[ note 2275.56 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+		[ note 696.599 Cb pizz_bartok B1 ff 3c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-B1-ff-3c-N.wav 0 ]
+		[ note 696.599 Gtr ord G#4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-G#4-mf-2c-N.wav 0 ]
+		[ note 696.599 Gtr ord F4 mf 4c /PluckedStrings/Guitar/ordinario/Gtr-ord-F4-mf-4c-T11d.wav 0 ]
+	]
+]
+[ segment 1207.41 650.159
+	[ solution 4
+		[ note 650.159 Fl flatt G4 mf N /Winds/Flute/flatterzunge/Fl-flatt-G4-mf-N-N.wav 0 ]
+		[ note 650.159 Cb pont_trem D2 mf 4c /Strings/Contrabass/sul_ponticello_tremolo/Cb-pont_trem-D2-mf-4c-N.wav 0 ]
+		[ note 650.159 Gtr ord D#3 mf 6c /PluckedStrings/Guitar/ordinario/Gtr-ord-D#3-mf-6c-N.wav 0 ]
+		[ note 650.159 Gtr dedillo F3 mf 4c /PluckedStrings/Guitar/dedillo/Gtr-dedillo-F3-mf-4c-N.wav 0 ]
+	]
+]
+[ segment 1857.6 928.798
+	[ solution 5
+		[ note 928.798 Fl flatt D#4 ff N /Winds/Flute/flatterzunge/Fl-flatt-D#4-ff-N-N.wav 0 ]
+		[ note 928.798 Cb trem F#4 ff 1c /Strings/Contrabass/tremolo/Cb-trem-F#4-ff-1c-T13d.wav 0 ]
+		[ note 928.798 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+		[ note 928.798 Gtr ord F4 mf 3c /PluckedStrings/Guitar/ordinario/Gtr-ord-F4-mf-3c-N.wav 0 ]
+	]
+]
+[ segment 2786.39 278.617
+	[ solution 8
+		[ note 278.617 Fl pizz F4 f N /Winds/Flute/pizzicato/Fl-pizz-F4-f-N-N.wav 0 ]
+		[ note 278.617 Gtr ord C5 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-2c-N.wav 0 ]
+		[ note 278.617 Cb pizz_bartok D#3 ff 1c /Strings/Contrabass/pizzicato_bartok/Cb-pizz_bartok-D#3-ff-1c-N.wav 0 ]
+		[ note 278.617 Gtr pont F2 mf 6c /PluckedStrings/Guitar/sul_ponticello/Gtr-pont-F2-mf-6c-N.wav 0 ]
+		[ note 278.617 Gtr ord C4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-C4-mf-2c-N.wav 0 ]
+	]
+]
+[ segment 3065.01 417.959
+	[ solution 13
+		[ note 417.959 Fl ord C5 ff N /Winds/Flute/ordinario/Fl-ord-C5-ff-N-T19d.wav 0 ]
+		[ note 417.959 Gtr ord D#3 mf 4c /PluckedStrings/Guitar/ordinario/Gtr-ord-D#3-mf-4c-N.wav 0 ]
+		[ note 417.959 Cb trem C#3 ff 1c /Strings/Contrabass/tremolo/Cb-trem-C#3-ff-1c-T21u.wav 0 ]
+		[ note 417.959 Gtr tasto F#4 mf 1c /PluckedStrings/Guitar/sul_tasto/Gtr-tasto-F#4-mf-1c-N.wav 0 ]
+		[ note 417.959 Gtr tasto G#4 mf 1c /PluckedStrings/Guitar/sul_tasto/Gtr-tasto-G#4-mf-1c-N.wav 0 ]
+	]
+]
+[ segment 3482.97 371.519
+	[ solution 5
+		[ note 371.519 Fl sfz D#4 fp N /Winds/Flute/sforzato/Fl-sfz-D#4-fp-N-R100d.wav 0 ]
+		[ note 371.519 Gtr ord G4 mf 4c /PluckedStrings/Guitar/ordinario/Gtr-ord-G4-mf-4c-N.wav 0 ]
+		[ note 371.519 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 371.519 Gtr slide C4_B3 mf 3c /PluckedStrings/Guitar/slide/Gtr-slide-C4_B3-mf-3c-N.wav 0 ]
+		[ note 371.519 Gtr ord F3 mf 4c /PluckedStrings/Guitar/ordinario/Gtr-ord-F3-mf-4c-N.wav 0 ]
+	]
+]
+[ segment 3854.49 835.896
+	[ solution 10
+		[ note 835.896 Fl aeol_and_ord F#4 ff N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-F#4-ff-N-N.wav 0 ]
+		[ note 835.896 Gtr ord D3 mf 4c /PluckedStrings/Guitar/ordinario/Gtr-ord-D3-mf-4c-N.wav 0 ]
+		[ note 835.896 Cb trem F2 ff 2c /Strings/Contrabass/tremolo/Cb-trem-F2-ff-2c-N.wav 0 ]
+		[ note 835.896 Gtr ord C5 mf 3c /PluckedStrings/Guitar/ordinario/Gtr-ord-C5-mf-3c-N.wav 0 ]
+		[ note 835.896 Gtr ord D#4 mf 2c /PluckedStrings/Guitar/ordinario/Gtr-ord-D#4-mf-2c-N.wav 0 ]
+	]
+]
+[ segment 4690.41 539.887
+	[ solution 1
+		[ note 539.887 Fl aeol_and_ord C4 ff N /Winds/Flute/aeolian_and_ordinario/Fl-aeol_and_ord-C4-ff-N-T18u.wav 0 ]
+		[ note 539.887 Gtr tap_body N mf 2 /PluckedStrings/Guitar/tap_on_body/Gtr-tap_body-N-mf-2-N.wav 0 ]
+		[ note 539.887 Cb hit_body N N 5 /Strings/Contrabass/hit_on_body/Cb-hit_body-N-N-5-N.wav 0 ]
+		[ note 539.887 Gtr gl_fst G4 mf 3c /PluckedStrings/Guitar/glissando/Gtr-gl_fst-G4-mf-3c-N.wav 0 ]
+		[ note 539.887 Gtr ord F4 mf 4c /PluckedStrings/Guitar/ordinario/Gtr-ord-F4-mf-4c-T11d.wav 0 ]
+	]
+]
