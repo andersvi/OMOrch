@@ -44,7 +44,7 @@
    (onsets_timegate :type number :initform .6 :accessor onsets_timegate :initarg :onsets_timegate)  			
    (export_solutions :type number :initform 10 :accessor export_solutions :initarg :export_solutions)  		
    (t60 :type number :initform 2.8 :accessor t60 :initarg :t60)  				
-   (dry_wet :type number :initform .8 .4 :accessor dry_wet :initarg :dry_wet)))
+   (dry_wet :type number :initform .4 :accessor dry_wet :initarg :dry_wet)))
 
 
 
