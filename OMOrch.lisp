@@ -28,12 +28,14 @@
 	OMOrch-files))
 
 
-(defvar *OMOrch-version* '0.3)
-(defvar *OMOrch-date* '2023-11-22)
 
 (let ((funcs '(orchestrate))
       (p (find-library "OMOrch")))
   (AddGenFun2Pack funcs p))
+
+(defvar *OMOrch-version* '1.1.1)
+(defvar *OMOrch-date* '2023-11-28)
+
 
 (set-lib-release *OMOrch-version* (find-library "OMOrch"))
 
