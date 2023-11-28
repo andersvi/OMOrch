@@ -29,8 +29,8 @@
 ;; method orchestrate returns an instance of class 'orchestration
 ;; 
 
-(defclass! orchestration (container)
-  ((target-sound :accessor target-sound :accessor target :accessor orch-target :initarg :target :initarg :target-sound :type sound :initform nil)
+(defclass! orchestration (om::container)
+  ((target-sound :accessor target-sound :accessor target :initarg :target :initarg :target-sound :type sound :initform nil)
    (output-sound :accessor output-sound :accessor orch-sound :initarg :output-sound :type sound :initform nil)
    (orch-output  :accessor orch-output  :initarg :orch-output :type string :initform nil )
    (command-line :accessor command-line :accessor orch-command-line :initarg :command-line :type string :initform nil)
