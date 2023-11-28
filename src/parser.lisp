@@ -29,14 +29,24 @@
 (defun get-velocity-from-orch-note-dynamic (orch-dyn)
   "support extra dynamics from orch: - ffpp fp N ppff ppmfpp pppppp..."
   ;; oomph... find something less hacky...
-  (let ((dyn-list (coerce orch-dyn 'list))
-	(dyn-keyword (intern (string-upcase orch-dyn) :keyword)))
+  (let* ((dyn-list (coerce orch-dyn 'list))
+	 (dyn-keyword
+	   ;; (intern (string-upcase orch-dyn) :keyword)
+	   (intern (string-upcase
+		    (coerce (loop with init = (first dyn-list)
+				  repeat 3 ;;max 3 ppp or fff
+				  for v in dyn-list
+				  while (equal v init)
+				  collect v)
+			    'string))
+		   :keyword))
+	 )
     (cond ((equal dyn-keyword :n)
 	   (progn (print (string+ "using velocity 0 for: " orch-dyn))
 		  0))
-	  ((member dyn-keyword *dynamics-symbols-list* :test #'(lambda (a b) (equal a (car b))))
-	   (get-vel-from-dyn dyn-keyword))
-	  ((get-vel-from-dyn
+	  ((member dyn-keyword om::*dynamics-symbols-list* :test #'(lambda (a b) (equal a (car b))))
+	   (om::get-vel-from-dyn dyn-keyword))
+	  ((om::get-vel-from-dyn
 	    (intern (string-upcase
 		     (coerce (loop with init = (first dyn-list)
 				   repeat 3 ;;max 3 ppp or fff
