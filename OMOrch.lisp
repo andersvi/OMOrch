@@ -29,12 +29,23 @@
 
 
 
-(let ((funcs '(orchestrate))
-      (p (find-library "OMOrch")))
-  (AddGenFun2Pack funcs p))
 
 (defvar *OMOrch-version* '1.1.1)
 (defvar *OMOrch-date* '2023-11-28)
+
+; OM subpackages initialization
+; ("sub-pack-name" subpacke-lists class-list function-list class-alias-list)
+;--------------------------------------------------
+
+(om::fill-library
+ '((nil nil
+    (orchestration orch-output orch-configuration)
+    (orchestrate))
+   ("Utils" nil (orch-note orch-segment orch-solution) (parse-instruments-from-config) ))
+ (find-library "OMOrch"))
+
+
+
 
 
 (set-lib-release *OMOrch-version* (find-library "OMOrch"))
