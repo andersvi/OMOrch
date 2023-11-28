@@ -1,4 +1,4 @@
-(in-package :om)
+(in-package :omorch)
 
 
 ;; hierarchy in orchestrate output:
@@ -113,6 +113,17 @@
 (defmethod omng-save ((self orch-chord) &optional (values? nil))
   `(let ((orch-notes ,(omng-save (orch-notes self))))
      (make-instance 'orch-chord :orch-notes orch-notes)))
+
+;; specialize omng-save for chord to save orch-notes
+
+(defmethod omng-save :around ((self chord) &optional (values? nil))
+  ;; make sure any orch-notes inside are saved, and added back in load-form
+  (if (orch-find-if-orch-note self)
+      (let ((notes (omng-save (inside self))))
+	`(let ((new-chord ,(call-next-method)))
+	   (setf (inside new-chord) ,notes)
+	   new-chord))
+      (call-next-method)))
 
 ;;
 ;; subclassing OM's regular note,
