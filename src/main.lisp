@@ -112,7 +112,7 @@
       (parse-orchidea-output orch-struct))))
 
 (defun read-orchestration-file (orch-file)
-  "reads an orchidea output-file (xxx.orchestration.txt) stored on disk"
+  "reads an orchidea output-file (xxx.orchestration.txt) stored on disk.  Returns an instance of 'orch-output"
   (let* ((file (or orch-file (om-choose-file-dialog :prompt "select an orchidea output-file (xxx.orchestration.txt)"))))
     (when file
       (parse-orchidea-output (om-read-file file)))))
