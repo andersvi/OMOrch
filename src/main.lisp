@@ -1,4 +1,4 @@
-(in-package :om)
+(in-package :omorch)
 
 ;;;;;;;;;;; main orchestrate method ;;;;;;;;;;;;;
 
@@ -23,21 +23,21 @@
   
   (cond ((not *orch-sol-db-file*) (error "db file not set, use orch-set-db-file-and-sound-path function"))
 	((not *orch-path-to-orchestrate*) (error "orchestrate binary not set, use #'orch-set-path-to-orchestrate"))
-	((not (and (= (sample-rate target) 44100) (= (sample-size target) 16))) (error "orchestrate: target file must be 44.1k, 16 bit, RIFF")))
+	((not (and (= (om::sample-rate target) 44100) (= (om::sample-size target) 16))) (error "orchestrate: target file must be 44.1k, 16 bit, RIFF")))
 	   
   (let (
 
 	;; set up various input and output filenames
 	(output-dir (namestring (make-pathname 
-				 :directory (append (pathname-directory *om-tmpfiles-folder*)
+				 :directory (append (pathname-directory om::*om-tmpfiles-folder*)
 						    (if *orch-overwrite-previous-run*
 							(list "omorch")
 							(list (string+ "omorch-" (time-tag)))))))))
     
 
-    (create-directory output-dir)
+    (om::create-directory output-dir)
 
-    (let* ((target-sound (filename target))
+    (let* ((target-sound (om::filename target))
 	   (output-basename (pathname-name target-sound))
 	   (output-sound (format nil "~A~A-solution.wav" output-dir output-basename)) ;current orchidea supports only RIFF/wav, 44.1k
 	   (output-orchestration (format nil "~A~A.orchestration.txt" output-dir output-basename))
@@ -59,14 +59,14 @@
 	  (let ((cmd (format nil "cd ~S && ~S ~S ~S"
 			     output-dir
 			     (namestring *orch-path-to-orchestrate*)
-			     (namestring (filename target))
+			     (namestring (om::filename target))
 			     config-file-name
 			     )))
 
 
 
 	    (progn
-	      (om-cmd-line cmd)
+	      (om::om-cmd-line cmd)
 
 	      (rename-file (string+ output-dir "connection.wav") output-sound)
 	      (rename-file (string+ output-dir "connection.txt") output-orchestration)
@@ -76,9 +76,9 @@
 	      ;; 
 
 
-	      (let* ((orch-struct (om-read-file output-orchestration))
+	      (let* ((orch-struct (om::om-read-file output-orchestration))
 		     (orch-output (parse-orchidea-output orch-struct))
-		     (output-sound (objfromobjs output-sound (mki 'sound)))
+		     (output-sound (objfromobjs output-sound (make-instance 'sound)))
 		     ;; (output-instrument-list (collect-string-items instrument-pool " "))
 		     )
 	    
@@ -108,11 +108,11 @@
 (defmethod objfromobjs ((orch-output-file pathname) (out orch-output))
   ;; "expects an ***.orchestration.txt file (output from 'orchestrate' binary)"
   (when orch-output-file
-    (let ((orch-struct (om-read-file orch-output-file)))
+    (let ((orch-struct (om::om-read-file orch-output-file)))
       (parse-orchidea-output orch-struct))))
 
 (defun read-orchestration-file (orch-file)
   "reads an orchidea output-file (xxx.orchestration.txt) stored on disk.  Returns an instance of 'orch-output"
-  (let* ((file (or orch-file (om-choose-file-dialog :prompt "select an orchidea output-file (xxx.orchestration.txt)"))))
+  (let* ((file (or orch-file (om::om-choose-file-dialog :prompt "select an orchidea output-file (xxx.orchestration.txt)"))))
     (when file
-      (parse-orchidea-output (om-read-file file)))))
+      (parse-orchidea-output (om::om-read-file file)))))

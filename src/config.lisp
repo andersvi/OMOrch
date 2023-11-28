@@ -1,11 +1,11 @@
-(in-package :om)
+(in-package :omorch)
 ;;;
 ;;;
-;;; class: orch-config
+;;; class: orch-configuration
 ;;;
 ;;;		- parameters
 ;;;		- template
-;;;		- textfile object
+;;;		- om::textfile object
 ;;;		- filename
 ;;;
 ;;;
@@ -19,7 +19,7 @@
 ;; TODO: provide more sensible initforms here?  Currently just grabbed from random .config-file...
 ;; 
 (defclass orch-config ()
-  ((textfile-object :type textfile :initform nil :accessor textfile-object :initarg :textfile-object)
+  ((textfile-object :type om::textfile :initform nil :accessor textfile-object :initarg :textfile-object)
    (tmp-config-file :type :string :initform nil :accessor tmp-config-file :initarg :tmp-config-file)
    (instruments :type :list :initform nil :accessor instruments :initarg :instruments)
    (config-string :type :string :initform nil :accessor config-string  :initarg :config-string)
@@ -48,8 +48,8 @@
 
 
 
-(defmethod! orch-config ((self textfile))
-  :initvals '(*orch-default-config-path*)
+(defmethod! orch-config ((self om::textfile))
+  :initvals nil
   :indoc '("textfile, pathname or string")
   :doc "Set up an instance of orch-config, and writes a temporary *.config to pass as argument in the call to 'orchestrate'.
 Name of tmp-file isi stored in  *orch-run-config-file*
@@ -57,7 +57,7 @@ If input is a textfile object, orch-config writes its content to that file.
 If input is a string or pathname, orch-config copies that file to the tmp file.
 "
   :icon 451
-  (let* ((config-string (om-buffer-text (buffer-text self)))
+  (let* ((config-string (om::om-buffer-text (om::buffer-text self)))
 	 (tmp-file-name (orch-tmp-config-file))
 	 (instruments (parse-instruments-from-config config-string :orchestra-tag "orchestra")))
     (with-open-file (o tmp-file-name :direction :output :if-does-not-exist :create :if-exists :supersede)
@@ -68,28 +68,23 @@ If input is a string or pathname, orch-config copies that file to the tmp file.
 		   :tmp-config-file tmp-file-name
 		   :instruments instruments)))
 
-(defmethod! orch-config ((self pathname))
-  :icon 451
+(defmethod* orch-config ((self pathname))
   (let ((tmp-file-name (orch-tmp-config-file))
 	(instruments (parse-instruments-from-config (namestring self) :orchestra-tag "orchestra")))
-    (copy-file self (orch-tmp-config-file))
+    (om::copy-file self (orch-tmp-config-file))
     (make-instance 'orch-config :tmp-config-file tmp-file-name :instruments instruments)))
 
-(defmethod! orch-config ((self string))
-  :icon 451
+(defmethod* orch-config ((self string))
   (let* ((tmp-file-name (orch-tmp-config-file))
 	 (instruments (parse-instruments-from-config self :orchestra-tag "orchestra")))
-    (copy-file self tmp-file-name)
+    (om::copy-file self tmp-file-name)
     (make-instance 'orch-config :tmp-config-file tmp-file-name :instruments instruments)))
 
-(defmethod! orch-config (self)
-  :icon 451
-  (make-instance 'orch-config
-		 :input-config *orch-default-config-path*
-		 :tmp-config-file (orch-tmp-config-file)))
+(defmethod* orch-config (self)
+  (orch-config *orch-default-config-path*))
 
-(defmethod objfromobjs ((self orch-config) (tf textfile))
-  (objfromobjs (tmp-config-file self) (make-instance 'textfile)))
-
+(defmethod objfromobjs ((self orch-config) (type om::textfile))
+  (let ((tmp-file-name (tmp-config-file self)))
+    (om::objfromobjs tmp-file-name (make-instance 'om::textfile))))
 
 

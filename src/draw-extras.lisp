@@ -1,4 +1,4 @@
-(in-package :om)
+(in-package :omorch)
 
 ;;; 
 ;;; handle drawing of extras from orchidea output in score editors
@@ -67,7 +67,7 @@
 
 (defun orch-add-dynamic-sign (note)
   ;; add dynamic sign close to note
-  (let ((dyn (mki 'vel-extra
+  (let ((dyn (make-instance 'vel-extra
 		  :dynamics (get-dyn-from-vel (vel note))
 		  :deltay 1.4)))
     (add-extra note dyn nil t)))
@@ -102,7 +102,7 @@
 ;; (setf (active? (first *orch-extras-list*)) t)
 ;; (active? (first *orch-extras-list*))
 
-;; (let ((n (mki 'orch-note)))
+;; (let ((n (make-instance 'orch-note)))
 ;;   (orch-add-extras-to-note n)
 ;;   )
 
@@ -122,7 +122,7 @@ head-cross head-carre head-losange head-rect
 head-triangle head-cercle
 
 (defun orch-add-special-note-head (note)
-(let ((head (mki 'head-extra
+(let ((head (make-instance 'head-extra
 :thehead            (head-cross)
 :deltax             0
 :deltay             0

@@ -1,4 +1,4 @@
-(in-package :om)
+(in-package :omorch)
 
 
 (defun test-orchestrate-binary ()

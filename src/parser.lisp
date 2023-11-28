@@ -1,4 +1,4 @@
-(in-package om)
+(in-package :omorch)
 
 
 ;;
@@ -62,7 +62,7 @@
 (defun parse-orchidea-output (orch-output-struct)
   (let ((orch-output (parse-[-delmited-string-to-list orch-output-struct)))
     (make-orch-output :instruments (car orch-output)
-		      :segments (mapcar #'parse-segment (cdr orch-output)))))
+		      :orch-segments (mapcar #'parse-segment (cdr orch-output)))))
 
 (defun parse-segment (segment)
   "segment: (segment 0 334 (solution 1 (note) (note) ...))"

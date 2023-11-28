@@ -29,7 +29,7 @@
 ;; method orchestrate returns an instance of class 'orchestration
 ;; 
 
-(defclass! orchestration (om::container)
+(defclass* orchestration (om::container)
   ((target-sound :accessor target-sound :accessor target :initarg :target :initarg :target-sound :type sound :initform nil)
    (output-sound :accessor output-sound :accessor orch-sound :initarg :output-sound :type sound :initform nil)
    (orch-output  :accessor orch-output  :initarg :orch-output :type string :initform nil )
@@ -55,19 +55,21 @@
 		    :instruments instruments
 		    :config-file config-file)))
 
+
 (defclass! orch-output ()
   ((instruments :accessor instruments :accessor orch-instruments :initarg :instruments :type list :initform nil)
-   (segments :accessor segments :initarg :segments :initform nil))
+   (orch-segments :accessor orch-segments :initarg :orch-segments :initform nil))
   (:documentation "orch-output stores the 'score' from orchestration")
   (:icon 451))
 
-(defun make-orch-output (&key instruments segments)
-  (make-instance 'orch-output :instruments instruments :segments segments))
+(defun make-orch-output (&key instruments orch-segments)
+  (make-instance 'orch-output :instruments instruments :orch-segments orch-segments))
 
 (defmethod omng-save ((self orch-output) &optional (values? nil))
-  `(let ((segs ,(omng-save (segments self)))
+  `(let ((segs ,(omng-save (orch-segments self)))
 	 (instruments ,(omng-save (instruments self))))
-     (make-instance 'orch-output :segments segs :instruments instruments)))
+     (make-instance 'orch-output :orch-segments segs :instruments instruments)))
+
 
 (defclass! orch-segment ()
   ((onset :accessor onset :initarg :onset :initform 0)
@@ -93,12 +95,13 @@
   `(let ((notes ,(omng-save (notes self))))
      (make-instance 'orch-solution :notes notes)))
 
+
 ;; just in case it might be needed somewhere, in addition to orch-segment above.  Dont know if its useful yet, perhaps
 ;; because closer to regular 'chord'-class?
 
 (defclass! orch-chord (chord)
   ;; class to carry orch-note info through to chord-seqs, omng-save etc.:
-  ((orch-notes :initarg :orch-notes :accessor orch-notes :initform (list (mki 'orch-note))))
+  ((orch-notes :initarg :orch-notes :accessor orch-notes :initform (list (make-instance 'orch-note))))
   (:documentation "subclass of chord, w slots for various metadata from Orchidea")
   (:icon 451))
 

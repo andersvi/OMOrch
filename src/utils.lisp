@@ -1,4 +1,4 @@
-(in-package om)
+(in-package :omorch)
 
 (defun time-tag ()
   (multiple-value-bind (sec min hour date month year day daylight-p zone)
@@ -92,21 +92,21 @@
   (let ((orc-string (loop for line = (read-line c nil) then (read-line c nil)
 			  while line
 			  do (when
-				 (find-regexp-in-string (string+ "^" line-tag ".+") line)
+				 (lw:find-regexp-in-string (string+ "^" line-tag ".+") line)
 			       (return line)))))
     (when orc-string
       (collect-instruments-from-string orc-string line-tag))))
 
 (defun collect-instruments-from-string (orc-string tag)
   (multiple-value-bind (pos length)
-      (find-regexp-in-string (string+ "^" tag ".+") orc-string)
+      (lw:find-regexp-in-string (string+ "^" tag ".+") orc-string)
     (when pos
       (let ((resten (subseq orc-string (+ 1 pos (length tag)) (+ pos length))))
-	(subseq resten (position-if-not  #'whitespace-char-p resten))))))
+	(subseq resten (position-if-not  #'lw:whitespace-char-p resten))))))
 
 (defun parse-instruments-from-config (config &key (orchestra-tag "orchestra"))
   "config can be string or file on disk"
-  (let ((instruments (cond ((file-readable-p config) (read-instrument-list-from-config-file config orchestra-tag))
+  (let ((instruments (cond ((om::file-readable-p config) (read-instrument-list-from-config-file config orchestra-tag))
 			   ((stringp config) (read-instrument-list-from-string  config orchestra-tag))
 			   (t nil))))
     (or instruments

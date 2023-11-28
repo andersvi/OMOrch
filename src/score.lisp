@@ -1,4 +1,4 @@
-(in-package :om)
+(in-package :omorch)
 
 
 ;;; 
@@ -18,8 +18,8 @@
 
 (defun orch-output->chord-seq (orch-output)     
   "return a chord-seq with one chord for each segment in output"
-  (let ((onsets (mapcar #'onset (segments orch-output)))
-	(chords (loop for seg in (segments orch-output)
+  (let ((onsets (mapcar #'onset (orch-segments orch-output)))
+	(chords (loop for seg in (orch-segments orch-output)
 		      for notes = (notes (solution seg))
 		      collect (objfromobjs notes (make-instance 'chord)) ))
 	
@@ -132,7 +132,7 @@
 ;; push all notes to a single stack
 
 (defun orch-push-note-to-stack (orchestration)
-  (let ((segs (segments (orch-output orchestration))))
+  (let ((segs (orch-segments (orch-output orchestration))))
     (loop for segment-notes in (mapcar #'(lambda (seg) (notes (solution seg))) segs)
 	  for onset in (mapcar #'onset segs)
 	  ;;output flat list of all '(note . onset):
@@ -152,7 +152,7 @@
 	 (onset (cdr note-w-onset))
 	 (dur (slot-value note 'dur)))
     (progn
-      (setf (chan note) (channel alloc))
+      (setf (om::chan note) (channel alloc))
       (setf (note-seq alloc) (append (note-seq alloc) (list note)))
       (setf (slot-value alloc 'next-possible-onset) (+ onset dur))
       (setf (slot-value alloc 'this-onset) onset)
@@ -227,9 +227,9 @@
   ;; remove duplicate styles from 'continuation-chords' in tied chords
   (setf (style orch-note) nil)
   (setf (dynamic orch-note) nil)
-  (setf (extra-obj-list orch-note) nil
+  (setf (om::extra-obj-list orch-note) nil
 	;; (remove-if #'(lambda (xtra) (typep xtra 'text-extra))
-	;; 	   (extra-obj-list orch-note))
+	;; 	   (om::extra-obj-list orch-note))
 	)
   orch-note)
 
@@ -261,11 +261,29 @@
     (orch-remove-extras-from-continuation-chords self)
     self))
 
-(defmethod* objFromObjs :around ((self chord-seq) (type voice))
+(defmethod objFromObjs :around ((self chord-seq) (type voice))
   (let ((new-voice (call-next-method)))
-    (when (chords self) (setf (chords new-voice) (chords self)))
-    (when (name self) (setf (name new-voice) (replace-all (name self) "CHORD-SEQ" "VOICE" )))
+    (when (om::chords self) (setf (om::chords new-voice) (chords self)))
+    (when (name self)
+      (setf (name new-voice) (replace-all (name self) "CHORD-SEQ" "VOICE" )))
     (orch-clean-extras-from-cont new-voice)))
+
+
+(defun orch-find-if-orch-note (c)
+  (find-if #'(lambda (c) (equal (class-of c) (find-class 'orch-note)))
+	   (inside c)))
+
+;; (orch-find-if-orch-type-chord (first (inside bbb)))
+;; (orch-find-if-orch-type-chord (first (inside (make-instance 'chord-seq))))
+
+(defmethod omng-save :around ((self chord-seq) &optional (values? nil))
+  ;; make sure any orch-data - is saved and added back in load-form
+  (if (find-if #'(lambda (c) (orch-find-if-orch-note c)) (inside self))
+      (let ((chords (omng-save (inside self))))
+	`(let ((new-cseq ,(call-next-method)))
+	   (setf (lmidic new-cseq) ,chords)
+	   new-cseq))
+      (call-next-method)))
 
 
 (defmethod objfromobjs ((self orchestration) (out voice))
@@ -287,15 +305,15 @@
 (defmethod objfromobjs ((self orchestration) (out poly))
   ;; via multi-seq
   (let ((new-poly (objfromobjs
-		   (objfromobjs self (mki 'multi-seq))
-		   (mki 'poly))))
+		   (objfromobjs self (make-instance 'multi-seq))
+		   (make-instance 'poly))))
     (orch-clean-extras-from-cont new-poly)))
 
 (defmethod objfromobjs ((self orch-output) (out poly))
   ;; via multi-seq
   (let ((new-poly (objfromobjs
-		   (objfromobjs self (mki 'multi-seq))
-		   (mki 'poly))))
+		   (objfromobjs self (make-instance 'multi-seq))
+		   (make-instance 'poly))))
     (orch-clean-extras-from-cont new-poly)))
 
 
