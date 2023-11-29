@@ -78,20 +78,20 @@
 (defmethod initialize-instance :after ((self orch-extras-view) &rest initargs)
   (let ((textdims (om::om-make-point 150 24)))
     (om::om-add-subviews self
-                     (om::om-make-dialog-item 'om-check-box (om::om-make-point 10 5) textdims "Styles" 
-                                          :checked-p (orch-is-extra-active? 'styles)
+                     (om::om-make-dialog-item 'om::om-check-box (om::om-make-point 10 5) textdims "Styles" 
+                                          :checked-p (orch-is-extra-active? :styles)
                                           :di-action (om::om-dialog-item-act item 
 						       (progn
-							 (orch-set-extra-active! 'styles (om::om-checked-p item))
+							 (orch-set-extra-active! :styles (om::om-checked-p item))
 							 (om::set-pref (object self) :omorch-default-extras *orch-extras-assoc-list*))))
 		     
 		     
     
-		     (om::om-make-dialog-item 'om-check-box (om::om-make-point 10 25) textdims "Dynamics" 
-					  :checked-p (orch-is-extra-active? 'dynamics)
+		     (om::om-make-dialog-item 'om::om-check-box (om::om-make-point 10 25) textdims "Dynamics" 
+					  :checked-p (orch-is-extra-active? :dynamics)
 					  :di-action (om::om-dialog-item-act item 
 						       (progn
-							 (orch-set-extra-active! 'dynamics (om::om-checked-p item))
+							 (orch-set-extra-active! :dynamics (om::om-checked-p item))
 							 (om::set-pref (object self) :omorch-default-extras *orch-extras-assoc-list*)))))))
 
 (defmethod make-new-pref-scroll  ((num (eql :omorch)) modulepref)

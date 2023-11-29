@@ -68,11 +68,11 @@
 (defun orch-add-dynamic-sign (note)
   ;; add dynamic sign close to note
   (let ((dyn (make-instance 'vel-extra
-		  :dynamics (get-dyn-from-vel (vel note))
+		  :dynamics (om::get-dyn-from-vel (om::vel note))
 		  :deltay 1.4)))
     (add-extra note dyn nil t)))
 
-(orch-add-extra-func 'dynamics #'orch-add-dynamic-sign "Dynamics" t)
+(orch-add-extra-func :dynamics #'orch-add-dynamic-sign "Dynamics" t)
 
 (defun orch-add-style-text (note)
   ;; text style-indication at close to note
@@ -81,7 +81,7 @@
 			     :deltay -3)))
     (add-extra note text nil t)))
 
-(orch-add-extra-func 'styles #'orch-add-style-text "Styles" t)
+(orch-add-extra-func :styles #'orch-add-style-text "Styles" t)
 
 
 ;; called when filling orch-notes into relevant editors
