@@ -20,8 +20,8 @@
   "return a chord-seq with one chord for each segment in output"
   (let ((onsets (mapcar #'onset (orch-segments orch-output)))
 	(chords (loop for seg in (orch-segments orch-output)
-		      for notes = (notes (solution seg))
-		      collect (objfromobjs notes (make-instance 'chord)) ))
+		      for notes = (orch-notes (solution seg))
+		      collect (objfromobjs notes (make-instance 'om::chord)) ))
 	
 	(names (orch-collect-and-format-instrument-names orch-output)))
     ;; :lmidic seems to work,  why not initargs :inside or :chords ?
@@ -133,7 +133,7 @@
 
 (defun orch-push-note-to-stack (orchestration)
   (let ((segs (orch-segments (orch-output orchestration))))
-    (loop for segment-notes in (mapcar #'(lambda (seg) (notes (solution seg))) segs)
+    (loop for segment-notes in (mapcar #'(lambda (seg) (orch-notes (solution seg))) segs)
 	  for onset in (mapcar #'onset segs)
 	  ;;output flat list of all '(note . onset):
 	  append (loop for note in segment-notes

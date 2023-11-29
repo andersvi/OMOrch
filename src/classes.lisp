@@ -84,16 +84,16 @@
 (defclass! orch-solution (chord)
   ;; subclass of chord
   ((id :accessor id :initarg :id :initform nil)
-   (notes :accessor notes :initarg :notes :initform nil))
+   (orch-notes :accessor orch-notes :initarg :orch-notes :initform nil))
   (:documentation "'solution' level from orchestration")
   (:icon 451))
 
-(defun make-orch-solution (&key id notes)
-  (make-instance 'orch-solution :id id :notes notes))
+(defun make-orch-solution (&key id orch-notes)
+  (make-instance 'orch-solution :id id :orch-notes orch-notes))
 
 (defmethod omng-save ((self orch-solution) &optional (values? nil))
-  `(let ((notes ,(omng-save (notes self))))
-     (make-instance 'orch-solution :notes notes)))
+  `(let ((orch-notes ,(omng-save (orch-notes self))))
+     (make-instance 'orch-solution :orch-notes orch-notes)))
 
 
 ;; just in case it might be needed somewhere, in addition to orch-segment above.  Dont know if its useful yet, perhaps

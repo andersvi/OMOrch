@@ -74,7 +74,7 @@
 (defun parse-solution (lis)
   (make-orch-solution
    :id (second lis)
-   :notes (mapcar #'parse-note (cddr lis))))
+   :orch-notes (mapcar #'parse-note (cddr lis))))
 
 
 (defun parse-note (lis)
