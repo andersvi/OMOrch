@@ -6,7 +6,7 @@
 ;; fits OM-classes and methods
 ;; 
 
-(defun orch-note-name-list-until-unvalid_ (lst)
+(defun orch-note-name-list-until-unvalid (lst)
   "return part of orch-note before potentially invalid part - '+ or '_"
   (subseq lst 0
 	  (position-if #'(lambda (c) (member c '(#\_ #\+)))
@@ -16,7 +16,7 @@
   "parse orchidea-type note-string, return valid OM note string."
   ;; orch-added-dynamics: '("ffpp" "fp" "N" "ppff" "ppmfpp")
   (let* ((orch-note-string-list (coerce (string notestring) 'list))
-	 (valid-part-of-note-name (orch-note-name-list-until-unvalid_ orch-note-string-list))
+	 (valid-part-of-note-name (orch-note-name-list-until-unvalid orch-note-string-list))
 	 (om-note-string-list (substitute-if #\+
 					     #'(lambda (c) (or (member c '(#\q #\Q) )))
 					     valid-part-of-note-name)))
