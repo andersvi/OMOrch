@@ -9,7 +9,9 @@
 	  om::defmethod*
 	  om::defclass*
 	  om::inside
-	  om::objfromobjs)
+	  om::objfromobjs
+	  om::omng-save
+	  )
 	:omorch)
 
 

@@ -25,13 +25,15 @@
 	
 	(names (orch-collect-and-format-instrument-names orch-output)))
     ;; :lmidic seems to work,  why not initargs :inside or :chords ?
-    (make-instance 'chord-seq :lonset onsets :lmidic chords :name (format nil "~A~2%~A" "CHORD-SEQ" names) )))
+    (let ((cs (make-instance 'om::chord-seq :lonset onsets :lmidic chords)))
+      (setf (om::name cs) (format nil "~A~2%~A" "CHORD-SEQ" names))
+      cs)))
 
-(defmethod objfromobjs ((self orchestration) (out chord-seq))
+(defmethod objfromobjs ((self orchestration) (out om::chord-seq))
   (let ((orch (orch-output self)))
     (orch-output->chord-seq orch)))
 
-(defmethod objfromobjs ((self orch-output) (out chord-seq))
+(defmethod objfromobjs ((self orch-output) (out om::chord-seq))
   (orch-output->chord-seq self))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -150,7 +152,7 @@
   ;; add this note to this allocators seq
   (let* ((note (car note-w-onset))			    ; note-struct = '(note . onset)
 	 (onset (cdr note-w-onset))
-	 (dur (slot-value note 'dur)))
+	 (dur (slot-value note 'om::dur)))
     (progn
       (setf (om::chan note) (channel alloc))
       (setf (note-seq alloc) (append (note-seq alloc) (list note)))
@@ -189,9 +191,9 @@
 			   (onsets (lonsets alloc))
 			   (name (instrument-name alloc)))
 		       (make-instance 'chord-seq :lmidic chords :lonset onsets :name name)))))
-    (make-instance 'multi-seq :chord-seqs cseqs)))
+    (make-instance 'om::multi-seq :chord-seqs cseqs)))
 
-(defmethod objfromobjs ((self orchestration) (out multi-seq))
+(defmethod objfromobjs ((self orchestration) (out om::multi-seq))
   (orchestration->multi-seq (orchestration-to-allocators self)))
 
 
@@ -199,7 +201,7 @@
   (loop for ins in (cdr o)
 	collect (string-capitalize ins)))
 
-(defmethod objfromobjs ((self orch-output) (out multi-seq))
+(defmethod objfromobjs ((self orch-output) (out om::multi-seq))
   (let* ((inslist (loop for ins in (cdr (instruments self))
 			collect (string-capitalize ins)))
 	 (orchestration (make-instance 'orchestration
@@ -241,7 +243,7 @@
 		 unless (typep group 'rest)
 		   do
 		      (loop for chord in (inside group)
-			    when (typep chord 'continuation-chord)
+			    when (typep chord 'om::continuation-chord)
 			      do
 				 (loop for note in (inside chord)
 				       do
@@ -263,9 +265,9 @@
 
 (defmethod objFromObjs :around ((self chord-seq) (type voice))
   (let ((new-voice (call-next-method)))
-    (when (om::chords self) (setf (om::chords new-voice) (chords self)))
-    (when (name self)
-      (setf (name new-voice) (replace-all (name self) "CHORD-SEQ" "VOICE" )))
+    (when (om::chords self) (setf (om::chords new-voice) (om::chords self)))
+    (when (om::name self)
+      (setf (om::name new-voice) (replace-all (om::name self) "CHORD-SEQ" "VOICE" )))
     (orch-clean-extras-from-cont new-voice)))
 
 
@@ -281,39 +283,39 @@
   (if (find-if #'(lambda (c) (orch-find-if-orch-note c)) (inside self))
       (let ((chords (omng-save (inside self))))
 	`(let ((new-cseq ,(call-next-method)))
-	   (setf (lmidic new-cseq) ,chords)
+	   (setf (om::lmidic new-cseq) ,chords)
 	   new-cseq))
       (call-next-method)))
 
 
-(defmethod objfromobjs ((self orchestration) (out voice))
+(defmethod objfromobjs ((self orchestration) (out om::voice))
   ;; via chord-seq
   (let ((v (objfromobjs
-	    (objfromobjs self (make-instance 'chord-seq))
-	    (make-instance 'voice))))
+	    (objfromobjs self (make-instance 'om::chord-seq))
+	    (make-instance 'om::voice))))
     v))
 
-(defmethod objfromobjs ((self orch-output) (out voice))
+(defmethod objfromobjs ((self orch-output) (out om::voice))
   (objfromobjs
-   (objfromobjs self (make-instance 'chord-seq))
-   (make-instance 'voice)))
+   (objfromobjs self (make-instance 'om::chord-seq))
+   (make-instance 'om::voice)))
 
 ;;voices->poly maintains orch-note content for each chord
 ;; 
 ;; ORCHESTRATION -> POLY
 
-(defmethod objfromobjs ((self orchestration) (out poly))
+(defmethod objfromobjs ((self orchestration) (out om::poly))
   ;; via multi-seq
   (let ((new-poly (objfromobjs
-		   (objfromobjs self (make-instance 'multi-seq))
-		   (make-instance 'poly))))
+		   (objfromobjs self (make-instance 'om::multi-seq))
+		   (make-instance 'om::poly))))
     (orch-clean-extras-from-cont new-poly)))
 
-(defmethod objfromobjs ((self orch-output) (out poly))
+(defmethod objfromobjs ((self orch-output) (out om::poly))
   ;; via multi-seq
   (let ((new-poly (objfromobjs
-		   (objfromobjs self (make-instance 'multi-seq))
-		   (make-instance 'poly))))
+		   (objfromobjs self (make-instance 'om::multi-seq))
+		   (make-instance 'om::poly))))
     (orch-clean-extras-from-cont new-poly)))
 
 
@@ -325,6 +327,6 @@
 ;;; output synthesized/connected output-sound from 'orchestration'
 ;;; 
 
-(defmethod objfromobjs ((self orchestration) (out sound))
+(defmethod objfromobjs ((self orchestration) (out om::sound))
   (output-sound self))
 

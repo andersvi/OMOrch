@@ -116,7 +116,7 @@
 
 ;; specialize omng-save for chord to save orch-notes
 
-(defmethod omng-save :around ((self chord) &optional (values? nil))
+(defmethod omng-save :around ((self om::chord) &optional (values? nil))
   ;; make sure any orch-notes inside are saved, and added back in load-form
   (if (orch-find-if-orch-note self)
       (let ((notes (omng-save (inside self))))
@@ -130,7 +130,7 @@
 ;; 
 ;; 
 
-(defclass! orch-note (note)
+(defclass! orch-note (om::note)
   ((instrument :accessor instrument :initarg :instrument :initform nil)
    (style :accessor style :initarg :style :initform nil)
    (pitch-name :accessor pitch-name :initarg :pitch-name :initform nil)
