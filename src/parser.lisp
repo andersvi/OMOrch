@@ -26,35 +26,30 @@
 	(coerce om-note-string-list 'string))))
 
 
+;; extend om's standard list w. some potential used by 'orchestrate':
+
+(defvar *orch-dynamics-symbols-list* (append om::*dynamics-symbols-list* 
+					     '((:ffpp nil 115)
+					       (:fp nil 100)
+					       (:N nil 0)
+					       (:ppff nil 40)
+					       (:ppmfpp nil 60))))
+
+(defun orch-get-vel-from-dyn (dyn-keyword)
+  (let ((om::*dynamics-symbols-list*
+	  (append om::*dynamics-symbols-list* *orch-added-dynamics*)))
+    (om::get-vel-from-dyn dyn-keyword)))
+
+
 (defun get-velocity-from-orch-note-dynamic (orch-dyn)
   "support extra dynamics from orch: - ffpp fp N ppff ppmfpp pppppp..."
-  ;; oomph... find something less hacky...
-  (let* ((dyn-list (coerce orch-dyn 'list))
-	 (dyn-keyword
-	   ;; (intern (string-upcase orch-dyn) :keyword)
-	   (intern (string-upcase
-		    (coerce (loop with init = (first dyn-list)
-				  repeat 3 ;;max 3 ppp or fff
-				  for v in dyn-list
-				  while (equal v init)
-				  collect v)
-			    'string))
-		   :keyword))
-	 )
+  (let* (;; (dyn-list (coerce orch-dyn 'list))
+	 (dyn-keyword (intern (string-upcase orch-dyn) :keyword)))
     (cond ((equal dyn-keyword :n)
 	   (progn (print (string+ "using velocity 0 for: " orch-dyn))
 		  0))
-	  ((member dyn-keyword om::*dynamics-symbols-list* :test #'(lambda (a b) (equal a (car b))))
-	   (om::get-vel-from-dyn dyn-keyword))
-	  ((om::get-vel-from-dyn
-	    (intern (string-upcase
-		     (coerce (loop with init = (first dyn-list)
-				   repeat 3 ;;max 3 ppp or fff
-				   for v in dyn-list
-				   while (equal v init)
-				   collect v)
-			     'string))
-		    :keyword)))
+	  ((member dyn-keyword *orch-dynamics-symbols-list* :test #'(lambda (a b) (equal a (car b))))
+	   (orch-get-vel-from-dyn dyn-keyword))
 	  (t
 	   (progn (print (string+ "setting fallback velocity = 0, none found for: " orch-dyn))
 		  0)))))
