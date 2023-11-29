@@ -76,14 +76,8 @@
 	    (namestring
 	     (make-pathname :directory (append (pathname-directory *orch-sol-db-file*) (list root))))))))
 
-(defun derive-sound-path-from-db-file (db-file)
-  (let ((root (first (lw::split-sequence (list #\.) (pathname-name db-file)))))
-    (namestring
-     (make-pathname :directory (append (pathname-directory db-file) (list root))))))
-
 ;; TODO set this to something  more sensible
 ;; (orch-set-db-file-and-sound-path "/NOT/YET/SET")
-
 
 
 
