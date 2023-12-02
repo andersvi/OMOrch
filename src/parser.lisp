@@ -37,7 +37,7 @@
 
 (defun orch-get-vel-from-dyn (dyn-keyword)
   (let ((om::*dynamics-symbols-list*
-	  (append om::*dynamics-symbols-list* *orch-added-dynamics*)))
+	  (append om::*dynamics-symbols-list* *orch-dynamics-symbols-list*)))
     (om::get-vel-from-dyn dyn-keyword)))
 
 
