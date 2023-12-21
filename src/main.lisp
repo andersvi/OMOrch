@@ -61,13 +61,14 @@
 	(progn
 	  (om::om-cmd-line cmd)
 
+	  ;; book-keeping: match various output filenames to target
+	  
 	  (rename-file (string+ output-dir "connection.wav") output-sound)
 	  (rename-file (string+ output-dir "connection.txt") output-orchestration)
-    
-	  ;; 
-	  ;; return an orchestration-object
-	  ;; 
+	  (rename-file (string+ output-dir "segments.txt") (string+ output-basename ".segments.txt"))
+	  (rename-all-output-files output-basename "segment" output-dir)
 
+	  ;; return an orchestration-object
 
 	  (let* ((orch-struct (om::om-read-file output-orchestration))
 		 (orch-output (parse-orchidea-output orch-struct))
@@ -109,3 +110,9 @@
   (let* ((file (or orch-file (om::om-choose-file-dialog :prompt "select an orchidea output-file (xxx.orchestration.txt)"))))
     (when file
       (parse-orchidea-output (om::om-read-file file)))))
+
+(defun rename-all-output-files (new old dir)
+  ;; rename various general output-file names ("segment..000*.txt" etc) to match targetname
+  (loop for path in (directory dir)
+	do (let ((new-name (substitute-in-splitted-string "." new old (file-namestring path)))) ;from utils.lisp
+	     (rename-file path new-name))))

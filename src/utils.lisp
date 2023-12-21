@@ -111,3 +111,10 @@
 			   (t nil))))
     (or instruments
 	(error (format nil "no orchestra found in ~S" config)))))
+
+(defun substitute-in-splitted-string (split new old string)
+  "substitute 'new' for 'old' in string splitted by 'split'"
+  (let* ((old-str-list (lw::split-sequence split string))
+	 (new-str-list (substitute new old old-str-list :test #'string-equal)))
+    (reduce #'(lambda (s acc) (string+ s split acc))
+	    new-str-list)))
