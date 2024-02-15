@@ -1,5 +1,5 @@
 ;;;
-;;; Time-stamp: <2023-11-07 13:13:44 andersvi>
+;;; Time-stamp: <2024-02-15 15:44:31 andersvi>
 ;;; 
 
 (in-package :om)
@@ -98,8 +98,8 @@
 
 
 
-(defvar *OMOrch-version* '1.1.1)
-(defvar *OMOrch-date* '2023-11-28)
+(defvar *OMOrch-version* '2.0)
+(defvar *OMOrch-date* '2024-02-15)
 
 ; OM subpackages initialization
 ; ("sub-pack-name" subpacke-lists class-list function-list class-alias-list)
