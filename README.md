@@ -2,31 +2,48 @@
 
 Yet-Another-OM-Orchxx-lib!  (YAOMO!)
 
-Inspired by "OM-Orchidea" by Geof Holbrook and "OM-Orchidee" by Jean
-Bresson.
-
 An OpenMusic-lib to call and use output from Carmine-Emanuele Cella
 "Orchidea" orchestration tool: https://http://www.orch-idea.org/
 
-This lib isn't very useful unless you have installed the CLI-version
-of Carmine's Orchidea-software.
+Inspired by "OM-Orchidea" by Geof Holbrook and "OM-Orchidee" by Jean
+Bresson.
+
+**Installation**
+
+Unpack the compressed library, and move it to a place where OM looks
+for libraries (set in your Preferences).  You will probably need to
+rename the extracted folder - OMOrch-v.xx to just OMOrch.
+
+The lib currently relies on a CLI-version of 'orchestrate' from
+Carmine's Orchidea-software.
+
+A precompiled version for Linux is included inside the 'resources/'
+folder (together with the other cli-tools used by Orchidea)
+
+**SOL database**
 
 You will also need a compatible sample-dataset to work with Orchidea,
 fex.  "FullSOL" or "TinySOL":
 https://forum.ircam.fr/projects/detail/fullsol/
 
-There's a demo-workspace inside DEMO: "OMOrch_Intro_WS" - describing
-some of the features of OMOrch.
+**Tutorials**
 
-OMOrch is very much under development, has a rather large TODO-list.
-I'd be happy if you contact me (anders@avinjar.no) if you find bugs,
-have suggestions or good solutions.
+Tutorials are available at the usual place after the lib is loaded:
+"Help->Import Tutorial Patches->Libraries->OMOrch".
 
-When reporting bugs it is very helpful if you can provide a precise
-step-by-step explanation together with a MWE: an empty new workspace
-containing only the necessary patches, files and folders to show the
-bug, and nothing else.
+**Development**
 
 Sources are available at https://github.com/andersvi/OMOrch
 
-Anders Vinjar, 2023
+OMOrch is very much under development, and has a rather large
+TODO-list.  If you discover bugs or have suggestions or good
+solutions, please set up a note at the "Discussions" tab at the
+git-repo:
+
+  https://github.com/andersvi/OMOrch/discussions
+
+When reporting bugs please try to provide a precise step-by-step
+explanation together with a MWE: an empty new workspace containing
+only the necessary patches and resources to trigger the bug.
+
+Anders Vinjar, 2024
