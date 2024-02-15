@@ -1,0 +1,21 @@
+* "orchidea"'s command-line tools - included binaries
+  
+Currently OMOrch relies on "orchidea"'s command-line tools to do the
+search for orchestrations.  The only really needed one is
+'orchestrate'
+
+Currently this lib only includes the binaries running on Linux.
+
+If you use other OS'es you need to get hold of a version of
+'orchestrate' which runs on your machine.  Probably from the main
+"orchidea" application.  
+
+The various command line tools included here are:
+
+	orchestrate
+	cpp_driver
+	dbgen
+	dbquery
+	features
+	segment
+
